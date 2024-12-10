@@ -1,39 +1,39 @@
 {
   "Files": [
     {
-      "Id": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "Id": "D:\\vs-studio\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
     },
     {
-      "Id": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\scopedcss\\bundle\\dankweb.styles.css",
+      "Id": "D:\\vs-studio\\dankapi\\dankweb\\obj\\Debug\\net8.0\\scopedcss\\bundle\\dankweb.styles.css",
       "PackagePath": "staticwebassets\\dankweb.styles.css"
     },
     {
-      "Id": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\css\\app.css",
+      "Id": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Id": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Id": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\favicon.png",
+      "Id": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\icon-192.png",
+      "Id": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\icon-192.png",
       "PackagePath": "staticwebassets\\icon-192.png"
     },
     {
-      "Id": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\index.html",
+      "Id": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\sample-data\\weather.json",
+      "Id": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\sample-data\\weather.json",
       "PackagePath": "staticwebassets\\sample-data\\weather.json"
     },
     {

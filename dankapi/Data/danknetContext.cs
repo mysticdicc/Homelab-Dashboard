@@ -11,6 +11,11 @@ public partial class danknetContext : DbContext
 {
     public danknetContext()
     {
+        if (!File.Exists("./data/danknetlocal.db"))
+        {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
     }
 
     public danknetContext(DbContextOptions<danknetContext> options)
@@ -23,7 +28,7 @@ public partial class danknetContext : DbContext
     public virtual DbSet<DashboardItem> DashboardItems { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=dank-sql.dank.net\\DANKSQL;Initial Catalog=danknet;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlite("Data Source=./data/danknetlocal.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

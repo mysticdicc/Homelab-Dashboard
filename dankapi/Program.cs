@@ -1,9 +1,10 @@
 ﻿using dankapi.Data;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContextFactory<danknetContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("dankapiContext") ?? throw new InvalidOperationException("Connection string 'dankapiContext' not found.")));
+    options.UseSqlite("Data Source=./data/danknetlocal.db"));
 
 // Add services to the container.
 

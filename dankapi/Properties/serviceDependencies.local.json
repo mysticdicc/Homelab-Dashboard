@@ -3,15 +3,11 @@
     "secrets1": {
       "type": "secrets.user"
     },
-    "mssql1": {
+    "sqlite1": {
       "secretStore": "LocalSecretsFile",
-      "type": "mssql.onprem",
-      "connectionId": "danknet_sql",
+      "type": "sqlite.local",
+      "connectionId": "ConnectionStrings:DatabaseConnection",
       "dynamicId": null
-    },
-    "mssql2": {
-      "type": "mssql.local",
-      "connectionId": "ConnectionStrings:dankapiContext"
     }
   }
 }

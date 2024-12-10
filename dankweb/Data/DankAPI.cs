@@ -53,5 +53,17 @@ namespace dankweb.DankAPI
                 throw;
             }
         }
+
+        public async Task EditItem(DashboardItem item)
+        {
+            try
+            {
+                await _httpClient.PutAsJsonAsync<DashboardItem>("/dashboard/put/update", item);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

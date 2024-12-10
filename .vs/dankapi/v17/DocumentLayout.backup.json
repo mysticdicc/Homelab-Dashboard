@@ -1,50 +1,62 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Users\\richard\\source\\repos\\dankapi\\",
+  "WorkspaceRootPath": "D:\\vs-studio\\dankapi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankweb\\pages\\apps\\dashboard\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|d:\\vs-studio\\dankapi\\dankweb\\pages\\apps\\dashboard\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\pages\\apps\\dashboard\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankapi\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|solutionrelative:dankapi\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankweb\\data\\dankapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\data\\dankapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankweb\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|d:\\vs-studio\\dankapi\\dankweb\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|e:\\users\\richard\\source\\repos\\dankapi\\danklibrary\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|solutionrelative:danklibrary\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankweb\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankweb\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|d:\\vs-studio\\dankapi\\dankweb\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|d:\\vs-studio\\dankapi\\dankweb\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|d:\\vs-studio\\dankapi\\dankweb\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|d:\\vs-studio\\dankapi\\dankweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|d:\\vs-studio\\dankapi\\dankweb\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|d:\\vs-studio\\dankapi\\dankapi\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|solutionrelative:dankapi\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|e:\\users\\richard\\source\\repos\\dankapi\\dankapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|d:\\vs-studio\\dankapi\\dankapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|solutionrelative:dankapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|d:\\vs-studio\\dankapi\\dankapi\\data\\danknetcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|solutionrelative:dankapi\\data\\danknetcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|d:\\vs-studio\\dankapi\\danklibrary\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|solutionrelative:danklibrary\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|d:\\vs-studio\\dankapi\\dankweb\\data\\dankapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\data\\dankapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|d:\\vs-studio\\dankapi\\dankapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|solutionrelative:dankapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|d:\\vs-studio\\dankapi\\dankweb\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,76 +74,109 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.razor",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankweb\\App.razor",
+              "RelativeDocumentMoniker": "dankweb\\App.razor",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankweb\\App.razor",
+              "RelativeToolTip": "dankweb\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-10T12:49:30.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Dashboard.razor",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
               "RelativeDocumentMoniker": "dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
               "RelativeToolTip": "dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAABsAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADMAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-09T16:31:00.624Z",
+              "WhenOpened": "2024-12-10T03:18:46.31Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "app.css",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\css\\app.css",
-              "RelativeDocumentMoniker": "dankweb\\wwwroot\\css\\app.css",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\css\\app.css",
-              "RelativeToolTip": "dankweb\\wwwroot\\css\\app.css",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAAAGgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-12-09T13:51:50.851Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Dashboard.cs",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\Dashboard.cs",
-              "RelativeDocumentMoniker": "danklibrary\\Dashboard.cs",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\Dashboard.cs",
-              "RelativeToolTip": "danklibrary\\Dashboard.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAA5AAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "danknetContext.cs",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankapi\\Data\\danknetContext.cs",
+              "RelativeDocumentMoniker": "dankapi\\Data\\danknetContext.cs",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankapi\\Data\\danknetContext.cs",
+              "RelativeToolTip": "dankapi\\Data\\danknetContext.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAACMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T00:47:58.116Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-10T01:49:09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankapi\\appsettings.json",
+              "RelativeDocumentMoniker": "dankapi\\appsettings.json",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankapi\\appsettings.json",
+              "RelativeToolTip": "dankapi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-10T01:45:54.087Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "app.css",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\css\\app.css",
+              "RelativeDocumentMoniker": "dankweb\\wwwroot\\css\\app.css",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\css\\app.css",
+              "RelativeToolTip": "dankweb\\wwwroot\\css\\app.css",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAF0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-12-09T13:51:50.851Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\danklibrary\\Dashboard.cs",
+              "RelativeDocumentMoniker": "danklibrary\\Dashboard.cs",
+              "ToolTip": "D:\\vs-studio\\dankapi\\danklibrary\\Dashboard.cs",
+              "RelativeToolTip": "danklibrary\\Dashboard.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T00:47:58.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\Program.cs",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankapi\\Program.cs",
               "RelativeDocumentMoniker": "dankapi\\Program.cs",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\Program.cs",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankapi\\Program.cs",
               "RelativeToolTip": "dankapi\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAIBJwB0AAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAewCUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T20:13:33.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-08T20:13:33.161Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "DankAPI.cs",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Data\\DankAPI.cs",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankweb\\Data\\DankAPI.cs",
               "RelativeDocumentMoniker": "dankweb\\Data\\DankAPI.cs",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Data\\DankAPI.cs",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankweb\\Data\\DankAPI.cs",
               "RelativeToolTip": "dankweb\\Data\\DankAPI.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwDAAAABeAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAYwEUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T19:21:39.727Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-08T19:21:39.727Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Program.cs",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankweb\\Program.cs",
               "RelativeDocumentMoniker": "dankweb\\Program.cs",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Program.cs",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankweb\\Program.cs",
               "RelativeToolTip": "dankweb\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -140,11 +185,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "_Imports.razor",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\_Imports.razor",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankweb\\_Imports.razor",
               "RelativeDocumentMoniker": "dankweb\\_Imports.razor",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\_Imports.razor",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankweb\\_Imports.razor",
               "RelativeToolTip": "dankweb\\_Imports.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -153,37 +198,36 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "MainLayout.razor",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Layout\\MainLayout.razor",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankweb\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "dankweb\\Layout\\MainLayout.razor",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Layout\\MainLayout.razor",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankweb\\Layout\\MainLayout.razor",
               "RelativeToolTip": "dankweb\\Layout\\MainLayout.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-08T19:01:39.129Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "index.html",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\index.html",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\index.html",
               "RelativeDocumentMoniker": "dankweb\\wwwroot\\index.html",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\wwwroot\\index.html",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankweb\\wwwroot\\index.html",
               "RelativeToolTip": "dankweb\\wwwroot\\index.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-12-08T18:59:28Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-08T18:59:28Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "Home.razor",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Home.razor",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankweb\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "dankweb\\Pages\\Home.razor",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Home.razor",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankweb\\Pages\\Home.razor",
               "RelativeToolTip": "dankweb\\Pages\\Home.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -192,16 +236,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "DashboardController.cs",
-              "DocumentMoniker": "E:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\Controllers\\DashboardController.cs",
+              "DocumentMoniker": "D:\\vs-studio\\dankapi\\dankapi\\Controllers\\DashboardController.cs",
               "RelativeDocumentMoniker": "dankapi\\Controllers\\DashboardController.cs",
-              "ToolTip": "E:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\vs-studio\\dankapi\\dankapi\\Controllers\\DashboardController.cs",
               "RelativeToolTip": "dankapi\\Controllers\\DashboardController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwKgAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAACgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:33:20.617Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-06T12:33:20.617Z"
             }
           ]
         }

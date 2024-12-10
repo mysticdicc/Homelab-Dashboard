@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dankapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04360a073cf5d0bac442d92de026913d0f27021f")]
 [assembly: System.Reflection.AssemblyProductAttribute("dankapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dankapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

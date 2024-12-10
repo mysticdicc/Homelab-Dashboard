@@ -3,14 +3,10 @@
     "secrets1": {
       "type": "secrets"
     },
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "danknet_sql",
+    "sqlite1": {
+      "type": "sqlite",
+      "connectionId": "ConnectionStrings:DatabaseConnection",
       "dynamicId": null
-    },
-    "mssql2": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:dankapiContext"
     }
   }
 }

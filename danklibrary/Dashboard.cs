@@ -9,7 +9,7 @@ namespace danklibrary
         public required string DisplayName { get; set; }
         public required string URL { get; set; }
         public string? Description { get; set; }
-        public string? Icon { get; set; } //as bits
+        public byte[]? Icon { get; set; } //as bits
 
         public static bool IsValid(DashboardItem item)
         {

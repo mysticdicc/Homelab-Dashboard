@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\dankapi.csproj": {}
+    "D:\\vs-studio\\dankapi\\dankapi\\dankapi.csproj": {}
   },
   "projects": {
-    "E:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\dankapi.csproj": {
+    "D:\\vs-studio\\dankapi\\dankapi\\dankapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\dankapi.csproj",
+        "projectUniqueName": "D:\\vs-studio\\dankapi\\dankapi\\dankapi.csproj",
         "projectName": "dankapi",
-        "projectPath": "E:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\dankapi.csproj",
-        "packagesPath": "C:\\Users\\richard\\.nuget\\packages\\",
-        "outputPath": "E:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\obj\\",
+        "projectPath": "D:\\vs-studio\\dankapi\\dankapi\\dankapi.csproj",
+        "packagesPath": "C:\\Users\\richard.DANKNET\\.nuget\\packages\\",
+        "outputPath": "D:\\vs-studio\\dankapi\\dankapi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\richard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\richard.DANKNET\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,16 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files (x86)\\Progress\\Telerik UI for Blazor 2.6.0\\packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://www.nuget.org/api/v2": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\danklibrary.csproj": {
-                "projectPath": "E:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\danklibrary.csproj"
+              "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj": {
+                "projectPath": "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj"
               }
             }
           }
@@ -61,6 +59,10 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -69,7 +71,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[8.0.7, )"
+              "version": "[9.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -77,7 +79,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.6.2, )"
+              "version": "[7.1.0, )"
             }
           },
           "imports": [
@@ -103,21 +105,20 @@
         }
       }
     },
-    "E:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\danklibrary.csproj": {
+    "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\danklibrary.csproj",
+        "projectUniqueName": "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj",
         "projectName": "danklibrary",
-        "projectPath": "E:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\danklibrary.csproj",
-        "packagesPath": "C:\\Users\\richard\\.nuget\\packages\\",
-        "outputPath": "E:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\obj\\",
+        "projectPath": "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj",
+        "packagesPath": "C:\\Users\\richard.DANKNET\\.nuget\\packages\\",
+        "outputPath": "D:\\vs-studio\\dankapi\\danklibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\richard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\richard.DANKNET\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -126,9 +127,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files (x86)\\Progress\\Telerik UI for Blazor 2.6.0\\packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://www.nuget.org/api/v2": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {

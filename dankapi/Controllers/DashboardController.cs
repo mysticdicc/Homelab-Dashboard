@@ -129,6 +129,11 @@ namespace dankapi.Controllers
                         updateItem.Description = item.Description;
                     }
 
+                    if (updateItem.Icon != item.Icon) 
+                    { 
+                        updateItem.Icon = item.Icon;
+                    }
+
                     //submit to db
                     try
                     {
