@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "dankapi\\dankapi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "dankweb\\dankweb.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

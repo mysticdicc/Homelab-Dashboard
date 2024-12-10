@@ -1,0 +1,30 @@
+﻿@inherits LayoutComponentBase
+
+<div>
+    <FluentMainLayout NavMenuTitle="Navigation menu">
+        <Header><h3>DANKNET</h3></Header>
+        <Body>
+            <div style="height: 80vh; width: 85vw; margin: 10px;">
+                @Body
+            </div>
+
+            <FluentToastProvider />
+            <FluentMessageBarProvider />
+            <FluentDialogProvider />
+            <FluentTooltipProvider />
+            <FluentMenuProvider />
+        </Body>
+        <NavMenuContent>
+            <FluentNavLink Href="/home">Home</FluentNavLink>
+            <FluentNavLink Href="/dashboard/home">Dashboard</FluentNavLink>
+        </NavMenuContent>
+    </FluentMainLayout>
+</div>
+
+<!--
+
+
+-->
+
+
+

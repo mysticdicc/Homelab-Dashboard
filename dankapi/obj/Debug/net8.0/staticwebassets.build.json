@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "DNBOQVbvo2o45B/WxlT1ISbmB38G0bsLiZDpQUBPnJI=",
+  "Source": "dankapi",
+  "BasePath": "_content/dankapi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
