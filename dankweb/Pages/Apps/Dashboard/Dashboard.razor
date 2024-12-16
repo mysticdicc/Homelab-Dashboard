@@ -14,8 +14,8 @@
         <FluentButton OnClick="@OnClickAdd">Add</FluentButton>
     </FluentHeader>
 
-    <FluentBodyContent Style="margin-top: 10px;">
-        <FluentGrid Style="align-items: stretch;">
+    <FluentBodyContent Style="margin-top: 10px; height: 100%;">
+        <FluentGrid Style="align-items: stretch; margin: 5px;">
             @if (null != dashboardItems)
             {
                 foreach (DashboardItem item in dashboardItems)
@@ -23,34 +23,40 @@
                     <FluentGridItem xs="6" sm="4" xl="2" lg="3" Class="dashboardGridItem">
                         <FluentCard onclick="@(() => OnClickCard(item))" class="dashboardCard" id="@($"fluentcard_{item.ID}")">
                             <div hidden="@(!editHidden)" style="width: 100%;">
-                                <div style="float: left; width: 75%">
+                                <div style="display: inline-block; width: 73%">
                                     <FluentLabel Typo="Typography.Subject">@item.DisplayName</FluentLabel>
-                                    <FluentLabel Typo="Typography.Body">@item.URL</FluentLabel>
+                                    <FluentLabel Typo="Typography.Body" style="word-break: break-all">@item.URL</FluentLabel>
                                 </div>
                                 @if (null != item.Icon)
                                 {
-                                    <div style="float: right; width: 25%">
-                                        <img src="@(GetPngString(item.Icon))" style="max-height: 45px; max-width: 45px; background-color: transparent;" />
-                                    </div>
+                                    <img src="@(GetPngString(item.Icon))" style="max-height: 45px; max-width: 45px; background-color: transparent; position: absolute; top: 5px; right: 5px;" />
                                 }
                             </div>
 
                             <div hidden="@editHidden">
-                                <FluentLabel style="margin-bottom: 5px;" Typo="Typography.Subject">ID: @item.ID</FluentLabel>
+                                <FluentLabel style="margin-bottom: 5px;" Typo="Typography.Subject">ID: @item.ID</FluentLabel>                                
 
                                 <FluentLabel Typo="Typography.Body">Display Name:</FluentLabel>
                                 <FluentTextField @bind-Value="@item.DisplayName" Class="dashboardCardTxt" />
+
                                 <FluentLabel Typo="Typography.Body">URL:</FluentLabel>
                                 <FluentTextField @bind-Value="@item.URL" Class="dashboardCardTxt" />
+
                                 <FluentLabel Typo="Typography.Body">Description:</FluentLabel>
                                 <FluentTextArea @bind-Value="@item.Description" Class="dashboardCardTxt"/>
-                                <FluentLabel Typo="Typography.Body">Icon:</FluentLabel>
 
-                                @if (null != item.Icon) {
-                                    <img src="@(GetPngString(item.Icon))" style="max-height: 50px; max-width: 50px;"/>
-                                    <FluentButton OnClick="@(() => OnDeleteIcon(item.ID))">Delete Icon</FluentButton>
-                                }
-                                <InputFile OnChange="@(e => IconUpload(e, item.ID))" accept=".png"/>
+                                <div style="margin-top: 10px; display: flex;">
+                                    @if (null != item.Icon)
+                                    {
+                                        <img src="@(GetPngString(item.Icon))" style="max-height: 50px; max-width: 50px;" />
+                                        <FluentSpacer />
+                                        <FluentButton OnClick="@(() => OnDeleteIcon(item.ID))">Delete Icon</FluentButton>
+                                    }
+                                    else
+                                    {
+                                        <InputFile OnChange="@(e => IconUpload(e, item.ID))" accept=".png" />
+                                    }
+                                </div>
 
                                 <FluentFooter Style="margin-top: 10px;">
                                     <FluentButton OnClick="@(() => OnClickCardSave(item.ID))">Save</FluentButton>
@@ -60,8 +66,6 @@
                             </div>
                         </FluentCard>
                     </FluentGridItem>
-
-                    index = index + 1;
                 }
             }
             else
@@ -116,7 +120,6 @@
     string newDescription;
 
     private long maxFileSize = 1024 * 64;
-    int index = 0;
 
     async protected override Task OnInitializedAsync()
     {
