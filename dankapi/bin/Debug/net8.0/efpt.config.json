@@ -21,6 +21,14 @@
       {
          "Name": "[dbo].[dashboard_items]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ips]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[subnets]",
+         "ObjectType": 0
       }
    ],
    "UiHint": null,

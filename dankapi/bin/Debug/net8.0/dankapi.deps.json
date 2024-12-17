@@ -595,6 +595,14 @@
           }
         }
       },
+      "IPAddressRange/6.1.0": {
+        "runtime": {
+          "lib/net8.0/IPAddressRange.dll": {
+            "assemblyVersion": "6.1.0.0",
+            "fileVersion": "6.1.0.0"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Razor.Language/6.0.24": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll": {
@@ -2328,6 +2336,9 @@
       "System.Threading.Tasks.Dataflow/8.0.0": {},
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "danklibrary/1.0.0": {
+        "dependencies": {
+          "IPAddressRange": "6.1.0"
+        },
         "runtime": {
           "danklibrary.dll": {
             "assemblyVersion": "1.0.0",
@@ -2706,6 +2717,13 @@
       "sha512": "sha512-VIXB7HCUC34OoaGnO3HJVtSv2/wljPhjV7eKH4+TFPgQdJj2lvHNKY41Dtg0Bphu7X5UaXFR4zrYYyo+GNOjbA==",
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
+    },
+    "IPAddressRange/6.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qirGMjCD64q5TIVu9VsCw7eHAA1bIuvz/4sabdh2IWcsUDDbQ4jG5Sum6tPMRJBqTcb4NzMJ37GotglfRWzIsw==",
+      "path": "ipaddressrange/6.1.0",
+      "hashPath": "ipaddressrange.6.1.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Language/6.0.24": {
       "type": "package",

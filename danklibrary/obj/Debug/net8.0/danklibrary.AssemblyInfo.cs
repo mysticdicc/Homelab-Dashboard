@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("danklibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+662f77755a8511ab72603be3f95667d2fa80d0d1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4eaa9bbe3c8f776eccb7bf45e931ffeb4c6107a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("danklibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("danklibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

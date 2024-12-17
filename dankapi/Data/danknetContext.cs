@@ -27,6 +27,9 @@ public partial class danknetContext : DbContext
 
     public virtual DbSet<DashboardItem> DashboardItems { get; set; }
 
+    public virtual DbSet<IP> IPs { get; set; }
+    public virtual DbSet<Subnet> Subnets { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite("Data Source=./data/danknetlocal.db");
 
@@ -73,6 +76,58 @@ public partial class danknetContext : DbContext
                 .IsRequired()
                 .HasMaxLength(150)
                 .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<IP>(entity =>
+        {
+            entity.ToTable("ips");
+
+            entity.HasIndex(e => e.ID);
+            entity.HasIndex(e => e.Address).IsUnique();
+
+            //entity.HasKey(x => new { x.ID, x.Address });
+
+            entity.Property(e => e.ID);
+            entity.Property(e => e.Address)
+                .IsRequired()
+                .HasMaxLength(4)
+                .IsFixedLength();
+            entity.Property(e => e.Hostname)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.SubnetID);
+
+            
+        });
+
+        modelBuilder.Entity<Subnet>(entity =>
+        {
+            entity.ToTable("subnets");
+
+            entity.HasIndex(e => e.ID);
+
+            entity.Property(e => e.ID);
+            entity.Property(e => e.EndAddress)
+                .IsRequired()
+                .HasMaxLength(4)
+                .IsFixedLength();
+            entity.Property(e => e.StartAddress)
+                .IsRequired()
+                .HasMaxLength(4)
+                .IsFixedLength();
+            entity.Property(e => e.Address)
+                .IsRequired()
+                .HasMaxLength(4)
+                .IsFixedLength();
+            entity.Property(e => e.SubnetMask)
+                .IsRequired()
+                .HasMaxLength(4)
+                .IsFixedLength();
+
+            entity.HasMany(e => e.List)
+                .WithOne(e => e.Subnet)
+                .HasForeignKey(e => e.SubnetID)
+                .HasPrincipalKey(e => e.ID);
         });
 
         OnModelCreatingPartial(modelBuilder);

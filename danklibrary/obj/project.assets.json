@@ -1,30 +1,78 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "IPAddressRange/6.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/IPAddressRange.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/IPAddressRange.dll": {
+            "related": ".xml"
+          }
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "IPAddressRange/6.1.0": {
+      "sha512": "qirGMjCD64q5TIVu9VsCw7eHAA1bIuvz/4sabdh2IWcsUDDbQ4jG5Sum6tPMRJBqTcb4NzMJ37GotglfRWzIsw==",
+      "type": "package",
+      "path": "ipaddressrange/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "ipaddressrange.6.1.0.nupkg.sha512",
+        "ipaddressrange.nuspec",
+        "lib/net462/IPAddressRange.dll",
+        "lib/net462/IPAddressRange.xml",
+        "lib/net5.0/IPAddressRange.dll",
+        "lib/net5.0/IPAddressRange.xml",
+        "lib/net6.0/IPAddressRange.dll",
+        "lib/net6.0/IPAddressRange.xml",
+        "lib/net7.0/IPAddressRange.dll",
+        "lib/net7.0/IPAddressRange.xml",
+        "lib/net8.0/IPAddressRange.dll",
+        "lib/net8.0/IPAddressRange.xml",
+        "lib/net9.0/IPAddressRange.dll",
+        "lib/net9.0/IPAddressRange.xml",
+        "lib/netstandard1.4/IPAddressRange.dll",
+        "lib/netstandard1.4/IPAddressRange.xml",
+        "lib/netstandard2.1/IPAddressRange.dll",
+        "lib/netstandard2.1/IPAddressRange.xml",
+        "nupkg-icon.png"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "IPAddressRange >= 6.1.0"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\richard.DANKNET\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\richard\\.nuget\\packages\\": {},
+    "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj",
+      "projectUniqueName": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj",
       "projectName": "danklibrary",
-      "projectPath": "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj",
-      "packagesPath": "C:\\Users\\richard.DANKNET\\.nuget\\packages\\",
-      "outputPath": "D:\\vs-studio\\dankapi\\danklibrary\\obj\\",
+      "projectPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj",
+      "packagesPath": "C:\\Users\\richard\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\richard.DANKNET\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\richard\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,8 +81,9 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Progress\\Telerik UI for Blazor 2.6.0\\packages": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://www.nuget.org/api/v2": {}
       },
       "frameworks": {
         "net8.0": {
@@ -57,6 +106,12 @@
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
+        "dependencies": {
+          "IPAddressRange": {
+            "target": "Package",
+            "version": "[6.1.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

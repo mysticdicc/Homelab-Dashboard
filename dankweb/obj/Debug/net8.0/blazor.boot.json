@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "dankweb",
   "resources": {
-    "hash": "sha256-+yuSaXeTrE+HtzWLMv1ce+dIhKq6xkRI7NWPoqehmv0=",
+    "hash": "sha256-B7QVFv9yY/ieH0mOHKkNVnOrEYUkZYWFibFQIDQqHD8=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-VdKq87/z5NIxZKmuM+fv38XF+RcEb/bg3jVBwQSfwP4="
     },
@@ -18,6 +18,7 @@
     },
     "coreAssembly": {},
     "assembly": {
+      "IPAddressRange.wasm": "sha256-VZ53ETMhyFFjyY+5+1/pvmdBiqjQFjgDvOB2BA204VA=",
       "Microsoft.AspNetCore.Authorization.wasm": "sha256-W1OqRV83imd3SG/v4PAlCa5m/3RA9n5ysXT7G46jKKc=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-BbzyjRS+gcf0R8v27CSNdTK4vm9XoqKz4NEhk7LK+dY=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-uygu36HN/qUHLMopvhHgNiRvJHtoPqdkgtGxxdr1nY8=",
@@ -36,8 +37,8 @@
       "Microsoft.Extensions.FileProviders.Abstractions.wasm": "sha256-IUopixuV8E09mP+TIgRp/lXEbeacXbUTW7cu0v5B9Tc=",
       "Microsoft.Extensions.FileProviders.Physical.wasm": "sha256-MS+zB0xkKhKk/QdE32ZwKtdlrLMLI/y2NAKPUWhcBVg=",
       "Microsoft.Extensions.FileSystemGlobbing.wasm": "sha256-AnWUKd0qJ8ZNKkRC0AFK2cjjszB7reXiP+bXdIi8bic=",
-      "Microsoft.Extensions.Hosting.Abstractions.wasm": "sha256-/3hZCF7P9dCL0Y32JOYNMvKTfrO4aMqMnboqu0L/FSs=",
-      "Microsoft.Extensions.Http.wasm": "sha256-Fe3LbA/B3OyQFUA22gv3dQOE9m4fdjc2ZXV17rLywEE=",
+      "Microsoft.Extensions.Hosting.Abstractions.wasm": "sha256-aNb/fEY3laCkq3MVPJn/8u4nEDmL0cilWcVA+t9NGSE=",
+      "Microsoft.Extensions.Http.wasm": "sha256-N+Tzkk/w6KHM7RAL+KgJZSEePxW2/p5DHYG8y6zUPx0=",
       "Microsoft.Extensions.Logging.wasm": "sha256-pa0M3exxNvk6g5anUwlaPC99Afawsi1GZvJeU1q/ZGM=",
       "Microsoft.Extensions.Logging.Abstractions.wasm": "sha256-glWux6/5FFNJxVrbRPQ/PhLriEkSd3TllLfjmvZbpKw=",
       "Microsoft.Extensions.Options.wasm": "sha256-5/m+yVFGRuY+N4jQnD+QETKH0AfhAsnVze5dJ5ogIVM=",
@@ -218,12 +219,12 @@
       "mscorlib.wasm": "sha256-04e4k5XU8HWGB/dq/2+j84xzzGPflTs0IYWI0OxogVc=",
       "netstandard.wasm": "sha256-gnGZURPnoSmjXuYNCOJi5tt8qn2LRImWgue1Ru3/TDQ=",
       "System.Private.CoreLib.wasm": "sha256-6w3jYr0arcp8jnt4aeqh+AmqrLA6q7jl9rQYAwLzE0M=",
-      "danklibrary.wasm": "sha256-H9HLqC550QkiOxzJdhcWfLgddiJNDbiL4wSTEoK3w+M=",
-      "dankweb.wasm": "sha256-1znOCEy+/Pp0DKU/AwJPijmhd3OKatJbD6UyArwnj4g="
+      "danklibrary.wasm": "sha256-bJarSUfIPmzCrwSm/sTrD5UeOdovQrPoNJUw5WNZekA=",
+      "dankweb.wasm": "sha256-ug0BUTow0rOUe/AgF5oq0BgDHcm8XTNUiFwS9DneU4c="
     },
     "pdb": {
-      "danklibrary.pdb": "sha256-qd7NDlUHYMYH5H678sDDj75/qAJ6Q8riRflunOeVqOE=",
-      "dankweb.pdb": "sha256-blT8aPCNIqvTwttWRUi2vxrnc3LoO/VMfQ3eMu0NDeM="
+      "danklibrary.pdb": "sha256-dxIpbOn+GEInhf8Y/7o9+yNb1ov7d+6kT4su3fDS6Do=",
+      "dankweb.pdb": "sha256-8f2ae6ZcZG/TwTRzN1qjf6RFRy67Kpv6CvHnLagQ8Jc="
     },
     "libraryInitializers": {
       "_content/Microsoft.FluentUI.AspNetCore.Components/Microsoft.FluentUI.AspNetCore.Components.lib.module.js": "sha256-/LPTy2KpNBBYdj9b6lNMDILfmbdqo+FWKCFS6WQd0mU="

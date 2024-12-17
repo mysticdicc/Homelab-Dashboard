@@ -1,0 +1,154 @@
+﻿@using System.Collections
+@using System.Net
+@using NetTools
+@using danklibrary
+
+@inject dankweb.DankAPI.Subnets SubnetsAPI
+@inject IJSRuntime JSRuntime
+@inject IMessageService MessageService
+@inject IDialogService DialogService
+@page "/subtrackr/home"
+
+<PageTitle>subnet trackr</PageTitle>
+
+<FluentLayout>
+    <FluentHeader>
+        <FluentLabel Typo="Typography.Header" Color="Color.Lightweight">subnet trackr</FluentLabel>
+        <FluentSpacer/>
+        <FluentTextField @bind-Value="@newCidr" Style="margin-right: 5px;"/>
+        <FluentButton IconEnd="@(new Icons.Regular.Size12.Add())" OnClick="@NewSubnet"/>
+    </FluentHeader>
+
+    <FluentBodyContent>
+        <FluentGrid>
+            @if (null != SubnetList) {
+                foreach (Subnet subnet in SubnetList)
+                {
+                    <FluentGridItem xs="12">
+                        <FluentCard Style="width: 100%;">
+                            <FluentGrid>
+                                <FluentGridItem xs="3" Style="align-content: center;">
+                                    <FluentLabel>
+                                        @IP.ConvertToString(subnet.Address)
+                                    </FluentLabel>
+                                </FluentGridItem>
+                                <FluentGridItem xs="3" Style="align-content: center;">
+                                    <FluentLabel>
+                                        @IP.ConvertToString(subnet.StartAddress)
+                                    </FluentLabel>
+                                </FluentGridItem>
+                                <FluentGridItem xs="3" Style="align-content: center;">
+                                    <FluentLabel>
+                                        @IP.ConvertToString(subnet.EndAddress)
+                                    </FluentLabel>
+                                </FluentGridItem>
+                                <FluentGridItem xs="3" Justify="JustifyContent.FlexEnd">
+                                    <FluentButton IconStart="@(new Icons.Regular.Size12.ArrowDown())" OnClick="@(() => OnClickExpand(subnet.ID))"/>
+                                    <FluentButton IconStart="@(new Icons.Regular.Size12.Delete())" OnClick="@(() => OnClickDelete(subnet.ID))"/>
+                                </FluentGridItem>
+                            </FluentGrid>
+
+                            <div hidden="@(panelHidden[subnet.ID])">
+                                @if (null != subnet.List && !panelHidden[subnet.ID])
+                                {
+                                    foreach (IP ip in subnet.List)
+                                    {
+                                        <FluentDivider Style="margin-top: 5px;" />
+                                        <FluentGrid Style="margin-top: 5px;">
+                                            <FluentGridItem xs="4" Style="align-content: center;">
+                                                <FluentLabel>@IP.ConvertToString(ip.Address)</FluentLabel>
+                                            </FluentGridItem>
+                                            <FluentGridItem xs="4">
+                                                <div hidden="@(!editRowHidden[ip.ID])">
+                                                    @if (null != ip.Hostname)
+                                                    {
+                                                        <FluentLabel>@ip.Hostname</FluentLabel>
+                                                    }
+                                                </div>
+                                                <div hidden="@(editRowHidden[ip.ID])" style="display: flex;">
+                                                    <FluentTextField @bind-Value="@ip.Hostname"/>
+                                                    <FluentButton IconEnd="@(new Icons.Regular.Size12.Add())" OnClick="@(() => OnClickSave(ip))"/>
+                                                </div>
+                                            </FluentGridItem>
+                                            <FluentGridItem xs="4" Justify="JustifyContent.FlexEnd">
+                                                <FluentButton IconEnd="@(new Icons.Regular.Size12.Edit())" OnClick="@(() => OnClickEdit(ip.ID))"/>
+                                            </FluentGridItem>
+                                        </FluentGrid>
+                                    }
+                                } else {
+                                    <FluentDivider Style="margin-top: 5px;" />
+                                    <FluentProgressRing/>
+                                }
+                            </div>
+                        </FluentCard>
+                    </FluentGridItem>
+                }
+            } else {
+                <FluentCard>
+                    <FluentProgressRing/>
+                </FluentCard>
+            }
+        </FluentGrid>
+    </FluentBodyContent>
+</FluentLayout>
+
+@code {
+    Dictionary<int, bool> panelHidden;
+    Dictionary<int, bool> editRowHidden;
+
+    List<Subnet>? SubnetList;
+
+    string? newCidr;
+
+    async protected override Task OnInitializedAsync()
+    {
+        SubnetList = await SubnetsAPI.GetAll();
+
+        panelHidden = new();
+
+        foreach (int ID in SubnetList.Select(x => x.ID))
+        {
+            panelHidden.Add(ID, true);
+        }
+
+        var ips = SubnetList.SelectMany(x => x.List).Select(x => x.ID).ToList();
+
+        editRowHidden = new();
+
+        foreach (int ID in ips) {
+            editRowHidden.Add(ID, true);
+        }
+
+        await base.OnInitializedAsync();
+        StateHasChanged();
+    }
+
+    void OnClickExpand(int ID) {
+        panelHidden[ID] = !panelHidden[ID];
+        StateHasChanged();
+    }
+
+    void OnClickEdit(int ID) {
+        editRowHidden[ID] = !editRowHidden[ID];
+        StateHasChanged();
+    }
+
+    async void OnClickSave(IP ip) {
+        await SubnetsAPI.EditIP(ip);
+        SubnetList = await SubnetsAPI.GetAll();
+
+        editRowHidden[ip.ID] = true;
+        StateHasChanged();
+    }
+
+    async void NewSubnet() {
+        await SubnetsAPI.AddSubnet(newCidr);
+        newCidr = String.Empty;
+        await OnInitializedAsync();
+    }
+
+    async void OnClickDelete(int ID) {
+        await SubnetsAPI.DeleteSubnet(ID);
+        await OnInitializedAsync();
+    }
+}

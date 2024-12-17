@@ -118,5 +118,109 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dankapi.Controllers.SubnetsController",
+    "Method": "GetAllIP",
+    "RelativePath": "Subnets/ip/get/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "dankapi.Controllers.SubnetsController",
+    "Method": "AddIP",
+    "RelativePath": "Subnets/ip/post/new",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ip",
+        "Type": "danklibrary.IP",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dankapi.Controllers.SubnetsController",
+    "Method": "UpdateIP",
+    "RelativePath": "Subnets/ip/put/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ip",
+        "Type": "danklibrary.IP",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dankapi.Controllers.SubnetsController",
+    "Method": "DeleteSubnetByID",
+    "RelativePath": "Subnets/subnet/delete/byid",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "dankapi.Controllers.SubnetsController",
+    "Method": "GetAllSubnets",
+    "RelativePath": "Subnets/subnet/get/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "dankapi.Controllers.SubnetsController",
+    "Method": "AddSubnet",
+    "RelativePath": "Subnets/subnet/post/new",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CIDR",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

@@ -13,5 +13,6 @@ builder.Services.AddFluentUIComponents();
 
 builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7124") });
 builder.Services.AddTransient<dankweb.DankAPI.Dash>();
+builder.Services.AddTransient<dankweb.DankAPI.Subnets>();
 
 await builder.Build().RunAsync();

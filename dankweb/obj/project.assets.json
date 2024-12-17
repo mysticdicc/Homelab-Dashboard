@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "IPAddressRange/6.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/IPAddressRange.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/IPAddressRange.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Authorization/8.0.11": {
         "type": "package",
         "dependencies": {
@@ -695,6 +708,9 @@
       "danklibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "IPAddressRange": "6.1.0"
+        },
         "compile": {
           "bin/placeholder/danklibrary.dll": {}
         },
@@ -704,6 +720,19 @@
       }
     },
     "net8.0/browser-wasm": {
+      "IPAddressRange/6.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/IPAddressRange.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/IPAddressRange.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Authorization/8.0.11": {
         "type": "package",
         "dependencies": {
@@ -1391,6 +1420,9 @@
       "danklibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "IPAddressRange": "6.1.0"
+        },
         "compile": {
           "bin/placeholder/danklibrary.dll": {}
         },
@@ -1401,6 +1433,35 @@
     }
   },
   "libraries": {
+    "IPAddressRange/6.1.0": {
+      "sha512": "qirGMjCD64q5TIVu9VsCw7eHAA1bIuvz/4sabdh2IWcsUDDbQ4jG5Sum6tPMRJBqTcb4NzMJ37GotglfRWzIsw==",
+      "type": "package",
+      "path": "ipaddressrange/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "ipaddressrange.6.1.0.nupkg.sha512",
+        "ipaddressrange.nuspec",
+        "lib/net462/IPAddressRange.dll",
+        "lib/net462/IPAddressRange.xml",
+        "lib/net5.0/IPAddressRange.dll",
+        "lib/net5.0/IPAddressRange.xml",
+        "lib/net6.0/IPAddressRange.dll",
+        "lib/net6.0/IPAddressRange.xml",
+        "lib/net7.0/IPAddressRange.dll",
+        "lib/net7.0/IPAddressRange.xml",
+        "lib/net8.0/IPAddressRange.dll",
+        "lib/net8.0/IPAddressRange.xml",
+        "lib/net9.0/IPAddressRange.dll",
+        "lib/net9.0/IPAddressRange.xml",
+        "lib/netstandard1.4/IPAddressRange.dll",
+        "lib/netstandard1.4/IPAddressRange.xml",
+        "lib/netstandard2.1/IPAddressRange.dll",
+        "lib/netstandard2.1/IPAddressRange.xml",
+        "nupkg-icon.png"
+      ]
+    },
     "Microsoft.AspNetCore.Authorization/8.0.11": {
       "sha512": "ACaLyjBSz9WUzbaJe0Sv09/FihRNHYlRUIj3uQ8CZFFByf6Qwv3+PXnbltidFKz2iOyqdvppQias3emdQUY2nA==",
       "type": "package",
@@ -2738,6 +2799,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "IPAddressRange >= 6.1.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 8.0.11",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 8.0.11",
       "Microsoft.FluentUI.AspNetCore.Components >= 4.10.4",
@@ -2751,23 +2813,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\richard.DANKNET\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\richard\\.nuget\\packages\\": {},
+    "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\vs-studio\\dankapi\\dankweb\\dankweb.csproj",
+      "projectUniqueName": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\dankweb.csproj",
       "projectName": "dankweb",
-      "projectPath": "D:\\vs-studio\\dankapi\\dankweb\\dankweb.csproj",
-      "packagesPath": "C:\\Users\\richard.DANKNET\\.nuget\\packages\\",
-      "outputPath": "D:\\vs-studio\\dankapi\\dankweb\\obj\\",
+      "projectPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\dankweb.csproj",
+      "packagesPath": "C:\\Users\\richard\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\richard.DANKNET\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\richard\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2776,15 +2840,16 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Progress\\Telerik UI for Blazor 2.6.0\\packages": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://www.nuget.org/api/v2": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj": {
-              "projectPath": "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj"
+            "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj": {
+              "projectPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj"
             }
           }
         }
@@ -2805,6 +2870,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "IPAddressRange": {
+            "target": "Package",
+            "version": "[6.1.0, )"
+          },
           "Microsoft.AspNetCore.Components.WebAssembly": {
             "target": "Package",
             "version": "[8.0.11, )"

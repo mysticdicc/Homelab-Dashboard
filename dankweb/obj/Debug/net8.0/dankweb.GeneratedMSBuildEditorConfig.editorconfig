@@ -13,37 +13,41 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = dankweb
 build_property.RootNamespace = dankweb
-build_property.ProjectDir = D:\vs-studio\dankapi\dankweb\
+build_property.ProjectDir = C:\Users\richard\Source\Repos\dankapi\dankweb\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = false
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\vs-studio\dankapi\dankweb
+build_property.MSBuildProjectDirectory = C:\Users\richard\Source\Repos\dankapi\dankweb
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/vs-studio/dankapi/dankweb/App.razor]
+[C:/Users/richard/Source/Repos/dankapi/dankweb/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/vs-studio/dankapi/dankweb/Pages/Apps/Dashboard/Dashboard.razor]
+[C:/Users/richard/Source/Repos/dankapi/dankweb/Pages/Apps/Dashboard/Dashboard.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xEYXNoYm9hcmRcRGFzaGJvYXJkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/vs-studio/dankapi/dankweb/Pages/Home.razor]
+[C:/Users/richard/Source/Repos/dankapi/dankweb/Pages/Apps/SubnetTracker/SubnetTracker.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xTdWJuZXRUcmFja2VyXFN1Ym5ldFRyYWNrZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/richard/Source/Repos/dankapi/dankweb/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/vs-studio/dankapi/dankweb/_Imports.razor]
+[C:/Users/richard/Source/Repos/dankapi/dankweb/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/vs-studio/dankapi/dankweb/Layout/MainLayout.razor]
+[C:/Users/richard/Source/Repos/dankapi/dankweb/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-bq6ppcbppn
 
-[D:/vs-studio/dankapi/dankweb/Layout/NavMenu.razor]
+[C:/Users/richard/Source/Repos/dankapi/dankweb/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-fttinpqygk
