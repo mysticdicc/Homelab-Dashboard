@@ -3133,7 +3133,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "IPAddressRange": "6.1.0"
+          "IPAddressRange": "6.1.0",
+          "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
           "bin/placeholder/danklibrary.dll": {}

@@ -1,9 +1,8 @@
-﻿using danklibrary;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.Net.Http.Json;
 using Newtonsoft.Json;
 
-namespace dankweb.DankAPI
+namespace danklibrary.DankAPI
 {
     public class Dash(HttpClient httpClient)
     {
