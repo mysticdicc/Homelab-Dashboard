@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\richard\\source\\repos\\dankapi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DE69922E-62F0-43C3-AA57-1E73D05E609B}|dankservice\\dankservice.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankservice\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE69922E-62F0-43C3-AA57-1E73D05E609B}|dankservice\\dankservice.csproj|solutionrelative:dankservice\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|c:\\users\\richard\\source\\repos\\dankapi\\danklibrary\\dankapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|solutionrelative:danklibrary\\dankapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE69922E-62F0-43C3-AA57-1E73D05E609B}|dankservice\\dankservice.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE69922E-62F0-43C3-AA57-1E73D05E609B}|dankservice\\dankservice.csproj|solutionrelative:dankservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankweb\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -15,16 +27,12 @@
       "RelativeMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|solutionrelative:danklibrary\\subnets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankweb\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankapi\\controllers\\subnetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|solutionrelative:dankapi\\controllers\\subnetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankweb\\data\\dankapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\data\\dankapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44616EB3-12E8-4784-A387-333EF1813E9E}|dankapi\\dankapi.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankapi\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 423,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,33 +58,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Program.cs",
-              "RelativeDocumentMoniker": "dankweb\\Program.cs",
-              "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Program.cs",
-              "RelativeToolTip": "dankweb\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Worker.cs",
+              "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankservice\\Worker.cs",
+              "RelativeDocumentMoniker": "dankservice\\Worker.cs",
+              "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankservice\\Worker.cs",
+              "RelativeToolTip": "dankservice\\Worker.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAwBkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T01:37:19.137Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DankAPI.cs",
-              "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Data\\DankAPI.cs",
-              "RelativeDocumentMoniker": "dankweb\\Data\\DankAPI.cs",
-              "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Data\\DankAPI.cs",
-              "RelativeToolTip": "dankweb\\Data\\DankAPI.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T20:38:59.282Z",
+              "WhenOpened": "2024-12-17T04:42:01.415Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankservice\\Program.cs",
+              "RelativeDocumentMoniker": "dankservice\\Program.cs",
+              "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankservice\\Program.cs",
+              "RelativeToolTip": "dankservice\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T04:41:22.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Subnets.cs",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\Subnets.cs",
               "RelativeDocumentMoniker": "danklibrary\\Subnets.cs",
@@ -89,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "DashboardController.cs",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\Controllers\\DashboardController.cs",
               "RelativeDocumentMoniker": "dankapi\\Controllers\\DashboardController.cs",
@@ -102,13 +110,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Dashboard.razor",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
               "RelativeDocumentMoniker": "dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
               "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
               "RelativeToolTip": "dankweb\\Pages\\Apps\\Dashboard\\Dashboard.razor",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAAAJQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-17T00:01:05.106Z",
               "EditorCaption": ""
@@ -121,20 +129,46 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "DankAPI.cs",
+              "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\DankAPI.cs",
+              "RelativeDocumentMoniker": "danklibrary\\DankAPI.cs",
+              "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\DankAPI.cs",
+              "RelativeToolTip": "danklibrary\\DankAPI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T04:31:06.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "dankweb\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "dankweb\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-17T04:09:05.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "SubnetTracker.razor",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "RelativeDocumentMoniker": "dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "RelativeToolTip": "dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-16T23:28:53.728Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "SubnetController.cs",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\Controllers\\SubnetController.cs",
               "RelativeDocumentMoniker": "dankapi\\Controllers\\SubnetController.cs",
@@ -147,7 +181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "danknetContext.cs",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\Data\\danknetContext.cs",
               "RelativeDocumentMoniker": "dankapi\\Data\\danknetContext.cs",

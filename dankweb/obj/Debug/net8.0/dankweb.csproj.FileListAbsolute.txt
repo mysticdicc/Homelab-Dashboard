@@ -1092,8 +1092,8 @@ C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\dankweb.dll
 C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\refint\dankweb.dll
 C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\dankweb.pdb
 C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\ref\dankweb.dll
-C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\ocin6jdn0u-86q66z0adx.gz
-C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\cov4bkhyiv-d635bxiku0.gz
-C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\779d4ruwbs-4vm0udb3m5.gz
-C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\jx0nc2pv96-gceauqc8nx.gz
-C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\avr1ujta83-z6djurr9kc.gz
+C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\ocin6jdn0u-allyzkrdg0.gz
+C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\cov4bkhyiv-3vmyc4ppb1.gz
+C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\779d4ruwbs-wezcklm9cf.gz
+C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\jx0nc2pv96-iop9ju5zrg.gz
+C:\Users\richard\Source\Repos\dankapi\dankweb\obj\Debug\net8.0\compressed\avr1ujta83-1ol047k3gl.gz

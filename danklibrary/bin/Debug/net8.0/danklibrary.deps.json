@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v8.0": {
       "danklibrary/1.0.0": {
         "dependencies": {
-          "IPAddressRange": "6.1.0"
+          "IPAddressRange": "6.1.0",
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "danklibrary.dll": {}
@@ -19,6 +20,14 @@
           "lib/net8.0/IPAddressRange.dll": {
             "assemblyVersion": "6.1.0.0",
             "fileVersion": "6.1.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.3.27908"
           }
         }
       }
@@ -36,6 +45,13 @@
       "sha512": "sha512-qirGMjCD64q5TIVu9VsCw7eHAA1bIuvz/4sabdh2IWcsUDDbQ4jG5Sum6tPMRJBqTcb4NzMJ37GotglfRWzIsw==",
       "path": "ipaddressrange/6.1.0",
       "hashPath": "ipaddressrange.6.1.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     }
   }
 }

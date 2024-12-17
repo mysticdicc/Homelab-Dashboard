@@ -50,8 +50,12 @@
       "DocumentGroups": [
         {
           "DockedHeight": 423,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -60,7 +64,7 @@
               "RelativeDocumentMoniker": "dankservice\\Worker.cs",
               "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankservice\\Worker.cs",
               "RelativeToolTip": "dankservice\\Worker.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T04:42:01.415Z",
               "EditorCaption": ""
@@ -77,10 +81,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T04:41:22.146Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
@@ -135,7 +135,7 @@
               "RelativeDocumentMoniker": "danklibrary\\DankAPI.cs",
               "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\DankAPI.cs",
               "RelativeToolTip": "danklibrary\\DankAPI.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T04:31:06.349Z",
               "EditorCaption": ""
