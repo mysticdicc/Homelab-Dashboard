@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "aWRmA63kEpk=",
+  "dgSpecHash": "7UPNjCteOoI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj",
+  "projectFilePath": "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\richard\\.nuget\\packages\\ipaddressrange\\6.1.0\\ipaddressrange.6.1.0.nupkg.sha512",
-    "C:\\Users\\richard\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\richard.DANKNET\\.nuget\\packages\\ipaddressrange\\6.1.0\\ipaddressrange.6.1.0.nupkg.sha512",
+    "C:\\Users\\richard.DANKNET\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }
