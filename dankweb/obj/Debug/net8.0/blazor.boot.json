@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "dankweb",
   "resources": {
-    "hash": "sha256-YAHSHWXIOwMUg0VtHPId6nJfg19q3UJicXPWFC/7Jgo=",
+    "hash": "sha256-n3nF9qP4wLL4GGaI0qqOQRPiHtuPNfZPtuHdEXn1mEA=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-VdKq87/z5NIxZKmuM+fv38XF+RcEb/bg3jVBwQSfwP4="
     },
@@ -219,12 +219,12 @@
       "mscorlib.wasm": "sha256-04e4k5XU8HWGB/dq/2+j84xzzGPflTs0IYWI0OxogVc=",
       "netstandard.wasm": "sha256-gnGZURPnoSmjXuYNCOJi5tt8qn2LRImWgue1Ru3/TDQ=",
       "System.Private.CoreLib.wasm": "sha256-6w3jYr0arcp8jnt4aeqh+AmqrLA6q7jl9rQYAwLzE0M=",
-      "danklibrary.wasm": "sha256-zmRuUCZb48cJz8sCojdtl7q9hvORKgjtXZFe2NxIf7k=",
-      "dankweb.wasm": "sha256-SOYs5tfKJ9gv5OdXclE9UhmH1t3pI91ePezWA7kdfiw="
+      "danklibrary.wasm": "sha256-x98zk6iehAFKcZx/FR6sbe9JEcHKUQ4r23ymC0jylNc=",
+      "dankweb.wasm": "sha256-VMFsRM0yGSgAX7HhYcHraN0pVwm4lG6c7yxnXW4WJuk="
     },
     "pdb": {
-      "danklibrary.pdb": "sha256-P5QiZyOn2mZ7P4j+BrkSS+W9w0lngstLDXwXBluJoYc=",
-      "dankweb.pdb": "sha256-QiWmsCwH0/hErnGvswa3jFkSVS06q+0lkX/Ez+acpA0="
+      "danklibrary.pdb": "sha256-Mfff5X/asn6IvnQd95Ix95m7JruN2OaMM6gYBqyOzq4=",
+      "dankweb.pdb": "sha256-KrXv59ncRQox9WLXg5M0hh7JUMqzNDX7H+vPoGY8GIQ="
     },
     "libraryInitializers": {
       "_content/Microsoft.FluentUI.AspNetCore.Components/Microsoft.FluentUI.AspNetCore.Components.lib.module.js": "sha256-/LPTy2KpNBBYdj9b6lNMDILfmbdqo+FWKCFS6WQd0mU="

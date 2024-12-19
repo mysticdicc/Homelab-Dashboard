@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2isN5KAdCLJVqh0D/V1gj9z6bxqYHvxV93p8irkxPbQ=",
+  "Hash": "gLnSmBlJJhXP9xiEvhHQuXw82kH1U3WfsHmECwVXImg=",
   "Source": "dankweb",
   "BasePath": "/",
   "Mode": "Root",
@@ -766,8 +766,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "manifest",
-      "Fingerprint": "1ol047k3gl",
-      "Integrity": "T5KCU5WWksawdJToCxOAddRPGFjLUaNGPuwTkYqTzg4=",
+      "Fingerprint": "9clr7hpl0y",
+      "Integrity": "N0BIqOppbxvLVdw+Xxp+Z9pylvjvaj2Opeofn0QJ/uc=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net8.0\\blazor.boot.json"
@@ -808,8 +808,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "3vmyc4ppb1",
-      "Integrity": "P5QiZyOn2mZ7P4j+BrkSS+W9w0lngstLDXwXBluJoYc=",
+      "Fingerprint": "vot69x6kqp",
+      "Integrity": "Mfff5X/asn6IvnQd95Ix95m7JruN2OaMM6gYBqyOzq4=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\bin\\Debug\\net8.0\\danklibrary.pdb"
@@ -829,8 +829,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "allyzkrdg0",
-      "Integrity": "zmRuUCZb48cJz8sCojdtl7q9hvORKgjtXZFe2NxIf7k=",
+      "Fingerprint": "vyuod8ij6r",
+      "Integrity": "x98zk6iehAFKcZx/FR6sbe9JEcHKUQ4r23ymC0jylNc=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\webcil\\danklibrary.wasm"
@@ -850,8 +850,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "iop9ju5zrg",
-      "Integrity": "QiWmsCwH0/hErnGvswa3jFkSVS06q+0lkX/Ez+acpA0=",
+      "Fingerprint": "m99t9uct3k",
+      "Integrity": "KrXv59ncRQox9WLXg5M0hh7JUMqzNDX7H+vPoGY8GIQ=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net8.0\\dankweb.pdb"
@@ -871,8 +871,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "wezcklm9cf",
-      "Integrity": "SOYs5tfKJ9gv5OdXclE9UhmH1t3pI91ePezWA7kdfiw=",
+      "Fingerprint": "k86fwdok5a",
+      "Integrity": "VMFsRM0yGSgAX7HhYcHraN0pVwm4lG6c7yxnXW4WJuk=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\webcil\\dankweb.wasm"
@@ -6317,7 +6317,7 @@
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.IO.wasm"
     },
     {
-      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\779d4ruwbs-wezcklm9cf.gz",
+      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\779d4ruwbs-k86fwdok5a.gz",
       "SourceId": "dankweb",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\",
@@ -6331,8 +6331,8 @@
       "RelatedAsset": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dankweb.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "h8f6yftzn1",
-      "Integrity": "oSAeGpb+PXJEUH7LY9nl8jHLfCyRmX+837azf9sxKOA=",
+      "Fingerprint": "48e1ubn1su",
+      "Integrity": "RJgDKza26QdXUKF6eByFg66GneYEl1PiKrXbt+CdK0M=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dankweb.wasm"
@@ -6842,7 +6842,7 @@
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Diagnostics.TextWriterTraceListener.wasm"
     },
     {
-      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\avr1ujta83-1ol047k3gl.gz",
+      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\avr1ujta83-9clr7hpl0y.gz",
       "SourceId": "dankweb",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\",
@@ -6856,8 +6856,8 @@
       "RelatedAsset": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.boot.json",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "z2frdvg7z9",
-      "Integrity": "G07WE0HRA3FpysFQ3DsLQuJ+N2XyleVuMoMwxryDXxc=",
+      "Fingerprint": "4uzlyxvs6e",
+      "Integrity": "VOEZ9gjBQQ25/VYqyWiNFWcq8j9RIFj3gbV96OOgwZI=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.boot.json"
@@ -7073,7 +7073,7 @@
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js"
     },
     {
-      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\cov4bkhyiv-3vmyc4ppb1.gz",
+      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\cov4bkhyiv-vot69x6kqp.gz",
       "SourceId": "dankweb",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\",
@@ -7087,8 +7087,8 @@
       "RelatedAsset": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\danklibrary.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "wq2krmlp0v",
-      "Integrity": "GBJnU4sG77PPmDjbBCHzgV6xSUuLqn+CNFf7ZCrJzwI=",
+      "Fingerprint": "e4j1o1kcmu",
+      "Integrity": "8uzWoIiq1vf/5hmTxpM0XYZPCdjPuCUakvF0l4oh0GM=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\danklibrary.pdb"
@@ -7871,7 +7871,7 @@
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Text.Encoding.Extensions.wasm"
     },
     {
-      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\jx0nc2pv96-iop9ju5zrg.gz",
+      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\jx0nc2pv96-m99t9uct3k.gz",
       "SourceId": "dankweb",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\",
@@ -7885,8 +7885,8 @@
       "RelatedAsset": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dankweb.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "02dhbjjdjs",
-      "Integrity": "WOMqLq0FvTEbhiGHk8k6AfzvdFskA0TKSD/FwtrfGBw=",
+      "Fingerprint": "p4s8vqbm63",
+      "Integrity": "l2g5sNnyYUvDRgg/CB0TBkycS5JVcBUTxxjcDg9OXPw=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dankweb.pdb"
@@ -8417,7 +8417,7 @@
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Net.WebSockets.Client.wasm"
     },
     {
-      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\ocin6jdn0u-allyzkrdg0.gz",
+      "Identity": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\ocin6jdn0u-vyuod8ij6r.gz",
       "SourceId": "dankweb",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\",
@@ -8431,8 +8431,8 @@
       "RelatedAsset": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\danklibrary.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "8vtxtuyb9k",
-      "Integrity": "jJV7OKFmD53FkWzmdxYGa6wEw3PRH3LTX/Gkk3e9kTc=",
+      "Fingerprint": "shzkszdq4x",
+      "Integrity": "ULdAju6NQ1OFo97yGwdKZJrL3rLz/lslkIFCeL1tGWk=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\danklibrary.wasm"
@@ -11670,11 +11670,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"T5KCU5WWksawdJToCxOAddRPGFjLUaNGPuwTkYqTzg4=\""
+          "Value": "\"N0BIqOppbxvLVdw+Xxp+Z9pylvjvaj2Opeofn0QJ/uc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:58:55 GMT"
+          "Value": "Wed, 18 Dec 2024 22:32:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11684,18 +11684,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-T5KCU5WWksawdJToCxOAddRPGFjLUaNGPuwTkYqTzg4="
+          "Value": "sha256-N0BIqOppbxvLVdw+Xxp+Z9pylvjvaj2Opeofn0QJ/uc="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\avr1ujta83-1ol047k3gl.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\avr1ujta83-9clr7hpl0y.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000105607773"
+          "Quality": "0.000105563180"
         }
       ],
       "ResponseHeaders": [
@@ -11705,15 +11705,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9468"
+          "Value": "9472"
         },
         {
           "Name": "ETag",
-          "Value": "\"G07WE0HRA3FpysFQ3DsLQuJ+N2XyleVuMoMwxryDXxc=\""
+          "Value": "\"VOEZ9gjBQQ25/VYqyWiNFWcq8j9RIFj3gbV96OOgwZI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:11 GMT"
+          "Value": "Wed, 18 Dec 2024 22:29:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11733,19 +11733,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"T5KCU5WWksawdJToCxOAddRPGFjLUaNGPuwTkYqTzg4=\""
+          "Value": "W/\"N0BIqOppbxvLVdw+Xxp+Z9pylvjvaj2Opeofn0QJ/uc=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-T5KCU5WWksawdJToCxOAddRPGFjLUaNGPuwTkYqTzg4="
+          "Value": "sha256-N0BIqOppbxvLVdw+Xxp+Z9pylvjvaj2Opeofn0QJ/uc="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json.gz",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\avr1ujta83-1ol047k3gl.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\avr1ujta83-9clr7hpl0y.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11754,7 +11754,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9468"
+          "Value": "9472"
         },
         {
           "Name": "Content-Type",
@@ -11762,11 +11762,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"G07WE0HRA3FpysFQ3DsLQuJ+N2XyleVuMoMwxryDXxc=\""
+          "Value": "\"VOEZ9gjBQQ25/VYqyWiNFWcq8j9RIFj3gbV96OOgwZI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:11 GMT"
+          "Value": "Wed, 18 Dec 2024 22:29:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11784,7 +11784,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-G07WE0HRA3FpysFQ3DsLQuJ+N2XyleVuMoMwxryDXxc="
+          "Value": "sha256-VOEZ9gjBQQ25/VYqyWiNFWcq8j9RIFj3gbV96OOgwZI="
         }
       ]
     },
@@ -11936,7 +11936,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "15688"
+          "Value": "16736"
         },
         {
           "Name": "Content-Type",
@@ -11944,11 +11944,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"P5QiZyOn2mZ7P4j+BrkSS+W9w0lngstLDXwXBluJoYc=\""
+          "Value": "\"Mfff5X/asn6IvnQd95Ix95m7JruN2OaMM6gYBqyOzq4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:58:45 GMT"
+          "Value": "Wed, 18 Dec 2024 22:32:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11958,18 +11958,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-P5QiZyOn2mZ7P4j+BrkSS+W9w0lngstLDXwXBluJoYc="
+          "Value": "sha256-Mfff5X/asn6IvnQd95Ix95m7JruN2OaMM6gYBqyOzq4="
         }
       ]
     },
     {
       "Route": "_framework/danklibrary.pdb",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\cov4bkhyiv-3vmyc4ppb1.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\cov4bkhyiv-vot69x6kqp.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000111881853"
+          "Quality": "0.000107956386"
         }
       ],
       "ResponseHeaders": [
@@ -11979,15 +11979,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8937"
+          "Value": "9262"
         },
         {
           "Name": "ETag",
-          "Value": "\"GBJnU4sG77PPmDjbBCHzgV6xSUuLqn+CNFf7ZCrJzwI=\""
+          "Value": "\"8uzWoIiq1vf/5hmTxpM0XYZPCdjPuCUakvF0l4oh0GM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:05 GMT"
+          "Value": "Wed, 18 Dec 2024 22:10:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12007,19 +12007,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"P5QiZyOn2mZ7P4j+BrkSS+W9w0lngstLDXwXBluJoYc=\""
+          "Value": "W/\"Mfff5X/asn6IvnQd95Ix95m7JruN2OaMM6gYBqyOzq4=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-P5QiZyOn2mZ7P4j+BrkSS+W9w0lngstLDXwXBluJoYc="
+          "Value": "sha256-Mfff5X/asn6IvnQd95Ix95m7JruN2OaMM6gYBqyOzq4="
         }
       ]
     },
     {
       "Route": "_framework/danklibrary.pdb.gz",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\cov4bkhyiv-3vmyc4ppb1.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\cov4bkhyiv-vot69x6kqp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12028,7 +12028,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8937"
+          "Value": "9262"
         },
         {
           "Name": "Content-Type",
@@ -12036,11 +12036,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"GBJnU4sG77PPmDjbBCHzgV6xSUuLqn+CNFf7ZCrJzwI=\""
+          "Value": "\"8uzWoIiq1vf/5hmTxpM0XYZPCdjPuCUakvF0l4oh0GM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:05 GMT"
+          "Value": "Wed, 18 Dec 2024 22:10:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12058,7 +12058,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-GBJnU4sG77PPmDjbBCHzgV6xSUuLqn+CNFf7ZCrJzwI="
+          "Value": "sha256-8uzWoIiq1vf/5hmTxpM0XYZPCdjPuCUakvF0l4oh0GM="
         }
       ]
     },
@@ -12073,7 +12073,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18197"
+          "Value": "21781"
         },
         {
           "Name": "Content-Type",
@@ -12081,11 +12081,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zmRuUCZb48cJz8sCojdtl7q9hvORKgjtXZFe2NxIf7k=\""
+          "Value": "\"x98zk6iehAFKcZx/FR6sbe9JEcHKUQ4r23ymC0jylNc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:08 GMT"
+          "Value": "Wed, 18 Dec 2024 22:32:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12095,18 +12095,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zmRuUCZb48cJz8sCojdtl7q9hvORKgjtXZFe2NxIf7k="
+          "Value": "sha256-x98zk6iehAFKcZx/FR6sbe9JEcHKUQ4r23ymC0jylNc="
         }
       ]
     },
     {
       "Route": "_framework/danklibrary.wasm",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\ocin6jdn0u-allyzkrdg0.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\ocin6jdn0u-vyuod8ij6r.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000126214818"
+          "Quality": "0.000108318891"
         }
       ],
       "ResponseHeaders": [
@@ -12116,15 +12116,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7922"
+          "Value": "9231"
         },
         {
           "Name": "ETag",
-          "Value": "\"jJV7OKFmD53FkWzmdxYGa6wEw3PRH3LTX/Gkk3e9kTc=\""
+          "Value": "\"ULdAju6NQ1OFo97yGwdKZJrL3rLz/lslkIFCeL1tGWk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:08 GMT"
+          "Value": "Wed, 18 Dec 2024 22:10:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12144,19 +12144,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"zmRuUCZb48cJz8sCojdtl7q9hvORKgjtXZFe2NxIf7k=\""
+          "Value": "W/\"x98zk6iehAFKcZx/FR6sbe9JEcHKUQ4r23ymC0jylNc=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zmRuUCZb48cJz8sCojdtl7q9hvORKgjtXZFe2NxIf7k="
+          "Value": "sha256-x98zk6iehAFKcZx/FR6sbe9JEcHKUQ4r23ymC0jylNc="
         }
       ]
     },
     {
       "Route": "_framework/danklibrary.wasm.gz",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\ocin6jdn0u-allyzkrdg0.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\ocin6jdn0u-vyuod8ij6r.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12165,7 +12165,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7922"
+          "Value": "9231"
         },
         {
           "Name": "Content-Type",
@@ -12173,11 +12173,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"jJV7OKFmD53FkWzmdxYGa6wEw3PRH3LTX/Gkk3e9kTc=\""
+          "Value": "\"ULdAju6NQ1OFo97yGwdKZJrL3rLz/lslkIFCeL1tGWk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:08 GMT"
+          "Value": "Wed, 18 Dec 2024 22:10:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12195,7 +12195,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-jJV7OKFmD53FkWzmdxYGa6wEw3PRH3LTX/Gkk3e9kTc="
+          "Value": "sha256-ULdAju6NQ1OFo97yGwdKZJrL3rLz/lslkIFCeL1tGWk="
         }
       ]
     },
@@ -12210,7 +12210,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "39952"
+          "Value": "42728"
         },
         {
           "Name": "Content-Type",
@@ -12218,11 +12218,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"QiWmsCwH0/hErnGvswa3jFkSVS06q+0lkX/Ez+acpA0=\""
+          "Value": "\"KrXv59ncRQox9WLXg5M0hh7JUMqzNDX7H+vPoGY8GIQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:08 GMT"
+          "Value": "Wed, 18 Dec 2024 22:32:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12232,18 +12232,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-QiWmsCwH0/hErnGvswa3jFkSVS06q+0lkX/Ez+acpA0="
+          "Value": "sha256-KrXv59ncRQox9WLXg5M0hh7JUMqzNDX7H+vPoGY8GIQ="
         }
       ]
     },
     {
       "Route": "_framework/dankweb.pdb",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\jx0nc2pv96-iop9ju5zrg.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\jx0nc2pv96-m99t9uct3k.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000033597635"
+          "Quality": "0.000031023143"
         }
       ],
       "ResponseHeaders": [
@@ -12253,15 +12253,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "29763"
+          "Value": "32233"
         },
         {
           "Name": "ETag",
-          "Value": "\"WOMqLq0FvTEbhiGHk8k6AfzvdFskA0TKSD/FwtrfGBw=\""
+          "Value": "\"l2g5sNnyYUvDRgg/CB0TBkycS5JVcBUTxxjcDg9OXPw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:08 GMT"
+          "Value": "Wed, 18 Dec 2024 22:29:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12281,19 +12281,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"QiWmsCwH0/hErnGvswa3jFkSVS06q+0lkX/Ez+acpA0=\""
+          "Value": "W/\"KrXv59ncRQox9WLXg5M0hh7JUMqzNDX7H+vPoGY8GIQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-QiWmsCwH0/hErnGvswa3jFkSVS06q+0lkX/Ez+acpA0="
+          "Value": "sha256-KrXv59ncRQox9WLXg5M0hh7JUMqzNDX7H+vPoGY8GIQ="
         }
       ]
     },
     {
       "Route": "_framework/dankweb.pdb.gz",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\jx0nc2pv96-iop9ju5zrg.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\jx0nc2pv96-m99t9uct3k.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12302,7 +12302,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "29763"
+          "Value": "32233"
         },
         {
           "Name": "Content-Type",
@@ -12310,11 +12310,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WOMqLq0FvTEbhiGHk8k6AfzvdFskA0TKSD/FwtrfGBw=\""
+          "Value": "\"l2g5sNnyYUvDRgg/CB0TBkycS5JVcBUTxxjcDg9OXPw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:08 GMT"
+          "Value": "Wed, 18 Dec 2024 22:29:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12332,7 +12332,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-WOMqLq0FvTEbhiGHk8k6AfzvdFskA0TKSD/FwtrfGBw="
+          "Value": "sha256-l2g5sNnyYUvDRgg/CB0TBkycS5JVcBUTxxjcDg9OXPw="
         }
       ]
     },
@@ -12347,7 +12347,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "58133"
+          "Value": "63765"
         },
         {
           "Name": "Content-Type",
@@ -12355,11 +12355,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SOYs5tfKJ9gv5OdXclE9UhmH1t3pI91ePezWA7kdfiw=\""
+          "Value": "\"VMFsRM0yGSgAX7HhYcHraN0pVwm4lG6c7yxnXW4WJuk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:09 GMT"
+          "Value": "Wed, 18 Dec 2024 22:32:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12369,18 +12369,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-SOYs5tfKJ9gv5OdXclE9UhmH1t3pI91ePezWA7kdfiw="
+          "Value": "sha256-VMFsRM0yGSgAX7HhYcHraN0pVwm4lG6c7yxnXW4WJuk="
         }
       ]
     },
     {
       "Route": "_framework/dankweb.wasm",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\779d4ruwbs-wezcklm9cf.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\779d4ruwbs-k86fwdok5a.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000045442152"
+          "Quality": "0.000041823505"
         }
       ],
       "ResponseHeaders": [
@@ -12390,15 +12390,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "22005"
+          "Value": "23909"
         },
         {
           "Name": "ETag",
-          "Value": "\"oSAeGpb+PXJEUH7LY9nl8jHLfCyRmX+837azf9sxKOA=\""
+          "Value": "\"RJgDKza26QdXUKF6eByFg66GneYEl1PiKrXbt+CdK0M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:09 GMT"
+          "Value": "Wed, 18 Dec 2024 22:29:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12418,19 +12418,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"SOYs5tfKJ9gv5OdXclE9UhmH1t3pI91ePezWA7kdfiw=\""
+          "Value": "W/\"VMFsRM0yGSgAX7HhYcHraN0pVwm4lG6c7yxnXW4WJuk=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-SOYs5tfKJ9gv5OdXclE9UhmH1t3pI91ePezWA7kdfiw="
+          "Value": "sha256-VMFsRM0yGSgAX7HhYcHraN0pVwm4lG6c7yxnXW4WJuk="
         }
       ]
     },
     {
       "Route": "_framework/dankweb.wasm.gz",
-      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\779d4ruwbs-wezcklm9cf.gz",
+      "AssetFile": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\obj\\Debug\\net8.0\\compressed\\779d4ruwbs-k86fwdok5a.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12439,7 +12439,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "22005"
+          "Value": "23909"
         },
         {
           "Name": "Content-Type",
@@ -12447,11 +12447,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"oSAeGpb+PXJEUH7LY9nl8jHLfCyRmX+837azf9sxKOA=\""
+          "Value": "\"RJgDKza26QdXUKF6eByFg66GneYEl1PiKrXbt+CdK0M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 15:41:09 GMT"
+          "Value": "Wed, 18 Dec 2024 22:29:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12469,7 +12469,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-oSAeGpb+PXJEUH7LY9nl8jHLfCyRmX+837azf9sxKOA="
+          "Value": "sha256-RJgDKza26QdXUKF6eByFg66GneYEl1PiKrXbt+CdK0M="
         }
       ]
     },

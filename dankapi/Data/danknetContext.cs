@@ -29,6 +29,7 @@ public partial class danknetContext : DbContext
 
     public virtual DbSet<IP> IPs { get; set; }
     public virtual DbSet<Subnet> Subnets { get; set; }
+    public virtual DbSet<MonitorState> MonitorStates { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite("Data Source=./data/danknetlocal.db");
@@ -96,8 +97,16 @@ public partial class danknetContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
             entity.Property(e => e.SubnetID);
+            entity.Property(e => e.IsMonitoredICMP);
+            entity.Property(e => e.IsMonitoredTCP);
+            entity.Property(e => e.PortsMonitored);
 
+            entity.HasMany(e => e.MonitorStateList)
+                .WithOne(e => e.IP)
+                .HasForeignKey(e => e.IP_ID)
+                .HasPrincipalKey(e => e.ID);
             
+
         });
 
         modelBuilder.Entity<Subnet>(entity =>
@@ -129,6 +138,36 @@ public partial class danknetContext : DbContext
                 .HasForeignKey(e => e.SubnetID)
                 .HasPrincipalKey(e => e.ID);
         });
+
+        modelBuilder.Entity<MonitorState>(entity =>
+        {
+            entity.ToTable("monitoring");
+
+            entity.HasIndex(e => e.ID);
+
+            entity.Property(e => e.ID);
+            entity.Property(e => e.IP_ID);
+            entity.Property(e => e.SubmitTime);
+            entity.Property(e => e.IcmpResponse);
+
+            entity.HasMany(e => e.PortState)
+                .WithOne(e => e.MonitorState)
+                .HasForeignKey(e => e.MonitorID)
+                .HasPrincipalKey(e => e.ID);
+        });
+
+        modelBuilder.Entity<PortState>(entity =>
+        {
+            entity.ToTable("monitoring_ports");
+
+            entity.HasIndex(e => e.ID);
+
+            entity.Property(e => e.ID);
+            entity.Property(e => e.MonitorID);
+            entity.Property(e => e.Port);
+            entity.Property(e => e.Status);
+        }
+        );
 
         OnModelCreatingPartial(modelBuilder);
     }

@@ -26,7 +26,17 @@ namespace danklibrary
         [JsonIgnore]
         public Subnet? Subnet { get; }
 
-        
+        [JsonIgnore]
+        public MonitorState? MonitorState { get; set; }
+        public IEnumerable<MonitorState>? MonitorStateList { get; set; }
+
+        public bool IsMonitoredICMP { get; set; }
+        public bool IsMonitoredTCP { get; set; }
+        public List<int>? PortsMonitored { get; set; }
+        [JsonIgnore]
+        [NotMapped]
+        public IpRowState? RowState { get; set; }
+
         public bool IsValid(IP ip)
         {
             //address is 4 bytes
@@ -70,6 +80,38 @@ namespace danklibrary
             var temp = new IPAddress(ip);
             return temp.ToString();
         }
+    }
+
+    [NotMapped]
+    public class IpRowState
+    {
+        public bool Hidden { get; set; }
+        public string? PortNumbers { get; set; }
+    }
+
+    public class MonitorState
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+        public int IP_ID { get; set; }
+        [JsonIgnore]
+        public IP? IP { get; set; }
+
+        public required DateTime SubmitTime { get; set; }
+        public bool? IcmpResponse {  get; set; }
+        public List<PortState>? PortState { get; set; }
+    }
+
+    public class PortState
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+        public int MonitorID { get; set; }
+        public MonitorState? MonitorState { get; set; }
+        required public int Port {  get; set; }
+        required public bool Status { get; set; }
     }
 
     public class Subnet

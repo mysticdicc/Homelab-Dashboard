@@ -1,6 +1,25 @@
 [
   {
-    "Name": "New Profile",
+    "Name": "All",
+    "Projects": [
+      {
+        "Path": "dankapi\\dankapi.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "dankweb\\dankweb.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "dankservice\\dankservice.csproj",
+        "Action": "Start",
+        "DebugTarget": "dankservice"
+      }
+    ]
+  },
+  {
+    "Name": "Web",
     "Projects": [
       {
         "Path": "dankapi\\dankapi.csproj",

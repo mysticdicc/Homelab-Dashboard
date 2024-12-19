@@ -118,6 +118,9 @@ namespace dankapi.Controllers
             var updateItem = context.IPs.Find(ip.ID);
 
             updateItem.Hostname = ip.Hostname;
+            updateItem.IsMonitoredICMP = ip.IsMonitoredICMP;
+            updateItem.IsMonitoredTCP = ip.IsMonitoredTCP;
+            updateItem.PortsMonitored = ip.PortsMonitored;
             context.IPs.Update(updateItem);
 
             await context.SaveChangesAsync();
