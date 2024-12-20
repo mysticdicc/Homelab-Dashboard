@@ -1,6 +1,7 @@
 ﻿using System.Net.Sockets;
 using System.Net.Http.Json;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace danklibrary.DankAPI
 {
@@ -99,6 +100,16 @@ namespace danklibrary.DankAPI
         public async Task DeleteSubnet(int ID)
         {
             await _httpClient.DeleteAsync($"/subnets/subnet/delete/byid?ID={ID}");
+        }
+    }
+
+    public class Monitoring(HttpClient httpClient)
+    {
+        private readonly HttpClient _httpClient = httpClient;
+
+        public async Task<List<MonitorState>> GetAllPolls() {
+            List<MonitorState> monitorStates = await _httpClient.GetFromJsonAsync<List<MonitorState>>("/monitoring/get/allpolls");
+            return monitorStates;
         }
     }
 }

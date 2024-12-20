@@ -1,4 +1,6 @@
-﻿@inject danklibrary.DankAPI.Dash DashAPI
+﻿@using ApexCharts;
+
+@inject danklibrary.DankAPI.Monitoring MonitoringAPI
 @inject IJSRuntime JSRuntime
 @inject IMessageService MessageService
 @inject IDialogService DialogService
@@ -8,14 +10,28 @@
 
 <FluentLayout>
     <FluentHeader>
-
+        <FluentLabel Typo="Typography.Header" Color="Microsoft.FluentUI.AspNetCore.Components.Color.Lightweight">monitoring</FluentLabel>
     </FluentHeader>
 
     <FluentBodyContent>
+        <ApexChart TItem="MonitorState" Title="Montioring">
+            <ApexBoxPlotSeries TItem="MonitorState" Items="@monitorStates">
 
+            </ApexBoxPlotSeries>
+        </ApexChart>
     </FluentBodyContent>
 </FluentLayout>
 
 @code {
+    List<MonitorState>? monitorStates;
 
+    async protected override Task OnInitializedAsync()
+    {
+        await UpdateMonitorList();
+        await base.OnInitializedAsync();
+    }
+
+    async Task UpdateMonitorList() {
+        monitorStates = await MonitoringAPI.GetAllPolls();   
+    }
 }
