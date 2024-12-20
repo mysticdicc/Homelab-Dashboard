@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Pages\Apps\Uptime\" />
   </ItemGroup>
 
 </Project>

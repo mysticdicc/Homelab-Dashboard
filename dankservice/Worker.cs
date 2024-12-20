@@ -3,6 +3,7 @@ using System.Net.Http.Json;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace dankservice
 {
@@ -12,36 +13,67 @@ namespace dankservice
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            logger.LogInformation("Service action has intiated");
+
             try
             {
                 while (!stoppingToken.IsCancellationRequested)
                 {
-
-                    logger.LogInformation("Service action has intiated");
+                    logger.LogInformation("Entered execution action");
 
                     //fetch monitored devices
-                    using HttpClient httpClient = new();
+                    var handler = new HttpClientHandler();
+                    handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+                    handler.ServerCertificateCustomValidationCallback =
+                        (httpRequestMessage, cert, cetChain, policyErrors) =>
+                        {
+                            return true;
+                        };
+
+                    using HttpClient httpClient = new(handler);
                     httpClient.BaseAddress = new Uri("https://localhost:7124");
 
-                    List<IP>? ips = await httpClient.GetFromJsonAsync<List<IP>>("/monitoring/get/all", CancellationToken.None);
+                    List<IP>? ips = [];
+
+                    ips = await httpClient.GetFromJsonAsync<List<IP>>("/monitoring/get/all", CancellationToken.None);
 
                     if (null != ips)
                     {
+                        logger.LogInformation($"Fetched {ips.Count()} from API");
+
+                        foreach (IP ip in ips)
+                        {
+                            if (null == ip.MonitorStateList)
+                            {
+                                List<MonitorState> states = [];
+                                ip.MonitorStateList = states;
+                            }
+                        }
+
                         foreach (var ip in ips.Where(x => x.IsMonitoredICMP))
                         {
+                            logger.LogInformation($"Ping testing {IP.ConvertToString(ip.Address)}");
+
                             using Ping ping = new Ping();
 
-                            ip.MonitorState = new MonitorState
+                            var monitorState = new MonitorState
                             {
                                 SubmitTime = new DateTime(),
-                                IcmpResponse = ping.Send(new IPAddress(ip.Address)).Status == IPStatus.Success
+                                IcmpResponse = ping.Send(new IPAddress(ip.Address)).Status == IPStatus.Success,
+                                IP_ID = ip.ID
                             };
+
+                            if (null != ip.MonitorStateList)
+                            {
+                                ip.MonitorStateList = ip.MonitorStateList.Append(monitorState);
+                            }
                         }
 
                         foreach (var ip in ips.Where(x => x.IsMonitoredTCP && null != x.PortsMonitored))
                         {
+                            logger.LogInformation($"TCP testing {IP.ConvertToString(ip.Address)}");
 
-                            List<PortState> portTests = [];
+                            List<PortState> portStates = [];
 
                             foreach (int port in ip.PortsMonitored)
                             {
@@ -59,18 +91,43 @@ namespace dankservice
                                     status = false;
                                 }
 
-                                PortState state = new PortState
+                                PortState state = new()
                                 {
                                     Port = port,
                                     Status = status
                                 };
 
-                                portTests.Add(state);
+                                portStates.Add(state);
+                            }
+
+                            MonitorState monitorState = new()
+                            {
+                                SubmitTime = DateTime.Now,
+                                PortState = portStates,
+                                IP_ID = ip.ID
+                            };
+
+                            if (null != ip.MonitorStateList)
+                            {
+                                ip.MonitorStateList = ip.MonitorStateList.Append(monitorState);
                             }
                         }
 
-                        await httpClient.PostAsJsonAsync<List<IP>>("/monitoring/post/newpoll", ips, CancellationToken.None);
-                       
+                        logger.LogInformation(JsonConvert.SerializeObject(ips, Formatting.Indented));
+
+                        try
+                        {
+                            await httpClient.PostAsJsonAsync<List<IP>>("/monitoring/post/newpoll", ips, CancellationToken.None);
+                            logger.LogInformation("Ips submitted to api endpoint");
+                        } 
+                        catch (Exception ex)
+                        {
+                            logger.LogError(ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        logger.LogError("Could not fetch IP list from api endpoint");
                     }
 
                     await Task.Delay(5000, stoppingToken);
