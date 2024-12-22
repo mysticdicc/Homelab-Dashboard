@@ -5,7 +5,6 @@
 @using Microsoft.FluentUI.AspNetCore.Components
 @using Microsoft.FluentUI.AspNetCore.Components.Icons
 
-
 @inject danklibrary.DankAPI.Subnets SubnetsAPI
 @inject IJSRuntime JSRuntime
 @inject IMessageService MessageService
@@ -181,7 +180,6 @@
     async protected override Task OnInitializedAsync()
     {
         await RefreshSubnetList();
-        //var ips = SubnetList.SelectMany(x => x.List).Select(x => x.ID).ToList();
 
         await base.OnInitializedAsync();
         StateHasChanged();

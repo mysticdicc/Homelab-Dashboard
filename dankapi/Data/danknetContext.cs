@@ -147,7 +147,7 @@ public partial class danknetContext : DbContext
 
             entity.Property(e => e.ID);
             entity.Property(e => e.IP_ID);
-            entity.Property(e => e.SubmitTime);
+            entity.Property(e => e.SubmitTime).HasColumnType("DateTime");
             entity.Property(e => e.IcmpResponse);
 
             entity.HasMany(e => e.PortState)

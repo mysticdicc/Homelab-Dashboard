@@ -14,11 +14,18 @@
     </FluentHeader>
 
     <FluentBodyContent>
-        <ApexChart TItem="MonitorState" Title="Montioring">
-            <ApexBoxPlotSeries TItem="MonitorState" Items="@monitorStates">
+        <div style="max-height: 80vh">
+            @if (null != monitorStates)
+            {
+                <ApexChart TItem="MonitorState" Title="Devices Up" Height="200">
+                    <ApexPointSeries TItem="MonitorState" Items="@monitorStates" XValue="x => x.SubmitTime" YValue="@(x => (CountOfBools(x.SubmitTime)))">
 
-            </ApexBoxPlotSeries>
-        </ApexChart>
+                    </ApexPointSeries>
+                </ApexChart>
+            } else {
+                <FluentProgressRing/>
+            }
+        </div>
     </FluentBodyContent>
 </FluentLayout>
 
@@ -33,5 +40,16 @@
 
     async Task UpdateMonitorList() {
         monitorStates = await MonitoringAPI.GetAllPolls();   
+    }
+
+    Decimal CountOfBools(DateTime time) {
+        Decimal trueBools = 0;
+
+        if (null != monitorStates) {
+            var list = monitorStates.Where(x => x.SubmitTime == time).ToList();
+            trueBools = list.Where(x => x.IcmpResponse == true).Count();
+        }
+
+        return trueBools;
     }
 }

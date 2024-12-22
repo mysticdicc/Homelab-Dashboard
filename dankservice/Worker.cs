@@ -21,6 +21,8 @@ namespace dankservice
                 {
                     logger.LogInformation("Entered execution action");
 
+                    DateTime submit = DateTime.Now;
+
                     //fetch monitored devices
                     var handler = new HttpClientHandler();
                     handler.ClientCertificateOptions = ClientCertificateOption.Manual;
@@ -35,7 +37,7 @@ namespace dankservice
 
                     List<IP>? ips = [];
 
-                    ips = await httpClient.GetFromJsonAsync<List<IP>>("/monitoring/get/all", CancellationToken.None);
+                    ips = await httpClient.GetFromJsonAsync<List<IP>>("/monitoring/get/allmonitored", CancellationToken.None);
 
                     if (null != ips)
                     {
@@ -58,7 +60,7 @@ namespace dankservice
 
                             var monitorState = new MonitorState
                             {
-                                SubmitTime = new DateTime(),
+                                SubmitTime = submit,
                                 IcmpResponse = ping.Send(new IPAddress(ip.Address)).Status == IPStatus.Success,
                                 IP_ID = ip.ID
                             };
@@ -102,7 +104,7 @@ namespace dankservice
 
                             MonitorState monitorState = new()
                             {
-                                SubmitTime = DateTime.Now,
+                                SubmitTime = submit,
                                 PortState = portStates,
                                 IP_ID = ip.ID
                             };
