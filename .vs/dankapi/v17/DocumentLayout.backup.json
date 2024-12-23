@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\richard\\source\\repos\\dankapi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankweb\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DE69922E-62F0-43C3-AA57-1E73D05E609B}|dankservice\\dankservice.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankservice\\dankservice.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{DE69922E-62F0-43C3-AA57-1E73D05E609B}|dankservice\\dankservice.csproj|solutionrelative:dankservice\\dankservice.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DE69922E-62F0-43C3-AA57-1E73D05E609B}|dankservice\\dankservice.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankservice\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE69922E-62F0-43C3-AA57-1E73D05E609B}|dankservice\\dankservice.csproj|solutionrelative:dankservice\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankweb\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|c:\\users\\richard\\source\\repos\\dankapi\\danklibrary\\subnets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +46,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Worker.cs",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankservice\\Worker.cs",
               "RelativeDocumentMoniker": "dankservice\\Worker.cs",
@@ -55,7 +55,8 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T04:42:01.415Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -63,7 +64,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "dankservice",
               "DocumentMoniker": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankservice\\dankservice.csproj",
               "RelativeDocumentMoniker": "dankservice\\dankservice.csproj",
@@ -75,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankservice\\Program.cs",
               "RelativeDocumentMoniker": "dankservice\\Program.cs",
@@ -117,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "SubnetTracker.razor",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "RelativeDocumentMoniker": "dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
