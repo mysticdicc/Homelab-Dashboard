@@ -198,8 +198,11 @@
     async Task UpdateIPlist() {
         monitoredIPs = await MonitoringAPI.GetMonitoredIPs();
 
-        var ids = lastPolls.Select(x => x.IP_ID).Distinct();
-        currentlyMonitored = monitoredIPs.Where(x => ids.Contains(x.ID)).ToList();
+        if (null != lastPolls) {
+            var ids = lastPolls.Select(x => x.IP_ID).Distinct();
+            currentlyMonitored = monitoredIPs.Where(x => ids.Contains(x.ID)).ToList();
+        }
+
     }
 
     void ToggleMonitoredHidden() {
@@ -207,10 +210,22 @@
     }
 
     bool LastMonitorState(int ID) {
-        var state = lastPolls.Where(x => x.IP_ID == ID).FirstOrDefault();
+        if (null != lastPolls) {
+            var state = lastPolls.Where(x => x.IP_ID == ID).FirstOrDefault();
 
-        if (state.IcmpResponse == true) {
-            return true;
+            if (null != state) {
+                if (state.IcmpResponse == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            } else {
+                return false; 
+            }
+
         } else {
             return false;
         }
