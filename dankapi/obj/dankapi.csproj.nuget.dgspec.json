@@ -114,7 +114,7 @@
         "projectName": "danklibrary",
         "projectPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj",
         "packagesPath": "C:\\Users\\richard\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\obj\\",
+        "outputPath": "C:\\Users\\richard\\source\\repos\\dankapi\\danklibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

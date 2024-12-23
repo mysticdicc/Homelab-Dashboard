@@ -8523,7 +8523,7 @@
       "projectName": "dankapi",
       "projectPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankapi\\dankapi.csproj",
       "packagesPath": "C:\\Users\\richard\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankapi\\obj\\",
+      "outputPath": "C:\\Users\\richard\\source\\repos\\dankapi\\dankapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

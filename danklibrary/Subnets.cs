@@ -96,7 +96,7 @@ namespace danklibrary
         public int ID { get; set; }
         public int IP_ID { get; set; }
         [JsonIgnore]
-        public IP? IP { get; set; }
+        public IP? IP { get; set; }  
 
         public required DateTime SubmitTime { get; set; }
         public bool? IcmpResponse {  get; set; }
