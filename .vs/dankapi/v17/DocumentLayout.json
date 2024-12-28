@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\richard\\source\\repos\\dankapi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankweb\\pages\\apps\\monitoring\\monitoring.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\pages\\apps\\monitoring\\monitoring.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankweb\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|c:\\users\\richard\\source\\repos\\dankapi\\dankweb\\pages\\apps\\monitoring\\monitoring.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E4373CA4-06F0-470B-8FC6-605CC80878C4}|dankweb\\dankweb.csproj|solutionrelative:dankweb\\pages\\apps\\monitoring\\monitoring.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|c:\\users\\richard\\source\\repos\\dankapi\\danklibrary\\dankapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,7 +33,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 706,
+          "DockedHeight": 470,
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -42,13 +42,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Monitoring.razor",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\Monitoring\\Monitoring.razor",
               "RelativeDocumentMoniker": "dankweb\\Pages\\Apps\\Monitoring\\Monitoring.razor",
               "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\Monitoring\\Monitoring.razor",
               "RelativeToolTip": "dankweb\\Pages\\Apps\\Monitoring\\Monitoring.razor",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAANUAAABNAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-23T14:14:24.199Z",
               "EditorCaption": ""
@@ -56,7 +56,7 @@
           ]
         },
         {
-          "DockedHeight": 449,
+          "DockedHeight": 685,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -85,13 +85,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SubnetTracker.razor",
               "DocumentMoniker": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "RelativeDocumentMoniker": "dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "ToolTip": "C:\\Users\\richard\\source\\repos\\dankapi\\dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "RelativeToolTip": "dankweb\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAAcAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-18T14:32:07.571Z",
               "EditorCaption": ""
@@ -118,8 +118,7 @@
               "RelativeToolTip": "danklibrary\\DankAPI.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHQAAABoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T04:31:06.349Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-17T04:31:06.349Z"
             }
           ]
         }
