@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8qwBsUOd1/Q=",
+  "dgSpecHash": "4gIRb9IOGAo=",
   "success": true,
   "projectFilePath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\dankweb\\dankweb.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,11 @@
     "C:\\Users\\richard\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\9.0.0\\microsoft.aspnetcore.components.webassembly.9.0.0.nupkg.sha512",
     "C:\\Users\\richard\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.devserver\\9.0.0\\microsoft.aspnetcore.components.webassembly.devserver.9.0.0.nupkg.sha512",
     "C:\\Users\\richard\\.nuget\\packages\\microsoft.aspnetcore.metadata\\9.0.0\\microsoft.aspnetcore.metadata.9.0.0.nupkg.sha512",
+    "C:\\Users\\richard\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.0\\microsoft.entityframeworkcore.9.0.0.nupkg.sha512",
+    "C:\\Users\\richard\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.0\\microsoft.entityframeworkcore.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\richard\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\9.0.0\\microsoft.entityframeworkcore.analyzers.9.0.0.nupkg.sha512",
+    "C:\\Users\\richard\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.0\\microsoft.extensions.caching.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\richard\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.0\\microsoft.extensions.caching.memory.9.0.0.nupkg.sha512",
     "C:\\Users\\richard\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.0\\microsoft.extensions.configuration.9.0.0.nupkg.sha512",
     "C:\\Users\\richard\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.0\\microsoft.extensions.configuration.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\richard\\.nuget\\packages\\microsoft.extensions.configuration.binder\\9.0.0\\microsoft.extensions.configuration.binder.9.0.0.nupkg.sha512",

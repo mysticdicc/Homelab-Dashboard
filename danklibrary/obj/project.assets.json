@@ -98,23 +98,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\richard.DANKNET\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\richard\\.nuget\\packages\\": {},
+    "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj",
+      "projectUniqueName": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj",
       "projectName": "danklibrary",
-      "projectPath": "D:\\vs-studio\\dankapi\\danklibrary\\danklibrary.csproj",
-      "packagesPath": "C:\\Users\\richard.DANKNET\\.nuget\\packages\\",
-      "outputPath": "D:\\vs-studio\\dankapi\\danklibrary\\obj\\",
+      "projectPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj",
+      "packagesPath": "C:\\Users\\richard\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\richard\\Source\\Repos\\dankapi\\danklibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\richard.DANKNET\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\richard\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -123,8 +125,9 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Progress\\Telerik UI for Blazor 2.6.0\\packages": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://www.nuget.org/api/v2": {}
       },
       "frameworks": {
         "net8.0": {

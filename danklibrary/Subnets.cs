@@ -86,32 +86,8 @@ namespace danklibrary
     public class IpRowState
     {
         public bool Hidden { get; set; }
+        public bool EditHidden { get; set; }
         public string? PortNumbers { get; set; }
-    }
-
-    public class MonitorState
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-        public int IP_ID { get; set; }
-        [JsonIgnore]
-        public IP? IP { get; set; }  
-
-        public required DateTime SubmitTime { get; set; }
-        public bool? IcmpResponse {  get; set; }
-        public List<PortState>? PortState { get; set; }
-    }
-
-    public class PortState
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-        public int MonitorID { get; set; }
-        public MonitorState? MonitorState { get; set; }
-        required public int Port {  get; set; }
-        required public bool Status { get; set; }
     }
 
     public class Subnet
@@ -128,7 +104,7 @@ namespace danklibrary
 
         public byte[] EndAddress { get; set; }
 
-        public IEnumerable<IP> List { get; set; }
+        public ICollection<IP> List { get; set; }
 
         public Subnet() { }
 
@@ -157,5 +133,42 @@ namespace danklibrary
 
             List = temp;
         }
+
+        [JsonIgnore]
+        [NotMapped]
+        public SubnetRowState RowState { get; set; }
     }
+
+    [NotMapped]
+    public class SubnetRowState
+    {
+        public bool Hidden { get; set; }
+        public string? SearchTerm { get; set; }
+    }
+
+    public class MonitorState
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+        public int IP_ID { get; set; }
+        [JsonIgnore]
+        public IP? IP { get; set; }
+
+        public required DateTime SubmitTime { get; set; }
+        public bool? IcmpResponse { get; set; }
+        public List<PortState>? PortState { get; set; }
+    }
+
+    public class PortState
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+        public int MonitorID { get; set; }
+        public MonitorState? MonitorState { get; set; }
+        required public int Port { get; set; }
+        required public bool Status { get; set; }
+    }
+
 }

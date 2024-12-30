@@ -77,9 +77,8 @@ namespace dankapi.Controllers
         {
             using var context = new danknetContext();
 
+            //validate
             bool validObject = true;
-
-            //validate object
 
             if (validObject)
             {
