@@ -1,0 +1,343 @@
+﻿@using System.Collections
+@using System.Net
+@using NetTools
+
+@inject danklibrary.DankAPI.Subnets SubnetsAPI
+@inject IJSRuntime JSRuntime
+@inject IMessageService MessageService
+@inject IDialogService DialogService
+
+@rendermode InteractiveAuto
+@page "/subtrackr/home"
+
+<PageTitle>subnet trackr</PageTitle>
+
+<FluentLayout>
+    <FluentHeader Style="margin-bottom: 5px;">
+        <FluentLabel Typo="Typography.Header" Color="Color.Lightweight">subnet trackr</FluentLabel>
+        <FluentSpacer/>
+        <FluentTextField @bind-Value="@newCidr" Style="margin-right: 5px;" Placeholder="0.0.0.0/0"/>
+        <FluentButton IconEnd="@(new Icons.Regular.Size12.Add())" OnClick="@NewSubnet"/>
+    </FluentHeader>
+
+    <FluentBodyContent>
+        <FluentGrid>
+            @if (null != SubnetList) {
+                foreach (Subnet subnet in SubnetList) {
+                    <FluentGridItem xs="12">
+                        <FluentCard Style="height: 100%; max-height: 30vh;">
+                            <FluentGrid Style="margin: 1;">
+                                <FluentGridItem xs="2" Style="align-content: center;">
+                                    <FluentLabel>
+                                        @IP.ConvertToString(subnet.Address)
+                                    </FluentLabel>
+                                </FluentGridItem>
+                                <FluentGridItem xs="2" Style="align-content: center;">
+                                    <FluentLabel>
+                                        @IP.ConvertToString(subnet.StartAddress)
+                                    </FluentLabel>
+                                </FluentGridItem>
+                                <FluentGridItem xs="2" Style="align-content: center;">
+                                    <FluentLabel>
+                                        @IP.ConvertToString(subnet.EndAddress)
+                                    </FluentLabel>
+                                </FluentGridItem>
+                                <FluentGridItem xs="2">
+
+                                </FluentGridItem>
+                                <FluentGridItem xs="2" Justify="JustifyContent.Center" Style="align-content: center;">
+                                    @if (!subnet.RowState.Hidden) {
+                                        <FluentTextField Placeholder="Search" @bind-Value="@subnet.RowState.SearchTerm" Style="margin-right: 5px;"/>
+                                        <FluentButton IconStart="@(new Icons.Regular.Size12.Search())" OnClick="@(() => SearchSubnet(subnet.ID))"/>
+                                    }
+                                </FluentGridItem>
+                                <FluentGridItem xs="2">
+                                    <FluentButton IconStart="@(new Icons.Regular.Size12.ArrowDown())" OnClick="@(() => OnClickExpand(subnet.ID))" />
+                                    <FluentButton IconStart="@(new Icons.Regular.Size12.Delete())" OnClick="@(() => OnClickDelete(subnet.ID))" Style="margin-right: 10px;" />
+                                </FluentGridItem>
+                            </FluentGrid>
+
+                            <div hidden="@(subnet.RowState.Hidden)">
+                                @if (null != subnet.List)
+                                {
+                                    <FluentGrid>
+                                        <FluentGridItem xs="2">
+                                            <FluentLabel>IP Address</FluentLabel>
+                                        </FluentGridItem>
+                                        <FluentGridItem xs="2">
+                                            <FluentLabel>Hostname</FluentLabel>
+                                        </FluentGridItem>
+                                        <FluentGridItem xs="2">
+                                            <FluentLabel>Monitored</FluentLabel>
+                                        </FluentGridItem>
+                                        <FluentGridItem xs="2">
+                                            <FluentLabel>ICMP</FluentLabel>
+                                        </FluentGridItem>
+                                        <FluentGridItem xs="2">
+                                            <FluentLabel>Ports</FluentLabel>
+                                        </FluentGridItem>
+                                        <FluentGridItem xs="2">
+                                            <FluentLabel></FluentLabel>
+                                        </FluentGridItem>
+                                    </FluentGrid>
+
+                                    <div hidden="@(subnet.RowState.Hidden)" style="max-height: 20vh; overflow-y: auto; overflow-x: hidden">
+                                        <Virtualize Items="@(subnet.List.Where(x => x.RowState.Hidden == false).ToList())">
+                                            @if (!context.RowState.Hidden) {
+                                                <FluentDivider Style="margin-top: 2px; margin-bottom: 2px;" />
+
+                                                <FluentGrid>
+                                                    <FluentGridItem xs="2" Style="align-content: center;">
+                                                        <FluentLabel>@IP.ConvertToString(context.Address)</FluentLabel>
+                                                    </FluentGridItem>
+
+                                                    <FluentGridItem xs="2" Style="align-content: center;">
+                                                        @if (null != context.RowState)
+                                                        {
+                                                            if (!context.RowState.EditHidden)
+                                                            {
+                                                                <FluentTextField @bind-Value="@context.Hostname" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <FluentLabel>@context.Hostname</FluentLabel>
+                                                            }
+                                                        }
+                                                    </FluentGridItem>
+
+                                                    <FluentGridItem xs="2" Style="align-content: center; justify-content: center;">
+                                                        @if (context.IsMonitoredICMP || context.IsMonitoredTCP)
+                                                        {
+                                                            <FluentIcon Value="@(new Icons.Regular.Size20.CheckboxChecked())" Color="Color.Success" Style="margin-left: 1vw;" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <FluentIcon Value="@(new Icons.Regular.Size20.CheckboxUnchecked())" Style="margin-left: 1vw;"/>
+                                                        }
+                                                    </FluentGridItem>
+
+                                                    <FluentGridItem xs="2" Style="align-content: center; justify-content: center;">
+                                                        @if (null != context.RowState)
+                                                        {
+                                                            if (!context.RowState.EditHidden)
+                                                            {
+                                                                <FluentSwitch @bind-Value="@context.IsMonitoredICMP" />
+                                                            }
+                                                            else
+                                                            {
+                                                                @if (context.IsMonitoredICMP)
+                                                                {
+                                                                    <FluentIcon Value="@(new Icons.Regular.Size20.CheckboxChecked())" Color="Color.Success" Style="margin-left: 1vw;"/>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <FluentIcon Value="@(new Icons.Regular.Size20.CheckboxUnchecked())" Style="margin-left: 1vw;"/>
+                                                                }
+                                                            }
+                                                        }
+                                                    </FluentGridItem>
+
+                                                    <FluentGridItem xs="2" Style="align-content: center; justify-content: center;">
+                                                        @if (null != context.RowState)
+                                                        {
+                                                            if (!context.RowState.EditHidden)
+                                                            {
+                                                                <FluentTextField @bind-Value="@context.RowState.PortNumbers" />
+                                                            }
+                                                            else
+                                                            {
+                                                                if (null != context.PortsMonitored)
+                                                                {
+                                                                    <FluentLabel>@StringFromListInt(context.PortsMonitored)</FluentLabel>
+                                                                }
+                                                            }
+                                                        }
+                                                    </FluentGridItem>
+
+                                                    <FluentGridItem xs="2" Style="display: inline-flex; align-content: center; justify-content: center;">
+                                                        @if (null != context.RowState)
+                                                        {
+                                                            if (!context.RowState.EditHidden)
+                                                            {
+                                                                <FluentButton IconEnd="@(new Icons.Regular.Size12.Add())" OnClick="@(() => OnClickSave(context))" />
+                                                            }
+                                                        }
+
+                                                        <FluentButton IconEnd="@(new Icons.Regular.Size12.Edit())" OnClick="@(() => OnClickEdit(context))" Style="margin-right: 10px;" />
+                                                    </FluentGridItem>
+                                                </FluentGrid>
+                                            }
+                                        </Virtualize>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <FluentDivider Style="margin-top: 5px;" />
+                                    <FluentProgressRing />
+                                }
+                            </div>
+                        </FluentCard>
+                    </FluentGridItem>
+                }
+            } else {
+                <FluentCard>
+                    <FluentProgressRing/>
+                </FluentCard>
+            }
+        </FluentGrid>
+    </FluentBodyContent>
+</FluentLayout>
+
+@code {
+    List<Subnet>? SubnetList;
+
+    string? newCidr;
+
+    async protected override Task OnInitializedAsync()
+    {
+        await RefreshSubnetList();
+
+        await base.OnInitializedAsync();
+        StateHasChanged();
+    }
+
+    async Task RefreshSubnetList() {
+        SubnetList = await SubnetsAPI.GetAll();
+
+        foreach (var subnet in SubnetList) {
+            subnet.RowState = new SubnetRowState
+            {
+                Hidden = true,
+                SearchTerm = String.Empty
+            };
+        }
+
+        foreach (var ip in SubnetList.SelectMany(x => x.List))
+        {
+            ip.RowState = new IpRowState
+                {
+                    Hidden = false,
+                    EditHidden = true
+                };
+
+            if (null != ip.PortsMonitored)
+            {
+                ip.RowState.PortNumbers = StringFromListInt(ip.PortsMonitored);
+            }
+        }
+    }
+
+    void OnClickExpand(int ID) {
+        var subnet = SubnetList.Where(x => x.ID == ID).First();
+        subnet.RowState.Hidden = !subnet.RowState.Hidden;
+        StateHasChanged();
+    }
+
+    void OnClickEdit(IP ip) {
+        ip.RowState.EditHidden = !ip.RowState.EditHidden;
+
+        if (null != ip.PortsMonitored) {
+            ip.RowState.PortNumbers = StringFromListInt(ip.PortsMonitored);
+        }
+
+        StateHasChanged();
+    }
+
+    async void OnClickSave(IP ip) {
+        if (null != ip.RowState.PortNumbers) {
+            ip.PortsMonitored = ListIntFromString(ip.RowState.PortNumbers);
+        }
+
+        await SubnetsAPI.EditIP(ip);
+        await RefreshSubnetList();
+        StateHasChanged();
+    }
+
+    async void NewSubnet() {
+        await SubnetsAPI.AddSubnet(newCidr);
+        newCidr = String.Empty;
+        await OnInitializedAsync();
+    }
+
+    async void OnClickDelete(int ID) {
+        await SubnetsAPI.DeleteSubnet(ID);
+        await OnInitializedAsync();
+    }
+
+    List<int> ListIntFromString(string textInput) {
+
+        var list = new List<int>();
+        var strList = textInput.Split(",");
+
+        foreach (string str in strList) {
+            list.Add(int.Parse(str));
+        }
+
+        return list;
+    }
+
+    string StringFromListInt(List<int> intput) {
+        string returnStr = String.Empty;
+
+        foreach (int num in intput) {
+            returnStr = returnStr + $"{num.ToString()},";
+        }
+
+        returnStr = returnStr.Remove(returnStr.Length - 1);
+
+        return returnStr;
+    }
+
+    void SearchSubnet(int subnetID) {
+        if (null != SubnetList) 
+        {
+            var subnet = SubnetList.Find(x => x.ID == subnetID);
+
+            if (null != subnet)
+            {
+                foreach (var ip in subnet.List) {
+                    if (null != ip.RowState) {
+                        ip.RowState.Hidden = false;
+                    }
+                }
+
+                if (null != subnet.RowState.SearchTerm) {
+                    var ipList = subnet.List.Where(x => !(IP.ConvertToString(x.Address)).Contains(subnet.RowState.SearchTerm)).ToList();
+
+                    if (ipList.Count > 0)
+                    {
+                        foreach (var ip in ipList)
+                        {
+                            if (null != ip.RowState)
+                            {
+                                ip.RowState.Hidden = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var ip in subnet.List)
+                        {
+                            if (null != ip.RowState)
+                            {
+                                ip.RowState.Hidden = false;
+                            }
+                        }
+                    }
+                }
+                else if (null == subnet.RowState.SearchTerm || String.Empty == subnet.RowState.SearchTerm) 
+                {
+                    foreach (var ip in subnet.List)
+                    {
+                        if (null != ip.RowState)
+                        {
+                            ip.RowState.Hidden = false;
+                        }
+                    }
+                }
+            }
+
+            StateHasChanged();
+        }
+    }
+}

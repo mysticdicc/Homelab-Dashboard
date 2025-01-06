@@ -8,10 +8,6 @@
         "DebugTarget": "https"
       },
       {
-        "Path": "dankweb\\dankweb.csproj",
-        "Action": "Start"
-      },
-      {
         "Path": "dankservice\\dankservice.csproj",
         "Action": "Start",
         "DebugTarget": "dankservice"
@@ -23,11 +19,13 @@
     "Projects": [
       {
         "Path": "dankapi\\dankapi.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "https"
       },
       {
-        "Path": "dankweb\\dankweb.csproj",
-        "Action": "Start"
+        "Path": "web\\web\\web.csproj",
+        "Action": "Start",
+        "DebugTarget": "IIS Express"
       }
     ]
   }

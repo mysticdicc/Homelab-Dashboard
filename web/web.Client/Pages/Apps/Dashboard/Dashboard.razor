@@ -1,0 +1,345 @@
+﻿@inject danklibrary.DankAPI.Dash DashAPI
+@inject IJSRuntime JSRuntime
+@inject IMessageService MessageService
+@inject IDialogService DialogService
+
+@page "/dash/home"
+@rendermode InteractiveAuto
+
+<PageTitle>dashboard</PageTitle>
+
+<FluentLayout>
+    <FluentHeader>
+        <FluentLabel Typo="Typography.Header" Color="Color.Lightweight">dashboard</FluentLabel>
+        <FluentSpacer/>
+        <FluentButton Style="margin-right: 5px;" OnClick="@OnClickEdit">Edit</FluentButton>
+        <FluentButton OnClick="@OnClickAdd">Add</FluentButton>
+    </FluentHeader>
+
+    <FluentBodyContent Style="margin-top: 10px; height: 100%;">
+        <FluentGrid Style="align-items: stretch; margin: 5px;">
+            @if (null != dashboardItems)
+            {
+                foreach (DashboardItem item in dashboardItems)
+                {
+                    <FluentGridItem xs="6" sm="4" xl="2" lg="3" Class="dashboardGridItem">
+                        <FluentCard onclick="@(() => OnClickCard(item))" class="dashboardCard" id="@($"fluentcard_{item.ID}")">
+                            <div hidden="@(!editHidden)" style="width: 100%;">
+                                <div style="display: inline-block; width: 73%">
+                                    <FluentLabel Typo="Typography.Subject">@item.DisplayName</FluentLabel>
+                                    <FluentLabel Typo="Typography.Body" style="word-break: break-all">@item.URL</FluentLabel>
+                                </div>
+                                @if (null != item.Icon)
+                                {
+                                    <img src="@(GetPngString(item.Icon))" style="max-height: 45px; max-width: 45px; background-color: transparent; position: absolute; top: 5px; right: 5px;" />
+                                }
+                            </div>
+
+                            <div hidden="@editHidden">
+                                <FluentLabel style="margin-bottom: 5px;" Typo="Typography.Subject">ID: @item.ID</FluentLabel>                                
+
+                                <FluentLabel Typo="Typography.Body">Display Name:</FluentLabel>
+                                <FluentTextField @bind-Value="@item.DisplayName" Class="dashboardCardTxt" />
+
+                                <FluentLabel Typo="Typography.Body">URL:</FluentLabel>
+                                <FluentTextField @bind-Value="@item.URL" Class="dashboardCardTxt" />
+
+                                <FluentLabel Typo="Typography.Body">Description:</FluentLabel>
+                                <FluentTextArea @bind-Value="@item.Description" Class="dashboardCardTxt"/>
+
+                                <div style="margin-top: 10px; display: flex;">
+                                    @if (null != item.Icon)
+                                    {
+                                        <img src="@(GetPngString(item.Icon))" style="max-height: 50px; max-width: 50px;" />
+                                        <FluentSpacer />
+                                        <FluentButton OnClick="@(() => OnDeleteIcon(item.ID))">Delete Icon</FluentButton>
+                                    }
+                                    else
+                                    {
+                                        <InputFile OnChange="@(e => IconUpload(e, item.ID))" accept=".png" />
+                                    }
+                                </div>
+
+                                <FluentFooter Style="margin-top: 10px;">
+                                    <FluentButton OnClick="@(() => OnClickCardSave(item.ID))">Save</FluentButton>
+                                    <FluentSpacer />
+                                    <FluentButton OnClick="@(() => OnClickCardDelete(item.ID))">Delete</FluentButton>
+                                </FluentFooter>
+                            </div>
+                        </FluentCard>
+                    </FluentGridItem>
+                }
+            }
+            else
+            {
+                <FluentCard>
+                    <FluentProgressRing />
+                </FluentCard>
+            }
+
+            <FluentGridItem xs="6" sm="4" xl="2" lg="3" Class="dashboardGridItem" hidden="@addHidden">
+                <FluentCard>
+                    <FluentTextField Label="Display Name" Class="dashboardCardTxt" @bind-Value="@newDisplay"/>
+                    <FluentTextField Label="URL" Class="dashboardCardTxt" @bind-Value="@newURL" />
+                    <FluentTextArea Label="Description" Class="dashboardCardTxt" @bind-Value="@newDescription" />
+
+                    <FluentButton OnClick="@OnClickNewSave">Save</FluentButton>
+                </FluentCard>
+            </FluentGridItem>
+        </FluentGrid>
+    </FluentBodyContent>
+</FluentLayout>
+
+<style>
+    .dashboardCard {
+    width: 100%;
+    height: 100%;
+    }
+
+    .dashboardCard:hover {
+    background-color: darkgray;
+    width: 100%;
+    height: 100%;
+    }
+
+    .dashboardGridItem {
+    display: flex;
+    }
+
+    .dashboardCardTxt {
+    width: 100%;
+    }
+</style>
+
+@code {
+    List<DashboardItem>? dashboardItems;
+
+    bool addHidden;
+    bool editHidden;
+
+    string newDisplay;
+    string newURL;
+    string newDescription;
+
+    private long maxFileSize = 1024 * 64;
+
+    async protected override Task OnInitializedAsync()
+    {
+        addHidden = true;
+        editHidden = true;
+
+        dashboardItems = await DashAPI.GetAll();
+        await base.OnInitializedAsync();
+    }
+
+    async void OnClickCard(DashboardItem item) {
+        if (editHidden) {
+            if (DashboardItem.UrlIsValid(item))
+            {
+                await JSRuntime.InvokeVoidAsync("open", $"{item.URL}", "_blank");
+            }
+        }
+    }
+
+    void OnClickAdd() {
+        addHidden = !addHidden;
+    }
+
+    void OnClickEdit() {
+        editHidden = !editHidden;
+    }
+
+    async void OnClickCardSave(int ID) {
+        if (null != dashboardItems) {
+            DashboardItem? editItem = dashboardItems.Where(x => x.ID == ID).FirstOrDefault();
+
+            if (null != editItem) {
+                try
+                {
+                    await DashAPI.EditItem(editItem);
+
+                    var dialog = await DialogService.ShowSuccessAsync($"{editItem.ID} successfully edited");
+                    var result = dialog.Result;
+
+                    dashboardItems = await DashAPI.GetAll();
+
+                    StateHasChanged();
+                }
+                catch(Exception ex)
+                {
+                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
+                    var result = await dialog.Result;
+                }
+            }
+        }
+    }
+
+    async void OnClickCardDelete(int ID) {
+        if (null != dashboardItems)
+        {
+            DashboardItem? deleteItem = dashboardItems.Where(x => x.ID == ID).FirstOrDefault();
+
+            if (null != deleteItem)
+            {
+                try 
+                {
+                    await DashAPI.DeleteItem(deleteItem);
+                    var dialog = await DialogService.ShowSuccessAsync($"{deleteItem.ID} successfully deleted");
+                    var result = dialog.Result;
+
+                    dashboardItems = await DashAPI.GetAll();
+
+                    StateHasChanged();
+                } 
+                catch (Exception ex)
+                {
+                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
+                    var result = await dialog.Result;
+                }
+            }
+        }
+    }
+
+    async void OnClickNewSave() {
+        DashboardItem addItem = new(){ 
+            ID = 0, 
+            DisplayName = newDisplay, 
+            URL = newURL, 
+            Description = newDescription 
+        };
+
+        if (null != addItem) {
+            if (DashboardItem.IsValid(addItem)) {
+                try
+                {
+                    await DashAPI.AddItem(addItem);
+
+                    var dialog = await DialogService.ShowSuccessAsync($"Successfully added");
+                    var result = dialog.Result;
+
+                    dashboardItems = await DashAPI.GetAll();
+
+                    //reset state
+                    newDescription = String.Empty;
+                    newDisplay = String.Empty;
+                    newURL = String.Empty;
+
+                    addHidden = true;
+
+                    StateHasChanged();
+                }
+                catch (Exception ex)
+                {
+                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
+                    var result = await dialog.Result;
+                }
+            } 
+            else 
+            {
+                var dialog = await DialogService.ShowErrorAsync("Object invalid");
+                var result = await dialog.Result;
+            }
+        } 
+        else {
+            var dialog = await DialogService.ShowErrorAsync("Object null");
+            var result = await dialog.Result;
+        }
+    }
+
+    private async Task IconUpload(InputFileChangeEventArgs e, int ID)
+    {
+        MemoryStream ms = new MemoryStream();
+        await e.File.OpenReadStream(maxFileSize).CopyToAsync(ms);
+        byte[] bytes = ms.ToArray();
+
+        if (null != dashboardItems) {
+            DashboardItem? editItem = dashboardItems.Where(x => x.ID == ID).FirstOrDefault();
+
+            if (null != editItem) {
+                try
+                {
+                    editItem.Icon = bytes;
+                    await DashAPI.EditItem(editItem);
+
+                    var dialog = await DialogService.ShowSuccessAsync($"{editItem.ID} successfully uploaded icon");
+                    var result = dialog.Result;
+
+                    dashboardItems = await DashAPI.GetAll();
+
+                    StateHasChanged();
+                } 
+                catch(Exception ex)
+                {
+                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
+                    var result = await dialog.Result;
+                }
+            } 
+            else 
+            {
+                var dialog = await DialogService.ShowErrorAsync("Object invalid");
+                var result = await dialog.Result;
+            }
+        }
+        else
+        {
+            var dialog = await DialogService.ShowErrorAsync("Object null");
+            var result = await dialog.Result;
+        }
+    }
+
+    string GetSvgString(byte[] bytes)
+    {
+        var imageSrc = Convert.ToBase64String(bytes);
+        return string.Format("data:image/svg+xml;base64,{0}", imageSrc);
+    }
+
+    string GetPngString(byte[] bytes)
+    {
+        var imageSrc = Convert.ToBase64String(bytes);
+        return string.Format("data:image/png;base64,{0}", imageSrc);
+    }
+
+    string GetJpegString(byte[] bytes)
+    {
+        var imageSrc = Convert.ToBase64String(bytes);
+        return string.Format("data:image/jpeg;base64,{0}", imageSrc);
+    }
+
+    async Task OnDeleteIcon(int ID) {
+        if (null != dashboardItems)
+        {
+            DashboardItem? editItem = dashboardItems.Where(x => x.ID == ID).FirstOrDefault();
+
+            if (null != editItem)
+            {
+                try
+                {
+                    editItem.Icon = null;
+                    await DashAPI.EditItem(editItem);
+
+                    var dialog = await DialogService.ShowSuccessAsync($"{editItem.ID} successfully deleted icon");
+                    var result = dialog.Result;
+
+                    dashboardItems = await DashAPI.GetAll();
+
+                    StateHasChanged();
+                }
+                catch (Exception ex)
+                {
+                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
+                    var result = await dialog.Result;
+                }
+            }
+            else
+            {
+                var dialog = await DialogService.ShowErrorAsync("Object invalid");
+                var result = await dialog.Result;
+            }
+        }
+        else
+        {
+            var dialog = await DialogService.ShowErrorAsync("Object null");
+            var result = await dialog.Result;
+        }
+    }
+}

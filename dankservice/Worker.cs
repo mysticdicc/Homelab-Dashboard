@@ -132,16 +132,16 @@ namespace dankservice
                         logger.LogError("Could not fetch IP list from api endpoint");
                     }
 
-                    await Task.Delay(5000, stoppingToken);
+                    await Task.Delay(60000, stoppingToken);
                 }
             }
             catch (OperationCanceledException)
             {
-                logger.LogInformation("User intiated cancel");
+                logger.LogInformation("User intiated service end");
             }
             catch (Exception ex) {
                 logger.LogCritical(ex.Message);
-                await Task.Delay(5000, stoppingToken);
+                await Task.Delay(60000, stoppingToken);
             }
         }
 
