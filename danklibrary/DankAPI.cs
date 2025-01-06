@@ -29,7 +29,7 @@ namespace danklibrary.DankAPI
             {
                 Content = JsonContent.Create(item),
                 Method = HttpMethod.Delete,
-                RequestUri = new Uri("https://localhost:7124/dashboard/delete/byitem")
+                RequestUri = new Uri($"{_httpClient.BaseAddress}/dashboard/delete/byitem")
             };
 
             try
