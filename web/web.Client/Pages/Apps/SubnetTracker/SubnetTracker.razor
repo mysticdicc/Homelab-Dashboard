@@ -1,6 +1,8 @@
 ﻿@using System.Collections
 @using System.Net
 @using NetTools
+@using System.Text.RegularExpressions
+
 
 @inject danklibrary.DankAPI.Subnets SubnetsAPI
 @inject IJSRuntime JSRuntime
@@ -47,7 +49,7 @@
                                 </FluentGridItem>
                                 <FluentGridItem xs="2" Justify="JustifyContent.Center" Style="align-content: center;">
                                     @if (!subnet.RowState.Hidden) {
-                                        <FluentTextField Placeholder="Search" @bind-Value="@subnet.RowState.SearchTerm" Style="margin-right: 5px;"/>
+                                        <FluentTextField Placeholder="Search" @bind-Value="@subnet.RowState.SearchTerm" Style="margin-right: 5px;" onkeyup="@((KeyboardEventArgs e) => OnSearchKeyPress(e, subnet.ID))"/>
                                         <FluentButton IconStart="@(new Icons.Regular.Size12.Search())" OnClick="@(() => SearchSubnet(subnet.ID))"/>
                                     }
                                 </FluentGridItem>
@@ -302,7 +304,21 @@
                 }
 
                 if (null != subnet.RowState.SearchTerm) {
-                    var ipList = subnet.List.Where(x => !(IP.ConvertToString(x.Address)).Contains(subnet.RowState.SearchTerm)).ToList();
+                    string pattern = "[A-Z]+";
+                    var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+                    var match = regex.Match(subnet.RowState.SearchTerm);
+
+                    var ipList = new List<IP>();
+
+                    if (match.Success) 
+                    {
+                        ipList = subnet.List.Where(x => null != x.Hostname && !x.Hostname.Contains(subnet.RowState.SearchTerm)).ToList();
+                        ipList.AddRange(subnet.List.Where(x => null == x.Hostname || String.Empty == x.Hostname));
+                    } 
+                    else 
+                    {
+                        ipList = subnet.List.Where(x => !(IP.ConvertToString(x.Address)).Contains(subnet.RowState.SearchTerm)).ToList();
+                    }
 
                     if (ipList.Count > 0)
                     {
@@ -338,6 +354,12 @@
             }
 
             StateHasChanged();
+        }
+    }
+
+    void OnSearchKeyPress(KeyboardEventArgs eventArgs, int ID) {
+        if (eventArgs.Code == "Enter") {
+            SearchSubnet(ID);
         }
     }
 }

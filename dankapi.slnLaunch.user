@@ -3,11 +3,6 @@
     "Name": "All",
     "Projects": [
       {
-        "Path": "dankapi\\dankapi.csproj",
-        "Action": "Start",
-        "DebugTarget": "https"
-      },
-      {
         "Path": "dankservice\\dankservice.csproj",
         "Action": "Start",
         "DebugTarget": "dankservice"
@@ -18,14 +13,9 @@
     "Name": "Web",
     "Projects": [
       {
-        "Path": "dankapi\\dankapi.csproj",
-        "Action": "Start",
-        "DebugTarget": "https"
-      },
-      {
         "Path": "web\\web\\web.csproj",
         "Action": "Start",
-        "DebugTarget": "IIS Express"
+        "DebugTarget": "http"
       }
     ]
   }
