@@ -58,3 +58,63 @@ h1:focus {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+.body {
+    width: auto;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 2rem;
+}
+
+.header {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+}
+
+.right_button {
+    position: absolute;
+    float: right;
+    height: auto;
+}
+
+.ghost_button {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.dashboard_card {
+    align-content: center;
+    justify-content: center;
+    position: relative;
+}
+
+.dashboard_card_text {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.subnet_card {
+    margin-top: 0.5rem;
+    align-content: center;
+    justify-content: center;
+}
+
+.subnet_row_contents {
+    height: 100%;
+    align-self: center;
+    align-content: center;
+    justify-self: center;
+}
+
+.black_line {
+    background-color: black;
+    height: 1px;
+    width: 100%;
+    margin-top: 0.2rem;
+    margin-bottom: 0.1rem;
+}

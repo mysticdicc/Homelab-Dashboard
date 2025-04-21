@@ -98,23 +98,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\richard.DANKNET\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\richard.local\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\vs-studio\\danklibrary\\danklibrary.csproj",
+      "projectUniqueName": "C:\\Users\\richard.local\\source\\repos\\dankapi\\danklibrary\\danklibrary.csproj",
       "projectName": "danklibrary",
-      "projectPath": "D:\\vs-studio\\danklibrary\\danklibrary.csproj",
-      "packagesPath": "C:\\Users\\richard.DANKNET\\.nuget\\packages\\",
-      "outputPath": "D:\\vs-studio\\danklibrary\\obj\\",
+      "projectPath": "C:\\Users\\richard.local\\source\\repos\\dankapi\\danklibrary\\danklibrary.csproj",
+      "packagesPath": "C:\\Users\\richard.local\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\richard.local\\source\\repos\\dankapi\\danklibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\richard.DANKNET\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\richard.local\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

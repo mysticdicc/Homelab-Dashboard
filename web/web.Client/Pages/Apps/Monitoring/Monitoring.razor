@@ -2,166 +2,107 @@
 
 @inject danklibrary.DankAPI.Monitoring MonitoringAPI
 @inject IJSRuntime JSRuntime
-@inject IMessageService MessageService
-@inject IDialogService DialogService
 
 @page "/monitoring/home"
-@rendermode InteractiveAuto
 
 <PageTitle>monitoring</PageTitle>
 
-<FluentLayout>
-    <FluentHeader>
-        <FluentLabel Typo="Typography.Header" Color="Microsoft.FluentUI.AspNetCore.Components.Color.Lightweight">monitoring</FluentLabel>
-    </FluentHeader>
+<div>
+    @if (null != monitorStates)
+    {
+        <ApexChart TItem="MonitorState"
+        Title="Uptime"
+        Height="@("100%")"
+        Options="options">
 
-    <FluentBodyContent>
-        <FluentGrid Style="margin-top: 10px">
-            <FluentGridItem xs="6" Style="height: 35vh">
-                @if (null != monitorStates)
-                {
-                    <ApexChart TItem="MonitorState"
-                    Title="Uptime"
-                    Height="@("100%")"
-                    Options="options">
+            <ApexPointSeries TItem="MonitorState"
+            Items="monitorStates"
+            XValue="@(x => $"{x.SubmitTime.Hour}:{x.SubmitTime.Minute}:{x.SubmitTime.Second}")"
+            YAggregate="@(e => e.Where(x => x.IcmpResponse == true).Count())"
+            SeriesType="SeriesType.Line"
+            Name="Devices Online">
+            </ApexPointSeries>
 
-                        <ApexPointSeries TItem="MonitorState"
-                        Items="monitorStates"
-                        XValue="@(x => $"{x.SubmitTime.Hour}:{x.SubmitTime.Minute}:{x.SubmitTime.Second}")"
-                        YAggregate="@(e => e.Where(x => x.IcmpResponse == true).Count())"
-                        SeriesType="SeriesType.Line"
-                        Name="Devices Online">
-                        </ApexPointSeries>
+            <ApexPointSeries TItem="MonitorState"
+            Items="monitorStates"
+            XValue="@(x => $"{x.SubmitTime.Hour}:{x.SubmitTime.Minute}:{x.SubmitTime.Second}")"
+            YAggregate="@(e => e.Where(x => x.IcmpResponse == false).Count())"
+            SeriesType="SeriesType.Line"
+            Name="Devices Offline">
+            </ApexPointSeries>
 
-                        <ApexPointSeries TItem="MonitorState"
-                        Items="monitorStates"
-                        XValue="@(x => $"{x.SubmitTime.Hour}:{x.SubmitTime.Minute}:{x.SubmitTime.Second}")"
-                        YAggregate="@(e => e.Where(x => x.IcmpResponse == false).Count())"
-                        SeriesType="SeriesType.Line"
-                        Name="Devices Offline">
-                        </ApexPointSeries>
+            <ApexPointSeries TItem="MonitorState"
+            Items="monitorStates"
+            XValue="@(x => $"{x.SubmitTime.Hour}:{x.SubmitTime.Minute}:{x.SubmitTime.Second}")"
+            YAggregate="@(e => e.Count())"
+            SeriesType="SeriesType.Line"
+            Name="Devices Monitored">
+            </ApexPointSeries>
 
-                        <ApexPointSeries TItem="MonitorState"
-                        Items="monitorStates"
-                        XValue="@(x => $"{x.SubmitTime.Hour}:{x.SubmitTime.Minute}:{x.SubmitTime.Second}")"
-                        YAggregate="@(e => e.Count())"
-                        SeriesType="SeriesType.Line"
-                        Name="Devices Monitored">
-                        </ApexPointSeries>
+        </ApexChart>
+    }
+    else
+    {
+        <RadzenProgressBarCircular Mode="ProgressBarMode.Indeterminate"/>
+    }
+</div>
+<div>
+    <RadzenCard>
+        <RadzenText Content="All Time Statistics:"/>
+        @if (null != monitorStates)
+        {
+            <RadzenText>
+                Monitored: @(monitorStates.Select(x => x.IP_ID).Distinct().Count().ToString())
+            </RadzenText>
+            <RadzenText>
+                Polls: @monitorStates.Count()
+            </RadzenText>
+        }
+        else
+        {
+            <RadzenProgressBarCircular Mode="ProgressBarMode.Indeterminate"/>
+        }
+    </RadzenCard>
+</div>
+<div>
+    <RadzenCard>
+        <RadzenText Content="Last Poll Statistics:"/>
+        @if (null != monitoredIPs && null != lastPolls)
+        {
+            <RadzenText>Time: @lastDate</RadzenText>
+            <RadzenText>Monitored: @lastPolls.Count()</RadzenText>
+            <RadzenText>Online: @lastPolls.Where(x => x.IcmpResponse == true).Count()</RadzenText>
+            <RadzenText>Offline: @lastPolls.Where(x => x.IcmpResponse == false).Count()</RadzenText>
+        }
+    </RadzenCard>
+</div>
+<div>
+    <RadzenCard>
+        <RadzenText Content="Monitored IPs"/>
+        <RadzenButton Icon="arrowdown" Click="@(() => ToggleMonitoredHidden())" />
 
-                    </ApexChart>
-                }
-                else
-                {
-                    <FluentProgressRing />
-                }
-            </FluentGridItem>
-            <FluentGridItem xs="3" Style="height: 35vh">
-                <FluentCard>
-                    <div style="width: 100%; margin-bottom: 5px;">
-                        <FluentLabel>All Time Statistics:</FluentLabel>
-                    </div>
-                    @if (null != monitorStates)
-                    {
-                        <div style="width: 100%">
-                            <FluentLabel>Monitored: @monitorStates.Select(x => x.IP_ID).Distinct().Count()</FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel>Polls: @monitorStates.Count()</FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel></FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel></FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel></FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel></FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel></FluentLabel>
-                        </div>
-                    }
+        @if (null != currentlyMonitored) {
+            foreach (IP ip in currentlyMonitored)
+            {
+                <RadzenCard>
+                    <RadzenText>
+                        @IP.ConvertToString(ip.Address)
+                    </RadzenText>
+                    <RadzenText>
+                        @ip.Hostname
+                    </RadzenText>
+                    @if (LastMonitorState(ip.ID)) {
+                        <Icon Type="IconType.Material" Icon="checkboxchecked"/>
+                    } 
                     else
                     {
-                        <FluentProgressRing />
+                        <Icon Type="IconType.Material" Icon="checkboxunchecked"/>
                     }
-                </FluentCard>
-            </FluentGridItem>
-            <FluentGridItem xs="3" Style="height: 35vh">
-                <FluentCard>
-                    <div style="width: 100%; margin-bottom: 5px;">
-                        <FluentLabel>Last Poll Statistics:</FluentLabel>
-                    </div>
-                    @if (null != monitoredIPs && null != lastPolls)
-                    {
-                        <div style="width: 100%;">
-                            <FluentLabel>Time: @lastDate</FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel>Monitored: @lastPolls.Count()</FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel>Online: @lastPolls.Where(x => x.IcmpResponse == true).Count()</FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel>Offline: @lastPolls.Where(x => x.IcmpResponse == false).Count()</FluentLabel>
-                        </div>
-                        <div style="width: 100%">
-                            <FluentLabel></FluentLabel>
-                        </div>
-                    }
-                </FluentCard>
-            </FluentGridItem >
-            <FluentGridItem xs="12">
-                <FluentCard>
-                    <div style="width: 100%;">
-                        <FluentGrid>
-                            <FluentGridItem xs="10" Style="align-content: center;">
-                                <FluentLabel>Monitored IPs</FluentLabel>
-                            </FluentGridItem>
-                            <FluentGridItem xs="2" Justify="JustifyContent.FlexEnd">
-                                <FluentButton IconEnd="@(new Icons.Regular.Size20.ArrowDown())" OnClick="@(() => ToggleMonitoredHidden())" />
-                            </FluentGridItem>
-                        </FluentGrid>
-                    </div>
-                    <div style="width: 100%" hidden="@monitoredHidden">
-                        <FluentGrid>
-                            @if (null != currentlyMonitored) {
-                                foreach (IP ip in currentlyMonitored)
-                                {
-                                    <FluentGridItem xs="3">
-                                        <FluentCard>
-                                            <FluentGrid Style="width: 100%">
-                                                <FluentGridItem xs="10">
-                                                    <FluentLabel>@IP.ConvertToString(ip.Address)</FluentLabel>
-                                                    <FluentLabel>@ip.Hostname</FluentLabel>
-                                                </FluentGridItem>
-                                                <FluentGridItem xs="2" Style="align-content: center;">
-                                                    @if (LastMonitorState(ip.ID)) {
-                                                        <FluentIcon Value="@(new Icons.Regular.Size24.CheckboxChecked())" Color="Microsoft.FluentUI.AspNetCore.Components.Color.Success" />
-                                                    } 
-                                                    else
-                                                    {
-                                                        <FluentIcon Value="@(new Icons.Regular.Size24.CheckboxWarning())" Color="Microsoft.FluentUI.AspNetCore.Components.Color.Warning" />
-
-                                                    }
-                                                </FluentGridItem>
-                                            </FluentGrid>
-                                        </FluentCard>
-                                    </FluentGridItem>
-                                }
-                            }
-                        </FluentGrid>
-                    </div>
-                </FluentCard>
-            </FluentGridItem>
-        </FluentGrid>
-    </FluentBodyContent>
-</FluentLayout>
+                </RadzenCard>
+            }
+        }
+    </RadzenCard>
+</div>
 
 @code {
     List<MonitorState>? monitorStates;

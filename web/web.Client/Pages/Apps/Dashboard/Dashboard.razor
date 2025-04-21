@@ -1,117 +1,81 @@
 ﻿@inject danklibrary.DankAPI.Dash DashAPI
 @inject IJSRuntime JSRuntime
-@inject IMessageService MessageService
-@inject IDialogService DialogService
+@inject NotificationService NotificationService
 
 @page "/dash/home"
-@rendermode InteractiveAuto
 
 <PageTitle>dashboard</PageTitle>
 
-<FluentLayout>
-    <FluentHeader>
-        <FluentLabel Typo="Typography.Header" Color="Color.Lightweight">dashboard</FluentLabel>
-        <FluentSpacer/>
-        <FluentButton Style="margin-right: 5px;" OnClick="@OnClickEdit">Edit</FluentButton>
-        <FluentButton OnClick="@OnClickAdd">Add</FluentButton>
-    </FluentHeader>
+<div style="display: flex; gap: 1rem; margin-top: 1rem; margin-bottom: 1rem;">
+    <RadzenButton Icon="edit" Click="@OnClickEdit" />
+    <RadzenButton Icon="add" Click="@OnClickAdd" />
+</div>
 
-    <FluentBodyContent Style="margin-top: 10px; height: 100%;">
-        <FluentGrid Style="align-items: stretch; margin: 5px;">
-            @if (null != dashboardItems)
-            {
-                foreach (DashboardItem item in dashboardItems)
-                {
-                    <FluentGridItem xs="6" sm="4" xl="2" lg="3" Class="dashboardGridItem">
-                        <FluentCard onclick="@(() => OnClickCard(item))" class="dashboardCard" id="@($"fluentcard_{item.ID}")">
-                            <div hidden="@(!editHidden)" style="width: 100%;">
-                                <div style="display: inline-block; width: 73%">
-                                    <FluentLabel Typo="Typography.Subject">@item.DisplayName</FluentLabel>
-                                    <FluentLabel Typo="Typography.Body" style="word-break: break-all">@item.URL</FluentLabel>
-                                </div>
-                                @if (null != item.Icon)
-                                {
-                                    <img src="@(GetPngString(item.Icon))" style="max-height: 45px; max-width: 45px; background-color: transparent; position: absolute; top: 5px; right: 5px;" />
-                                }
-                            </div>
+<RadzenRow Gap="1rem">
+    @if (null != dashboardItems)
+    {
+        foreach (DashboardItem item in dashboardItems)
+        {
+            <RadzenColumn SizeXS="12" SizeSM="6" SizeMD="3" SizeLG="2">
+                <RadzenCard onclick="@(() => OnClickCard(item))" id="@($"fluentcard_{item.ID}")" class="dashboard_card">
+                    <div hidden="@(!editHidden)">
+                        <div>
+                            <RadzenText class="dashboard_card_text">
+                                @item.DisplayName
+                            </RadzenText>
+                            <RadzenText class="dashboard_card_text">
+                                @item.URL
+                            </RadzenText>
 
-                            <div hidden="@editHidden">
-                                <FluentLabel style="margin-bottom: 5px;" Typo="Typography.Subject">ID: @item.ID</FluentLabel>                                
-
-                                <FluentLabel Typo="Typography.Body">Display Name:</FluentLabel>
-                                <FluentTextField @bind-Value="@item.DisplayName" Class="dashboardCardTxt" />
-
-                                <FluentLabel Typo="Typography.Body">URL:</FluentLabel>
-                                <FluentTextField @bind-Value="@item.URL" Class="dashboardCardTxt" />
-
-                                <FluentLabel Typo="Typography.Body">Description:</FluentLabel>
-                                <FluentTextArea @bind-Value="@item.Description" Class="dashboardCardTxt"/>
-
-                                <div style="margin-top: 10px; display: flex;">
-                                    @if (null != item.Icon)
-                                    {
-                                        <img src="@(GetPngString(item.Icon))" style="max-height: 50px; max-width: 50px;" />
-                                        <FluentSpacer />
-                                        <FluentButton OnClick="@(() => OnDeleteIcon(item.ID))">Delete Icon</FluentButton>
-                                    }
-                                    else
-                                    {
-                                        <InputFile OnChange="@(e => IconUpload(e, item.ID))" accept=".png" />
-                                    }
-                                </div>
-
-                                <FluentFooter Style="margin-top: 10px;">
-                                    <FluentButton OnClick="@(() => OnClickCardSave(item.ID))">Save</FluentButton>
-                                    <FluentSpacer />
-                                    <FluentButton OnClick="@(() => OnClickCardDelete(item.ID))">Delete</FluentButton>
-                                </FluentFooter>
-                            </div>
-                        </FluentCard>
-                    </FluentGridItem>
-                }
-            }
-            else
-            {
-                <FluentCard>
-                    <FluentProgressRing />
-                </FluentCard>
-            }
-
-            <FluentGridItem xs="6" sm="4" xl="2" lg="3" Class="dashboardGridItem" hidden="@addHidden">
-                <FluentCard>
-                    <FluentTextField Label="Display Name" Class="dashboardCardTxt" @bind-Value="@newDisplay"/>
-                    <FluentTextField Label="URL" Class="dashboardCardTxt" @bind-Value="@newURL" />
-                    <FluentTextArea Label="Description" Class="dashboardCardTxt" @bind-Value="@newDescription" />
-
-                    <FluentButton OnClick="@OnClickNewSave">Save</FluentButton>
-                </FluentCard>
-            </FluentGridItem>
-        </FluentGrid>
-    </FluentBodyContent>
-</FluentLayout>
-
-<FluentDialogProvider />
-
-<style>
-    .dashboardCard {
-    width: 100%;
-    height: 100%;
+                            @if (null != item.Icon)
+                            {
+                                <img src="@(GetPngString(item.Icon))" style="max-height: 45px; max-width: 45px; background-color: transparent; position: absolute; top: 5px; right: 5px;" />
+                            }
+                        </div>
+                    </div>
+                    <div hidden="@editHidden">
+                        <div>
+                            <RadzenTextBox @bind-Value="@(item.DisplayName)" Placeholder="Display Name" class="dashboard_card_text" />
+                        </div>
+                        <div>
+                            <RadzenTextBox @bind-Value="@(item.URL)" Placeholder="URL" class="dashboard_card_text" />
+                        </div>
+                        <div>
+                            <RadzenTextArea @bind-Value="@(item.Description)" Placeholder="Description" class="dashboard_card_text" />
+                        </div>
+                        <div>
+                            @if (null != item.Icon)
+                            {
+                                <img src="@(GetPngString(item.Icon))" style="max-height: 50px; max-width: 50px;" />
+                                <RadzenButton Click="@(() => OnDeleteIcon(item.ID))">Delete Icon</RadzenButton>
+                            }
+                            else
+                            {
+                                <InputFile OnChange="@(e => IconUpload(e, item.ID))" accept=".png" />
+                            }
+                        </div>
+                        <div>
+                            <RadzenButton Click="@(() => OnClickCardSave(item.ID))">Save</RadzenButton>
+                            <RadzenButton Click="@(() => OnClickCardDelete(item.ID))">Delete</RadzenButton>
+                        </div>
+                    </div>
+                </RadzenCard>
+            </RadzenColumn>
+        }
     }
-
-    .dashboardCard:hover {
-    background-color: darkgray;
-    width: 100%;
-    height: 100%;
+    else
+    {
+        <RadzenProgressBarCircular Mode="ProgressBarMode.Indeterminate" />
     }
-
-    .dashboardGridItem {
-    display: flex;
-    }
-
-    .dashboardCardTxt {
-    width: 100%;
-    }
-</style>
+    <RadzenColumn SizeXS="12" SizeSM="6" SizeMD="3" SizeLG="2" hidden="@(addHidden)">
+        <RadzenCard class="dashboard_card">
+            <RadzenTextBox @bind-Value="@newDisplay" Placeholder="Display Name" class="dashboard_card_text"/>
+            <RadzenTextBox @bind-Value="@newURL" Placeholder="URL" class="dashboard_card_text" />
+            <RadzenTextArea @bind-Value="@newDescription" Placeholder="Description" class="dashboard_card_text"/>
+            <RadzenButton Click="@OnClickNewSave" Icon="save" class="right_button"/>
+        </RadzenCard>
+    </RadzenColumn>
+</RadzenRow>
 
 @code {
     List<DashboardItem>? dashboardItems;
@@ -159,18 +123,27 @@
                 try
                 {
                     await DashAPI.EditItem(editItem);
-
-                    var dialog = await DialogService.ShowSuccessAsync($"{editItem.ID} successfully edited");
-                    var result = dialog.Result;
-
                     dashboardItems = await DashAPI.GetAll();
 
                     StateHasChanged();
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Success,
+                            Summary = "Success",
+                            Detail = $"{editItem.ID} successfully edited",
+                            Duration = 4000
+                        });
+
                 }
                 catch(Exception ex)
                 {
-                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
-                    var result = await dialog.Result;
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Error,
+                            Summary = "Error",
+                            Detail = ex.Message,
+                            Duration = 4000
+                        });
                 }
             }
         }
@@ -186,17 +159,27 @@
                 try 
                 {
                     await DashAPI.DeleteItem(deleteItem);
-                    var dialog = await DialogService.ShowSuccessAsync($"{deleteItem.ID} successfully deleted");
-                    var result = dialog.Result;
-
                     dashboardItems = await DashAPI.GetAll();
 
                     StateHasChanged();
+
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Success,
+                            Summary = "Success",
+                            Detail = $"{deleteItem.ID} successfully deleted",
+                            Duration = 4000
+                        });
                 } 
                 catch (Exception ex)
                 {
-                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
-                    var result = await dialog.Result;
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Error,
+                            Summary = "Error",
+                            Detail = ex.Message,
+                            Duration = 4000
+                        });
                 }
             }
         }
@@ -215,10 +198,6 @@
                 try
                 {
                     await DashAPI.AddItem(addItem);
-
-                    var dialog = await DialogService.ShowSuccessAsync($"Successfully added");
-                    var result = dialog.Result;
-
                     dashboardItems = await DashAPI.GetAll();
 
                     //reset state
@@ -229,22 +208,44 @@
                     addHidden = true;
 
                     StateHasChanged();
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Success,
+                            Summary = "Success",
+                            Detail = $"{addItem.ID} successfully added",
+                            Duration = 4000
+                        });
                 }
                 catch (Exception ex)
                 {
-                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
-                    var result = await dialog.Result;
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Error,
+                            Summary = "Error",
+                            Detail = ex.Message,
+                            Duration = 4000
+                        });
                 }
             } 
             else 
             {
-                var dialog = await DialogService.ShowErrorAsync("Object invalid");
-                var result = await dialog.Result;
+                ShowNotification(new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Error,
+                        Summary = "Error",
+                        Detail = "Object is invalid",
+                        Duration = 4000
+                    });
             }
         } 
         else {
-            var dialog = await DialogService.ShowErrorAsync("Object null");
-            var result = await dialog.Result;
+            ShowNotification(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "Error",
+                    Detail = "Object is null",
+                    Duration = 4000
+                });
         }
     }
 
@@ -261,31 +262,51 @@
                 try
                 {
                     editItem.Icon = bytes;
+
                     await DashAPI.EditItem(editItem);
-
-                    var dialog = await DialogService.ShowSuccessAsync($"{editItem.ID} successfully uploaded icon");
-                    var result = dialog.Result;
-
                     dashboardItems = await DashAPI.GetAll();
 
                     StateHasChanged();
+
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Success,
+                            Summary = "Success",
+                            Detail = $"{editItem.ID} successfully edited",
+                            Duration = 4000
+                        });
                 } 
                 catch(Exception ex)
                 {
-                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
-                    var result = await dialog.Result;
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Error,
+                            Summary = "Error",
+                            Detail = ex.Message,
+                            Duration = 4000
+                        });
                 }
             } 
             else 
             {
-                var dialog = await DialogService.ShowErrorAsync("Object invalid");
-                var result = await dialog.Result;
+                ShowNotification(new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Error,
+                        Summary = "Error",
+                        Detail = "Object is invalid",
+                        Duration = 4000
+                    });
             }
         }
         else
         {
-            var dialog = await DialogService.ShowErrorAsync("Object null");
-            var result = await dialog.Result;
+            ShowNotification(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "Error",
+                    Detail = "Object is null",
+                    Duration = 4000
+                });
         }
     }
 
@@ -317,31 +338,56 @@
                 try
                 {
                     editItem.Icon = null;
+
                     await DashAPI.EditItem(editItem);
-
-                    var dialog = await DialogService.ShowSuccessAsync($"{editItem.ID} successfully deleted icon");
-                    var result = dialog.Result;
-
                     dashboardItems = await DashAPI.GetAll();
 
                     StateHasChanged();
+
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Success,
+                            Summary = "Success",
+                            Detail = $"{editItem.ID} successfully deleted icon",
+                            Duration = 4000
+                        });
                 }
                 catch (Exception ex)
                 {
-                    var dialog = await DialogService.ShowErrorAsync($"{ex.Message}");
-                    var result = await dialog.Result;
+                    ShowNotification(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Error,
+                            Summary = "Error",
+                            Detail = ex.Message,
+                            Duration = 4000
+                        });
                 }
             }
             else
             {
-                var dialog = await DialogService.ShowErrorAsync("Object invalid");
-                var result = await dialog.Result;
+                ShowNotification(new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Error,
+                        Summary = "Error",
+                        Detail = "Object is invalid",
+                        Duration = 4000
+                    });
             }
         }
         else
         {
-            var dialog = await DialogService.ShowErrorAsync("Object null");
-            var result = await dialog.Result;
+            ShowNotification(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "Error",
+                    Detail = "Object is null",
+                    Duration = 4000
+                });
         }
+    }
+
+    void ShowNotification(NotificationMessage message)
+    {
+        NotificationService.Notify(message);
     }
 }

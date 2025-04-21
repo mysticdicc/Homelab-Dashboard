@@ -1,13 +1,10 @@
-using web.Client.Pages;
 using web.Components;
-using web.Controllers;
 using dankweb.API;
 
 using ApexCharts;
-using Microsoft.FluentUI.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.DependencyInjection;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
 .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddRadzenComponents();
+
+builder.Services.AddRadzenCookieThemeService(options =>
+{
+    options.Name = "RadzenBlazorApp1Theme";
+    options.Duration = TimeSpan.FromDays(365);
+});
 
 builder.Services.AddScoped(sp =>
 {
@@ -28,9 +33,7 @@ builder.Services.AddTransient<danklibrary.DankAPI.Dash>();
 builder.Services.AddTransient<danklibrary.DankAPI.Subnets>();
 builder.Services.AddTransient<danklibrary.DankAPI.Monitoring>();
 
-builder.Services.AddFluentUIComponents();
 builder.Services.AddApexCharts();
-
 builder.Services.AddControllers();
 builder.Services.AddDbContextFactory<danknetContext>(options =>
     options.UseSqlite("Data Source=./data/danknetlocal.db"));

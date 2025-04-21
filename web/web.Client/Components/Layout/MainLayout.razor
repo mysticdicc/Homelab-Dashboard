@@ -1,0 +1,47 @@
+﻿@inject NotificationService NotificationService
+@inject IJSRuntime JSRuntime
+@inject DialogService DialogService
+@inject TooltipService TooltipService
+@inject ContextMenuService ContextMenuService
+@inject NotificationService NotificationService
+
+@inherits LayoutComponentBase
+@inject CookieThemeService CookieThemeService
+@inject NavigationManager NavManager
+
+<RadzenComponents @rendermode="InteractiveWebAssembly" />
+
+<RadzenLayout>
+    <RadzenHeader class="header">
+        <RadzenButton Icon="home" Click="@(() => Navigate("home"))" Variant="Variant.Flat" class="ghost_button"/>
+        <RadzenButton Icon="globe" Click="@(() => Navigate("dash"))" Variant="Variant.Flat" class="ghost_button" />
+        <RadzenButton Icon="folder" Click="@(() => Navigate("subnets"))" Variant="Variant.Flat" class="ghost_button" />
+        <RadzenButton Icon="autorenew" Click="@(() => Navigate("monitoring"))" Variant="Variant.Flat" class="ghost_button right_button" />
+    </RadzenHeader>
+
+    <RadzenBody class="body">
+        @Body
+    </RadzenBody>
+</RadzenLayout>
+
+@code
+{
+    void Navigate(string location) 
+    {
+        switch (location) 
+        {
+            case "home":
+                NavManager.NavigateTo("/");
+                break;
+            case "dash":
+                NavManager.NavigateTo("/dash/home");
+                break;
+            case "subnets":
+                NavManager.NavigateTo("/subtrackr/home");
+                break;
+            case "monitoring":
+                NavManager.NavigateTo("/monitoring/home");
+                break;
+        }
+    }
+}

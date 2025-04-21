@@ -3,196 +3,211 @@
 @using NetTools
 @using System.Text.RegularExpressions
 
-
 @inject danklibrary.DankAPI.Subnets SubnetsAPI
 @inject IJSRuntime JSRuntime
-@inject IMessageService MessageService
-@inject IDialogService DialogService
 
-@rendermode InteractiveAuto
 @page "/subtrackr/home"
 
 <PageTitle>subnet trackr</PageTitle>
 
-<FluentLayout>
-    <FluentHeader Style="margin-bottom: 5px;">
-        <FluentLabel Typo="Typography.Header" Color="Color.Lightweight">subnet trackr</FluentLabel>
-        <FluentSpacer/>
-        <FluentTextField @bind-Value="@newCidr" Style="margin-right: 5px;" Placeholder="0.0.0.0/0"/>
-        <FluentButton IconEnd="@(new Icons.Regular.Size12.Add())" OnClick="@NewSubnet"/>
-    </FluentHeader>
+<div style="display: flex; gap: 1rem; margin-top: 1rem; margin-bottom: 1rem;">
+    <RadzenTextBox @bind-Value="@newCidr" Placeholder="0.0.0.0/24"/>
+    <RadzenButton Icon="add" Click="@NewSubnet" />
+</div>
 
-    <FluentBodyContent>
-        <FluentGrid>
-            @if (null != SubnetList) {
-                foreach (Subnet subnet in SubnetList) {
-                    <FluentGridItem xs="12">
-                        <FluentCard Style="height: 100%; max-height: 30vh;">
-                            <FluentGrid Style="margin: 1;">
-                                <FluentGridItem xs="2" Style="align-content: center;">
-                                    <FluentLabel>
-                                        @IP.ConvertToString(subnet.Address)
-                                    </FluentLabel>
-                                </FluentGridItem>
-                                <FluentGridItem xs="2" Style="align-content: center;">
-                                    <FluentLabel>
-                                        @IP.ConvertToString(subnet.StartAddress)
-                                    </FluentLabel>
-                                </FluentGridItem>
-                                <FluentGridItem xs="2" Style="align-content: center;">
-                                    <FluentLabel>
-                                        @IP.ConvertToString(subnet.EndAddress)
-                                    </FluentLabel>
-                                </FluentGridItem>
-                                <FluentGridItem xs="2">
+<div>
+    <RadzenCard class="subnet_card">
+        <RadzenRow>
+            <RadzenColumn Size="2">
+                <RadzenText class="subnet_row_contents">
+                    Subnet Address
+                </RadzenText>
+            </RadzenColumn>
+            <RadzenColumn Size="2">
+                <RadzenText class="subnet_row_contents">
+                    Start Address
+                </RadzenText>
+            </RadzenColumn>
+            <RadzenColumn Size="2">
+                <RadzenText class="subnet_row_contents">
+                    End Address
+                </RadzenText>
+            </RadzenColumn>
+            <RadzenColumn Size="4">
+                <div hidden="@(!showSearch)" class="subnet_row_contents">
+                    <RadzenText class="subnet_row_contents">
+                        IP Search
+                    </RadzenText>
+                </div>
+            </RadzenColumn>
+            <RadzenColumn Size="2">
+                <div style="width: 1vw;"/>
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenCard>
+    @if (null != SubnetList) {
+        foreach (Subnet subnet in SubnetList) {
+            <RadzenCard class="subnet_card">
+                <RadzenRow>
+                    <RadzenColumn Size="2">
+                        <RadzenText class="subnet_row_contents">
+                            @IP.ConvertToString(subnet.Address)
+                        </RadzenText>
+                    </RadzenColumn>
+                    <RadzenColumn Size="2">
+                        <RadzenText class="subnet_row_contents">
+                            @IP.ConvertToString(subnet.StartAddress)
+                        </RadzenText>
+                    </RadzenColumn>
+                    <RadzenColumn Size="2">
+                        <RadzenText class="subnet_row_contents">
+                            @IP.ConvertToString(subnet.EndAddress)
+                        </RadzenText>
+                    </RadzenColumn>
+                    <RadzenColumn Size="2">
+                        <div hidden="@(subnet.RowState.Hidden)" style="display: relative;">
+                            <RadzenTextBox @bind-Value="@subnet.RowState.SearchTerm" onkeyup="@((KeyboardEventArgs e) => OnSearchKeyPress(e, subnet.ID))" Placeholder="Search" Style="margin-right: 2%; max-width: 80%; width: auto;"/>
+                            <RadzenButton Icon="search" Click="@(() => SearchSubnet(subnet.ID))" class="right_button" Style="max-width: 15%"/>
+                        </div>
+                    </RadzenColumn>
+                    <RadzenColumn Size="2" Style="justify-content: center; display: flex; gap: 0.5rem;">
+                        <RadzenButton Icon="keyboard_arrow_down" Click="@(() => OnClickExpand(subnet.ID))" class="subnet_row_contents" />
+                        <RadzenButton Icon="delete" Click="@(() => OnClickDelete(subnet.ID))" class="subnet_row_contents" />
+                    </RadzenColumn>
+                    <RadzenColumn Size="2">
 
-                                </FluentGridItem>
-                                <FluentGridItem xs="2" Justify="JustifyContent.Center" Style="align-content: center;">
-                                    @if (!subnet.RowState.Hidden) {
-                                        <FluentTextField Placeholder="Search" @bind-Value="@subnet.RowState.SearchTerm" Style="margin-right: 5px;" onkeyup="@((KeyboardEventArgs e) => OnSearchKeyPress(e, subnet.ID))"/>
-                                        <FluentButton IconStart="@(new Icons.Regular.Size12.Search())" OnClick="@(() => SearchSubnet(subnet.ID))"/>
-                                    }
-                                </FluentGridItem>
-                                <FluentGridItem xs="2">
-                                    <FluentButton IconStart="@(new Icons.Regular.Size12.ArrowDown())" OnClick="@(() => OnClickExpand(subnet.ID))" />
-                                    <FluentButton IconStart="@(new Icons.Regular.Size12.Delete())" OnClick="@(() => OnClickDelete(subnet.ID))" Style="margin-right: 10px;" />
-                                </FluentGridItem>
-                            </FluentGrid>
+                    </RadzenColumn>
+                </RadzenRow>
+                <div hidden="@subnet.RowState.Hidden" style="margin-top: 1rem;">
+                    @if (null != subnet.List)
+                    {
+                        <RadzenRow>
+                            <div class="black_line"/>
+                            <RadzenColumn Size="2">
+                                <RadzenText class="subnet_row_contents">
+                                    IP Address
+                                </RadzenText>
+                            </RadzenColumn>
+                            <RadzenColumn Size="2">
+                                <RadzenText class="subnet_row_contents">
+                                    Hostname
+                                </RadzenText>
+                            </RadzenColumn>
+                            <RadzenColumn Size="2">
+                                <RadzenText class="subnet_row_contents">
+                                    Monitored
+                                </RadzenText>
+                            </RadzenColumn>
+                            <RadzenColumn Size="2">
+                                <RadzenText class="subnet_row_contents">
+                                    ICMP
+                                </RadzenText>
+                            </RadzenColumn>
+                            <RadzenColumn Size="2">
+                                <RadzenText class="subnet_row_contents">
+                                    Ports
+                                </RadzenText>
+                            </RadzenColumn>
+                            <RadzenColumn Size="2">
 
-                            <div hidden="@(subnet.RowState.Hidden)">
-                                @if (null != subnet.List)
-                                {
-                                    <FluentGrid>
-                                        <FluentGridItem xs="2">
-                                            <FluentLabel>IP Address</FluentLabel>
-                                        </FluentGridItem>
-                                        <FluentGridItem xs="2">
-                                            <FluentLabel>Hostname</FluentLabel>
-                                        </FluentGridItem>
-                                        <FluentGridItem xs="2">
-                                            <FluentLabel>Monitored</FluentLabel>
-                                        </FluentGridItem>
-                                        <FluentGridItem xs="2">
-                                            <FluentLabel>ICMP</FluentLabel>
-                                        </FluentGridItem>
-                                        <FluentGridItem xs="2">
-                                            <FluentLabel>Ports</FluentLabel>
-                                        </FluentGridItem>
-                                        <FluentGridItem xs="2">
-                                            <FluentLabel></FluentLabel>
-                                        </FluentGridItem>
-                                    </FluentGrid>
+                            </RadzenColumn>
+                        </RadzenRow>
 
-                                    <div hidden="@(subnet.RowState.Hidden)" style="max-height: 20vh; overflow-y: auto; overflow-x: hidden">
-                                        <Virtualize Items="@(subnet.List.Where(x => x.RowState.Hidden == false).ToList())">
-                                            @if (!context.RowState.Hidden) {
-                                                <FluentDivider Style="margin-top: 2px; margin-bottom: 2px;" />
+                        <div hidden="@subnet.RowState.Hidden">
+                            <Virtualize Items="@(subnet.List.Where(x => x.RowState.Hidden == false).ToList())">
+                                <div hidden="@(subnet.RowState.Hidden)">
+                                    <RadzenRow>
+                                    <div class="black_line" />
+                                    <RadzenColumn Size="2">
+                                        <RadzenText class="subnet_row_contents">
+                                            @IP.ConvertToString(context.Address)
+                                        </RadzenText>
+                                    </RadzenColumn>
 
-                                                <FluentGrid>
-                                                    <FluentGridItem xs="2" Style="align-content: center;">
-                                                        <FluentLabel>@IP.ConvertToString(context.Address)</FluentLabel>
-                                                    </FluentGridItem>
-
-                                                    <FluentGridItem xs="2" Style="align-content: center;">
-                                                        @if (null != context.RowState)
-                                                        {
-                                                            if (!context.RowState.EditHidden)
-                                                            {
-                                                                <FluentTextField @bind-Value="@context.Hostname" />
-                                                            }
-                                                            else
-                                                            {
-                                                                <FluentLabel>@context.Hostname</FluentLabel>
-                                                            }
-                                                        }
-                                                    </FluentGridItem>
-
-                                                    <FluentGridItem xs="2" Style="align-content: center; justify-content: center;">
-                                                        @if (context.IsMonitoredICMP || context.IsMonitoredTCP)
-                                                        {
-                                                            <FluentIcon Value="@(new Icons.Regular.Size20.CheckboxChecked())" Color="Color.Success" Style="margin-left: 1vw;" />
-                                                        }
-                                                        else
-                                                        {
-                                                            <FluentIcon Value="@(new Icons.Regular.Size20.CheckboxUnchecked())" Style="margin-left: 1vw;"/>
-                                                        }
-                                                    </FluentGridItem>
-
-                                                    <FluentGridItem xs="2" Style="align-content: center; justify-content: center;">
-                                                        @if (null != context.RowState)
-                                                        {
-                                                            if (!context.RowState.EditHidden)
-                                                            {
-                                                                <FluentSwitch @bind-Value="@context.IsMonitoredICMP" />
-                                                            }
-                                                            else
-                                                            {
-                                                                @if (context.IsMonitoredICMP)
-                                                                {
-                                                                    <FluentIcon Value="@(new Icons.Regular.Size20.CheckboxChecked())" Color="Color.Success" Style="margin-left: 1vw;"/>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <FluentIcon Value="@(new Icons.Regular.Size20.CheckboxUnchecked())" Style="margin-left: 1vw;"/>
-                                                                }
-                                                            }
-                                                        }
-                                                    </FluentGridItem>
-
-                                                    <FluentGridItem xs="2" Style="align-content: center; justify-content: center;">
-                                                        @if (null != context.RowState)
-                                                        {
-                                                            if (!context.RowState.EditHidden)
-                                                            {
-                                                                <FluentTextField @bind-Value="@context.RowState.PortNumbers" />
-                                                            }
-                                                            else
-                                                            {
-                                                                if (null != context.PortsMonitored)
-                                                                {
-                                                                    <FluentLabel>@StringFromListInt(context.PortsMonitored)</FluentLabel>
-                                                                }
-                                                            }
-                                                        }
-                                                    </FluentGridItem>
-
-                                                    <FluentGridItem xs="2" Style="display: inline-flex; align-content: center; justify-content: center;">
-                                                        @if (null != context.RowState)
-                                                        {
-                                                            if (!context.RowState.EditHidden)
-                                                            {
-                                                                <FluentButton IconEnd="@(new Icons.Regular.Size12.Add())" OnClick="@(() => OnClickSave(context))" />
-                                                            }
-                                                        }
-
-                                                        <FluentButton IconEnd="@(new Icons.Regular.Size12.Edit())" OnClick="@(() => OnClickEdit(context))" Style="margin-right: 10px;" />
-                                                    </FluentGridItem>
-                                                </FluentGrid>
+                                    @if (null != context.RowState)
+                                    {
+                                        <RadzenColumn Size="2">
+                                            <div hidden="@context.RowState.Hidden">
+                                                <RadzenTextBox @bind-Value="@context.Hostname" Style="width: 100%"/>
+                                            </div>
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="2">
+                                            <div hidden="@(!context.RowState.Hidden)">
+                                                <RadzenText>
+                                                    @context.Hostname
+                                                </RadzenText>
+                                            </div>
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="2" Style="align-content: center; display: flex; justify-content: center;">
+                                            @if (context.IsMonitoredICMP || context.IsMonitoredTCP)
+                                            {
+                                                <RadzenIcon Icon="check" class="subnet_row_contents"/>
                                             }
-                                        </Virtualize>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <FluentDivider Style="margin-top: 5px;" />
-                                    <FluentProgressRing />
-                                }
-                            </div>
-                        </FluentCard>
-                    </FluentGridItem>
-                }
-            } else {
-                <FluentCard>
-                    <FluentProgressRing/>
-                </FluentCard>
-            }
-        </FluentGrid>
-    </FluentBodyContent>
-</FluentLayout>
+                                            else
+                                            {
+                                                <RadzenIcon Icon="close" class="subnet_row_contents"/>
+                                            }
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="2" Style="align-content: center; display: flex; justify-content: center;">
+                                            <div hidden="@context.RowState.EditHidden">
+                                                @if (context.IsMonitoredICMP)
+                                                {
+                                                    <RadzenIcon Icon="check" class="subnet_row_contents"/>
+                                                }
+                                                else
+                                                {
+                                                    <RadzenIcon Icon="close" class="subnet_row_contents"/>
+                                                }
+                                            </div>
+                                            <div hidden="@(!context.RowState.EditHidden)">
+                                                <RadzenSwitch @bind-Value="@context.IsMonitoredICMP" class="subnet_row_contents"/>
+                                            </div>
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="2" Style="display: flex;">
+                                            <div hidden="@context.RowState.EditHidden">
+                                                @if (null != context.PortsMonitored)
+                                                {
+                                                    <RadzenText class="subnet_row_contents">
+                                                        @(StringFromListInt(context.PortsMonitored))
+                                                    </RadzenText>
+                                                }
+                                            </div>
+                                            <div hidden="@(!context.RowState.EditHidden)">
+                                                <RadzenTextBox @bind-Value="@context.RowState.PortNumbers" Style="margin-right: 0.5rem;"/>
+                                            </div>
+                                            <div hidden="@context.RowState.EditHidden">
+                                                <RadzenButton Icon="edit" OnClick="@(() => OnClickEdit(context))" class="subnet_row_contents"/>
+                                            </div>
+                                            <div hidden="@(!context.RowState.EditHidden)">
+                                                <RadzenButton Icon="save" OnClick="@(() => OnClickSave(context))" class="subnet_row_contents"/>
+                                            </div>
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="2">
+
+                                        </RadzenColumn>
+                                    }
+                                    else 
+                                    {
+                                        <RadzenColumn Size="10"/>
+                                    }
+                                    </RadzenRow>
+                                </div>
+                            </Virtualize>
+                        </div>
+                    }
+                </div>
+            </RadzenCard>
+        }
+    }
+    else 
+    {
+        <RadzenProgressBarCircular Mode="ProgressBarMode.Indeterminate"/>
+    }
+</div>
 
 @code {
     List<Subnet>? SubnetList;
-
+    bool showSearch = false;
     string? newCidr;
 
     async protected override Task OnInitializedAsync()
@@ -232,6 +247,7 @@
     void OnClickExpand(int ID) {
         var subnet = SubnetList.Where(x => x.ID == ID).First();
         subnet.RowState.Hidden = !subnet.RowState.Hidden;
+        showSearch = !showSearch;
         StateHasChanged();
     }
 
@@ -266,10 +282,10 @@
         await OnInitializedAsync();
     }
 
-    List<int> ListIntFromString(string textInput) {
+    List<int> ListIntFromString(string RadzenTextRadzenRadzenTextBox) {
 
         var list = new List<int>();
-        var strList = textInput.Split(",");
+        var strList = RadzenTextRadzenRadzenTextBox.Split(",");
 
         foreach (string str in strList) {
             list.Add(int.Parse(str));
