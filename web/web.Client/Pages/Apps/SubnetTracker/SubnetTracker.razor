@@ -17,30 +17,30 @@
 
 <div>
     <RadzenCard class="subnet_card">
-        <RadzenRow>
-            <RadzenColumn Size="2">
-                <RadzenText class="subnet_row_contents">
+        <RadzenRow class="row">
+            <RadzenColumn Size="2" class="row_column">
+                <RadzenText class="row_contents">
                     Subnet Address
                 </RadzenText>
             </RadzenColumn>
-            <RadzenColumn Size="2">
-                <RadzenText class="subnet_row_contents">
+            <RadzenColumn Size="2" class="row_column">
+                <RadzenText class="row_contents">
                     Start Address
                 </RadzenText>
             </RadzenColumn>
-            <RadzenColumn Size="2">
-                <RadzenText class="subnet_row_contents">
+            <RadzenColumn Size="2" class="row_column">
+                <RadzenText class="row_contents">
                     End Address
                 </RadzenText>
             </RadzenColumn>
-            <RadzenColumn Size="4">
-                <div hidden="@(!showSearch)" class="subnet_row_contents">
-                    <RadzenText class="subnet_row_contents">
+            <RadzenColumn Size="2" class="row_column">
+                <div hidden="@(!showSearch)" class="row_contents">
+                    <RadzenText class="row_contents">
                         IP Search
                     </RadzenText>
                 </div>
             </RadzenColumn>
-            <RadzenColumn Size="2">
+            <RadzenColumn Size="4">
                 <div style="width: 1vw;"/>
             </RadzenColumn>
         </RadzenRow>
@@ -48,154 +48,165 @@
     @if (null != SubnetList) {
         foreach (Subnet subnet in SubnetList) {
             <RadzenCard class="subnet_card">
-                <RadzenRow>
-                    <RadzenColumn Size="2">
-                        <RadzenText class="subnet_row_contents">
+                <RadzenRow Gap="0" class="row">
+                    <RadzenColumn Size="2" class="row_column">
+                        <RadzenText class="row_contents">
                             @IP.ConvertToString(subnet.Address)
                         </RadzenText>
                     </RadzenColumn>
-                    <RadzenColumn Size="2">
-                        <RadzenText class="subnet_row_contents">
+                    <RadzenColumn Size="2" class="row_column">
+                        <RadzenText class="row_contents">
                             @IP.ConvertToString(subnet.StartAddress)
                         </RadzenText>
                     </RadzenColumn>
-                    <RadzenColumn Size="2">
-                        <RadzenText class="subnet_row_contents">
+                    <RadzenColumn Size="2" class="row_column">
+                        <RadzenText class="row_contents">
                             @IP.ConvertToString(subnet.EndAddress)
                         </RadzenText>
                     </RadzenColumn>
-                    <RadzenColumn Size="2">
-                        <div hidden="@(subnet.RowState.Hidden)" style="display: relative;">
-                            <RadzenTextBox @bind-Value="@subnet.RowState.SearchTerm" onkeyup="@((KeyboardEventArgs e) => OnSearchKeyPress(e, subnet.ID))" Placeholder="Search" Style="margin-right: 2%; max-width: 80%; width: auto;"/>
-                            <RadzenButton Icon="search" Click="@(() => SearchSubnet(subnet.ID))" class="right_button" Style="max-width: 15%"/>
+                    <RadzenColumn Size="2" class="row_column">
+                        <div hidden="@(CurrentSubnetRowState[subnet.ID].Hidden)" style="display: inline-flex; align-content: center;">
+                            <RadzenTextBox @bind-Value="@CurrentSubnetRowState[subnet.ID].SearchTerm" onkeyup="@((KeyboardEventArgs e) => OnSearchKeyPress(e, subnet.ID))" Placeholder="Search" Style="margin-right: 2%; width: 85%;" class="row_contents" />
+                            <RadzenButton Icon="search" Click="@(() => SearchSubnet(subnet.ID))" class="right_button row_contents" Style="max-width: 15%"/>
                         </div>
                     </RadzenColumn>
-                    <RadzenColumn Size="2" Style="justify-content: center; display: flex; gap: 0.5rem;">
-                        <RadzenButton Icon="keyboard_arrow_down" Click="@(() => OnClickExpand(subnet.ID))" class="subnet_row_contents" />
-                        <RadzenButton Icon="delete" Click="@(() => OnClickDelete(subnet.ID))" class="subnet_row_contents" />
+                    <RadzenColumn Size="2" class="row_column" Style="gap: 0.5rem;">
+                        <RadzenButton Icon="keyboard_arrow_down" Click="@(() => OnClickExpand(subnet.ID))" class="row_contents" />
+                        <RadzenButton Icon="delete" Click="@(() => OnClickDelete(subnet.ID))" class="row_contents" />
                     </RadzenColumn>
                     <RadzenColumn Size="2">
 
                     </RadzenColumn>
                 </RadzenRow>
-                <div hidden="@subnet.RowState.Hidden" style="margin-top: 1rem;">
-                    @if (null != subnet.List)
-                    {
-                        <RadzenRow>
-                            <div class="black_line"/>
-                            <RadzenColumn Size="2">
-                                <RadzenText class="subnet_row_contents">
-                                    IP Address
-                                </RadzenText>
-                            </RadzenColumn>
-                            <RadzenColumn Size="2">
-                                <RadzenText class="subnet_row_contents">
-                                    Hostname
-                                </RadzenText>
-                            </RadzenColumn>
-                            <RadzenColumn Size="2">
-                                <RadzenText class="subnet_row_contents">
-                                    Monitored
-                                </RadzenText>
-                            </RadzenColumn>
-                            <RadzenColumn Size="2">
-                                <RadzenText class="subnet_row_contents">
-                                    ICMP
-                                </RadzenText>
-                            </RadzenColumn>
-                            <RadzenColumn Size="2">
-                                <RadzenText class="subnet_row_contents">
-                                    Ports
-                                </RadzenText>
-                            </RadzenColumn>
-                            <RadzenColumn Size="2">
+                <div hidden="@(CurrentSubnetRowState[subnet.ID].Hidden)">
+                    <RadzenCard>
+                        @if (null != subnet.List)
+                        {
+                            <RadzenRow Gap="0" class="row">
+                                <RadzenColumn Size="2" class="row_column">
+                                    <RadzenText class="row_contents">
+                                        IP Address
+                                    </RadzenText>
+                                </RadzenColumn>
+                                <RadzenColumn Size="2" class="row_column">
+                                    <RadzenText class="row_contents">
+                                        Hostname
+                                    </RadzenText>
+                                </RadzenColumn>
+                                <RadzenColumn Size="2" class="row_column">
+                                    <RadzenText class="row_contents">
+                                        Monitored
+                                    </RadzenText>
+                                </RadzenColumn>
+                                <RadzenColumn Size="2" class="row_column">
+                                    <RadzenText class="row_contents">
+                                        ICMP
+                                    </RadzenText>
+                                </RadzenColumn>
+                                <RadzenColumn Size="2" class="row_column">
+                                    <RadzenText class="row_contents">
+                                        Ports
+                                    </RadzenText>
+                                </RadzenColumn>
+                                <RadzenColumn Size="2">
 
-                            </RadzenColumn>
-                        </RadzenRow>
+                                </RadzenColumn>
+                            </RadzenRow>
 
-                        <div hidden="@subnet.RowState.Hidden">
-                            <Virtualize Items="@(subnet.List.Where(x => x.RowState.Hidden == false).ToList())">
-                                <div hidden="@(subnet.RowState.Hidden)">
-                                    <RadzenRow>
-                                    <div class="black_line" />
-                                    <RadzenColumn Size="2">
-                                        <RadzenText class="subnet_row_contents">
-                                            @IP.ConvertToString(context.Address)
-                                        </RadzenText>
-                                    </RadzenColumn>
-
-                                    @if (null != context.RowState)
+                            <div hidden="@(CurrentSubnetRowState[subnet.ID].Hidden)">
+                                <Virtualize Items="@(subnet.List.Where(x => x.RowState.Hidden == false).ToList())">
+                                    @if (!CurrentSubnetRowState[subnet.ID].Hidden)
                                     {
-                                        <RadzenColumn Size="2">
-                                            <div hidden="@context.RowState.Hidden">
-                                                <RadzenTextBox @bind-Value="@context.Hostname" Style="width: 100%"/>
-                                            </div>
-                                        </RadzenColumn>
-                                        <RadzenColumn Size="2">
-                                            <div hidden="@(!context.RowState.Hidden)">
-                                                <RadzenText>
-                                                    @context.Hostname
-                                                </RadzenText>
-                                            </div>
-                                        </RadzenColumn>
-                                        <RadzenColumn Size="2" Style="align-content: center; display: flex; justify-content: center;">
-                                            @if (context.IsMonitoredICMP || context.IsMonitoredTCP)
-                                            {
-                                                <RadzenIcon Icon="check" class="subnet_row_contents"/>
-                                            }
-                                            else
-                                            {
-                                                <RadzenIcon Icon="close" class="subnet_row_contents"/>
-                                            }
-                                        </RadzenColumn>
-                                        <RadzenColumn Size="2" Style="align-content: center; display: flex; justify-content: center;">
-                                            <div hidden="@context.RowState.EditHidden">
-                                                @if (context.IsMonitoredICMP)
+                                        <RadzenRow Style="height: 100%;" RowGap="0">
+                                            <div class="black_line" />
+                                            <RadzenRow class="row" RowGap="0">
+                                                <RadzenColumn Size="2" class="row_column">
+                                                    <RadzenText class="row_contents">
+                                                        @IP.ConvertToString(context.Address)
+                                                    </RadzenText>
+                                                </RadzenColumn>
+
+                                                @if (null != context.RowState)
                                                 {
-                                                    <RadzenIcon Icon="check" class="subnet_row_contents"/>
+                                                    <RadzenColumn Size="2" class="row_column">
+                                                        @if (context.RowState.EditHidden)
+                                                        {
+                                                            <RadzenText class="row_contents">
+                                                                @context.Hostname
+                                                            </RadzenText>
+                                                        }
+                                                        else
+                                                        {
+                                                            <RadzenTextBox @bind-Value="@context.Hostname" Style="width: 100%" class="row_contents" />
+                                                        }
+                                                    </RadzenColumn>
+                                                    <RadzenColumn Size="2" class="row_column">
+                                                        @if (context.IsMonitoredICMP || context.IsMonitoredTCP)
+                                                        {
+                                                            <RadzenIcon Icon="check" class="row_contents" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <RadzenIcon Icon="close" class="row_contents" />
+                                                        }
+                                                    </RadzenColumn>
+                                                    <RadzenColumn Size="2" class="row_column">
+                                                        @if (context.RowState.EditHidden)
+                                                        {
+                                                            if (context.IsMonitoredICMP)
+                                                            {
+                                                                <RadzenIcon Icon="check" class="row_contents" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <RadzenIcon Icon="close" class="row_contents" />
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <RadzenSwitch @bind-Value="@context.IsMonitoredICMP" />
+                                                        }
+                                                    </RadzenColumn>
+                                                    <RadzenColumn Size="2" class="row_column">
+                                                        @if (context.RowState.EditHidden)
+                                                        {
+                                                            if (null != context.RowState.PortNumbers)
+                                                            {
+                                                                <RadzenText class="row_contents">
+                                                                    @context.RowState.PortNumbers
+                                                                </RadzenText>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <RadzenTextBox @bind-Value="@context.RowState.PortNumbers" Style="margin-right: 0.5rem;" class="row_contents" />
+                                                        }
+                                                    </RadzenColumn>
+                                                    <RadzenColumn Size="2" class="row_column">
+                                                        @if (context.RowState.EditHidden)
+                                                        {
+                                                            <RadzenButton Icon="edit" Click="@(() => OnClickEdit(context))" class="row_contents" />
+                                                        }
+                                                        else
+                                                        {
+
+                                                            <RadzenButton Icon="save" Click="@(() => OnClickSave(context))" class="row_contents" />
+                                                        }
+                                                    </RadzenColumn>
                                                 }
                                                 else
                                                 {
-                                                    <RadzenIcon Icon="close" class="subnet_row_contents"/>
+                                                    <RadzenColumn Size="10" />
                                                 }
-                                            </div>
-                                            <div hidden="@(!context.RowState.EditHidden)">
-                                                <RadzenSwitch @bind-Value="@context.IsMonitoredICMP" class="subnet_row_contents"/>
-                                            </div>
-                                        </RadzenColumn>
-                                        <RadzenColumn Size="2" Style="display: flex;">
-                                            <div hidden="@context.RowState.EditHidden">
-                                                @if (null != context.PortsMonitored)
-                                                {
-                                                    <RadzenText class="subnet_row_contents">
-                                                        @(StringFromListInt(context.PortsMonitored))
-                                                    </RadzenText>
-                                                }
-                                            </div>
-                                            <div hidden="@(!context.RowState.EditHidden)">
-                                                <RadzenTextBox @bind-Value="@context.RowState.PortNumbers" Style="margin-right: 0.5rem;"/>
-                                            </div>
-                                            <div hidden="@context.RowState.EditHidden">
-                                                <RadzenButton Icon="edit" OnClick="@(() => OnClickEdit(context))" class="subnet_row_contents"/>
-                                            </div>
-                                            <div hidden="@(!context.RowState.EditHidden)">
-                                                <RadzenButton Icon="save" OnClick="@(() => OnClickSave(context))" class="subnet_row_contents"/>
-                                            </div>
-                                        </RadzenColumn>
-                                        <RadzenColumn Size="2">
-
-                                        </RadzenColumn>
+                                            </RadzenRow>
+                                        </RadzenRow>
                                     }
-                                    else 
-                                    {
-                                        <RadzenColumn Size="10"/>
-                                    }
-                                    </RadzenRow>
-                                </div>
-                            </Virtualize>
-                        </div>
-                    }
+                                </Virtualize>
+                            </div>
+                        }
+                    </RadzenCard>
                 </div>
+
             </RadzenCard>
         }
     }
@@ -210,6 +221,8 @@
     bool showSearch = false;
     string? newCidr;
 
+    Dictionary<int, SubnetRowState> CurrentSubnetRowState = new();
+
     async protected override Task OnInitializedAsync()
     {
         await RefreshSubnetList();
@@ -222,11 +235,16 @@
         SubnetList = await SubnetsAPI.GetAll();
 
         foreach (var subnet in SubnetList) {
-            subnet.RowState = new SubnetRowState
+            if (!CurrentSubnetRowState.ContainsKey(subnet.ID)) 
             {
-                Hidden = true,
-                SearchTerm = String.Empty
-            };
+                var curRowState = new SubnetRowState
+                    {
+                        Hidden = true,
+                        SearchTerm = String.Empty
+                    };
+
+                CurrentSubnetRowState.Add(subnet.ID, curRowState);
+            }
         }
 
         foreach (var ip in SubnetList.SelectMany(x => x.List))
@@ -246,19 +264,23 @@
 
     void OnClickExpand(int ID) {
         var subnet = SubnetList.Where(x => x.ID == ID).First();
-        subnet.RowState.Hidden = !subnet.RowState.Hidden;
+        CurrentSubnetRowState[subnet.ID].Hidden = !CurrentSubnetRowState[subnet.ID].Hidden;
         showSearch = !showSearch;
         StateHasChanged();
     }
 
     void OnClickEdit(IP ip) {
-        ip.RowState.EditHidden = !ip.RowState.EditHidden;
+        if (null != ip.RowState) 
+        {
+            ip.RowState.EditHidden = !ip.RowState.EditHidden;
 
-        if (null != ip.PortsMonitored) {
-            ip.RowState.PortNumbers = StringFromListInt(ip.PortsMonitored);
+            if (null != ip.PortsMonitored)
+            {
+                ip.RowState.PortNumbers = StringFromListInt(ip.PortsMonitored);
+            }
+
+            StateHasChanged();
         }
-
-        StateHasChanged();
     }
 
     async void OnClickSave(IP ip) {
@@ -272,9 +294,12 @@
     }
 
     async void NewSubnet() {
-        await SubnetsAPI.AddSubnet(newCidr);
-        newCidr = String.Empty;
-        await OnInitializedAsync();
+        if (null != newCidr) 
+        {
+            await SubnetsAPI.AddSubnet(newCidr);
+            newCidr = String.Empty;
+            await OnInitializedAsync();
+        }
     }
 
     async void OnClickDelete(int ID) {
@@ -319,21 +344,22 @@
                     }
                 }
 
-                if (null != subnet.RowState.SearchTerm) {
+                if (null != CurrentSubnetRowState[subnet.ID] && null != CurrentSubnetRowState[subnet.ID].SearchTerm)
+                {
                     string pattern = "[A-Z]+";
                     var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-                    var match = regex.Match(subnet.RowState.SearchTerm);
+                    var match = regex.Match(CurrentSubnetRowState[subnet.ID].SearchTerm!);
 
                     var ipList = new List<IP>();
 
                     if (match.Success) 
                     {
-                        ipList = subnet.List.Where(x => null != x.Hostname && !x.Hostname.Contains(subnet.RowState.SearchTerm)).ToList();
+                        ipList = subnet.List.Where(x => null != x.Hostname && !x.Hostname.Contains(CurrentSubnetRowState[subnet.ID].SearchTerm!)).ToList();
                         ipList.AddRange(subnet.List.Where(x => null == x.Hostname || String.Empty == x.Hostname));
                     } 
                     else 
                     {
-                        ipList = subnet.List.Where(x => !(IP.ConvertToString(x.Address)).Contains(subnet.RowState.SearchTerm)).ToList();
+                        ipList = subnet.List.Where(x => !(IP.ConvertToString(x.Address)).Contains(CurrentSubnetRowState[subnet.ID].SearchTerm!)).ToList();
                     }
 
                     if (ipList.Count > 0)
@@ -357,7 +383,7 @@
                         }
                     }
                 }
-                else if (null == subnet.RowState.SearchTerm || String.Empty == subnet.RowState.SearchTerm) 
+                else if (null == CurrentSubnetRowState[subnet.ID].SearchTerm || String.Empty == CurrentSubnetRowState[subnet.ID].SearchTerm)
                 {
                     foreach (var ip in subnet.List)
                     {

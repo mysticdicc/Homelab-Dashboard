@@ -104,17 +104,32 @@ h1:focus {
     justify-content: center;
 }
 
-.subnet_row_contents {
+.row {
+    width: 100%;
     height: 100%;
-    align-self: center;
+    display: flex;
+    justify-content: center;
     align-content: center;
-    justify-self: center;
+    text-align: center;
+}
+
+.row_column {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+}
+
+.row_contents {
+    height: 100%;
+    align-content: center;
+    margin: 0 !important;
 }
 
 .black_line {
     background-color: black;
     height: 1px;
     width: 100%;
-    margin-top: 0.2rem;
-    margin-bottom: 0.1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
 }

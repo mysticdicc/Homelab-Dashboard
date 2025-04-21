@@ -133,13 +133,8 @@ namespace danklibrary
 
             List = temp;
         }
-
-        [JsonIgnore]
-        [NotMapped]
-        public SubnetRowState RowState { get; set; }
     }
 
-    [NotMapped]
     public class SubnetRowState
     {
         public bool Hidden { get; set; }
