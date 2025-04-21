@@ -41,3 +41,4 @@ artifacts/
 *.svclog
 *.scc
 
+/web/web/Data/danknetlocal.db
