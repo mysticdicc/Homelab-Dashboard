@@ -7,110 +7,182 @@
 
 <PageTitle>monitoring</PageTitle>
 
-<div>
-    @if (null != monitorStates)
-    {
-        <ApexChart TItem="MonitorState"
-        Title="Uptime"
-        Height="@("100%")"
-        Options="options">
+<RadzenRow Style="height: 50%; margin-bottom: 1rem;">
+    <RadzenColumn Size="12" Style="height: 100%">
+        <RadzenCard Style="width: 100%; height: 100%">
+            <RadzenRow Style="margin-bottom: 0.5rem;">
+                <RadzenButton Icon="refresh" Click="@OnInitializedAsync" />
+                <RadzenDropDown Data="@timePeriods.Keys.ToList()" @bind-Value="@currentPeriod" TValue="string" Change="@SetPollScale"/>
+            </RadzenRow>
+            <RadzenRow Style="height: 80%">
+                @if (null != currentMonitorStates)
+                {
+                    <div style="width: 100%; height: 100%">
+                        <RadzenChart>
+                            <RadzenChartTooltipOptions Shared="true"/>
+                            <RadzenLineSeries Data="@onlineDevicesOverTime" TItem="CountAtTime" ValueProperty="DeviceCount" CategoryProperty="SubmitTime" Title="Online">
+                                <RadzenMarkers MarkerType="MarkerType.Circle"/>
+                            </RadzenLineSeries>
+                            <RadzenLineSeries Data="@offlineDevicesOverTime" TItem="CountAtTime" ValueProperty="DeviceCount" CategoryProperty="SubmitTime" Title="Offline">
+                                <RadzenMarkers MarkerType="MarkerType.Circle" />
+                            </RadzenLineSeries>
+                            <RadzenLineSeries Data="@monitoredDevicesOverTime" TItem="CountAtTime" ValueProperty="DeviceCount" CategoryProperty="SubmitTime" Title="Monitored">
+                                <RadzenMarkers MarkerType="MarkerType.Circle" />
+                            </RadzenLineSeries>
+                            <RadzenValueAxis>
+                                <RadzenAxisTitle Text="Devices"/>
+                            </RadzenValueAxis>
+                            <RadzenCategoryAxis>
+                                <RadzenAxisTitle Text="Submit Time"/>
+                            </RadzenCategoryAxis>
+                        </RadzenChart>
+                    </div>
+                }
+                else
+                {
+                    <RadzenProgressBarCircular Mode="ProgressBarMode.Indeterminate" />
+                }
+            </RadzenRow>
+        </RadzenCard>
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow>
+    <RadzenColumn Size="12">
+        <RadzenCard>
+            <RadzenRow class="monitoring_stats_row">
+                <RadzenColumn Size="6">
+                    <RadzenCard class="monitoring_card">
+                        <RadzenText>
+                            All Time Statistics:
+                        </RadzenText>
+                        @if (null != currentMonitorStates)
+                        {
+                            <RadzenText>
+                                Monitored: @(currentMonitorStates.Select(x => x.IP_ID).Distinct().Count().ToString())
+                            </RadzenText>
+                            <RadzenText>
+                                Polls: @currentMonitorStates.Count()
+                            </RadzenText>
+                        }
+                        else
+                        {
+                            <RadzenProgressBarCircular Mode="ProgressBarMode.Indeterminate" />
+                        }
+                    </RadzenCard>
+                </RadzenColumn>
+                <RadzenColumn Size="6">
+                    <RadzenCard class="monitoring_stats_card">
+                        <RadzenText>
+                            Last Poll Statistics:
+                        </RadzenText>
+                        @if (null != monitoredIPs && null != lastPolls)
+                        {
+                            <RadzenText>Time: @lastDate</RadzenText>
+                            <RadzenText>Monitored: @lastPolls.Count()</RadzenText>
+                            <RadzenText>Online: @lastPolls.Where(x => x.IcmpResponse == true).Count()</RadzenText>
+                            <RadzenText>Offline: @lastPolls.Where(x => x.IcmpResponse == false).Count()</RadzenText>
+                        }
+                    </RadzenCard>
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenRow class="monitoring_stats_row" RowGap="0">
+                <RadzenColumn Size="12">
+                    <RadzenCard Style="height: fit-content;">
+                        <RadzenRow RowGap="0">
+                            <RadzenColumn Size="6">
+                                <RadzenText class="row_contents">
+                                    Monitored IPs
+                                </RadzenText>
+                            </RadzenColumn>
+                            <RadzenColumn Size="6">
+                                <RadzenButton Icon="keyboard_arrow_down" Click="@(() => ToggleMonitoredHidden())" class="right_button row_contents" />
+                            </RadzenColumn>
+                        </RadzenRow>
+                        <RadzenRow class="row" RowGap="0">
+                            <div hidden="@monitoredHidden" class="row">
+                                <RadzenRow class="row">
+                                    <RadzenColumn Size="4" class="row_column">
+                                        <RadzenText class="row_contents">
+                                            IP Address
+                                        </RadzenText>
+                                    </RadzenColumn>
+                                    <RadzenColumn Size="4" class="row_column">
+                                        <RadzenText class="row_contents">
+                                            Hostname
+                                        </RadzenText>
+                                    </RadzenColumn>
+                                    <RadzenColumn Size="4" class="row_column">
+                                        <RadzenText class="row_contents">
+                                            Last State
+                                        </RadzenText>
+                                    </RadzenColumn>
+                                    <div class="black_line" />
+                                </RadzenRow>
+                                @if (null != currentlyMonitored)
+                                {
+                                    var last = currentlyMonitored.Last();
+                                    foreach (IP ip in currentlyMonitored)
+                                    {
+                                        <RadzenRow class="row">
+                                            <RadzenColumn Size="4" class="row_column">
+                                                <RadzenText class="row_contents">
+                                                    @IP.ConvertToString(ip.Address)
+                                                </RadzenText>
+                                            </RadzenColumn>
+                                            <RadzenColumn Size="4" class="row_column">
+                                                <RadzenText class="row_contents">
+                                                    @ip.Hostname
+                                                </RadzenText>
+                                            </RadzenColumn>
+                                            <RadzenColumn Size="4" class="row_column">
+                                                @if (LastMonitorState(ip.ID))
+                                                {
+                                                    <RadzenIcon Icon="check" class="row_contents"/>
+                                                }
+                                                else
+                                                {
+                                                    <RadzenIcon Icon="close" class="row_contents" />
+                                                }
+                                            </RadzenColumn>
+                                            @if (!(ip == last)) 
+                                            {
+                                                <div class="grey_line" />
+                                            }
+                                        </RadzenRow>
+                                    }
+                                }
+                            </div>
+                        </RadzenRow>
+                    </RadzenCard>
+                </RadzenColumn>
+            </RadzenRow>
+        </RadzenCard>
+    </RadzenColumn>
+</RadzenRow>
 
-            <ApexPointSeries TItem="MonitorState"
-            Items="monitorStates"
-            XValue="@(x => $"{x.SubmitTime.Hour}:{x.SubmitTime.Minute}:{x.SubmitTime.Second}")"
-            YAggregate="@(e => e.Where(x => x.IcmpResponse == true).Count())"
-            SeriesType="SeriesType.Line"
-            Name="Devices Online">
-            </ApexPointSeries>
 
-            <ApexPointSeries TItem="MonitorState"
-            Items="monitorStates"
-            XValue="@(x => $"{x.SubmitTime.Hour}:{x.SubmitTime.Minute}:{x.SubmitTime.Second}")"
-            YAggregate="@(e => e.Where(x => x.IcmpResponse == false).Count())"
-            SeriesType="SeriesType.Line"
-            Name="Devices Offline">
-            </ApexPointSeries>
-
-            <ApexPointSeries TItem="MonitorState"
-            Items="monitorStates"
-            XValue="@(x => $"{x.SubmitTime.Hour}:{x.SubmitTime.Minute}:{x.SubmitTime.Second}")"
-            YAggregate="@(e => e.Count())"
-            SeriesType="SeriesType.Line"
-            Name="Devices Monitored">
-            </ApexPointSeries>
-
-        </ApexChart>
-    }
-    else
-    {
-        <RadzenProgressBarCircular Mode="ProgressBarMode.Indeterminate"/>
-    }
-</div>
-<div>
-    <RadzenCard>
-        <RadzenText Content="All Time Statistics:"/>
-        @if (null != monitorStates)
-        {
-            <RadzenText>
-                Monitored: @(monitorStates.Select(x => x.IP_ID).Distinct().Count().ToString())
-            </RadzenText>
-            <RadzenText>
-                Polls: @monitorStates.Count()
-            </RadzenText>
-        }
-        else
-        {
-            <RadzenProgressBarCircular Mode="ProgressBarMode.Indeterminate"/>
-        }
-    </RadzenCard>
-</div>
-<div>
-    <RadzenCard>
-        <RadzenText Content="Last Poll Statistics:"/>
-        @if (null != monitoredIPs && null != lastPolls)
-        {
-            <RadzenText>Time: @lastDate</RadzenText>
-            <RadzenText>Monitored: @lastPolls.Count()</RadzenText>
-            <RadzenText>Online: @lastPolls.Where(x => x.IcmpResponse == true).Count()</RadzenText>
-            <RadzenText>Offline: @lastPolls.Where(x => x.IcmpResponse == false).Count()</RadzenText>
-        }
-    </RadzenCard>
-</div>
-<div>
-    <RadzenCard>
-        <RadzenText Content="Monitored IPs"/>
-        <RadzenButton Icon="arrowdown" Click="@(() => ToggleMonitoredHidden())" />
-
-        @if (null != currentlyMonitored) {
-            foreach (IP ip in currentlyMonitored)
-            {
-                <RadzenCard>
-                    <RadzenText>
-                        @IP.ConvertToString(ip.Address)
-                    </RadzenText>
-                    <RadzenText>
-                        @ip.Hostname
-                    </RadzenText>
-                    @if (LastMonitorState(ip.ID)) {
-                        <Icon Type="IconType.Material" Icon="checkboxchecked"/>
-                    } 
-                    else
-                    {
-                        <Icon Type="IconType.Material" Icon="checkboxunchecked"/>
-                    }
-                </RadzenCard>
-            }
-        }
-    </RadzenCard>
-</div>
 
 @code {
-    List<MonitorState>? monitorStates;
+    List<MonitorState>? allMonitorStates;
+    List<MonitorState>? currentMonitorStates;
+
+    class CountAtTime {
+        public DateTime SubmitTime { get; set; }
+        public int DeviceCount { get; set; }
+    }
+
+    List<CountAtTime> onlineDevicesOverTime = new();
+    List<CountAtTime> offlineDevicesOverTime = new();
+    List<CountAtTime> monitoredDevicesOverTime = new();
+
     List<IP>? monitoredIPs;
     List<IP>? currentlyMonitored;
 
     DateTime? lastDate;
     List<MonitorState>? lastPolls;
+
+    public Dictionary<string, int> timePeriods = new();
+    string currentPeriod = "1 Hour";
 
     bool monitoredHidden = true;
 
@@ -118,6 +190,23 @@
 
     async protected override Task OnInitializedAsync()
     {
+        if (!timePeriods.ContainsKey("24 Hours")) {
+
+            timePeriods.Add("24 Hours", 24);
+        }
+        if (!timePeriods.ContainsKey("12 Hours")) 
+        {
+            timePeriods.Add("12 Hours", 12);
+        }
+        if (!timePeriods.ContainsKey("6 Hours")) 
+        {
+            timePeriods.Add("6 Hours", 6);
+        }
+        if (!timePeriods.ContainsKey("1 Hour"))
+        {
+            timePeriods.Add("1 Hour", 1);
+        }
+
         options.Xaxis = new XAxis
         {
             Title = new AxisTitle {
@@ -127,15 +216,57 @@
 
         await UpdateMonitorList();
         await UpdateIPlist();
+        StateHasChanged();
 
         await base.OnInitializedAsync();
     }
 
-    async Task UpdateMonitorList() {
-        monitorStates = await MonitoringAPI.GetAllPolls();   
+    async Task SetPollScale() {
+        if (null != allMonitorStates) {
+            DateTime fromTime = DateTime.Now.AddHours(-timePeriods[currentPeriod]);
+            currentMonitorStates = allMonitorStates.Where(x => x.SubmitTime > fromTime).ToList();
 
-        lastDate = monitorStates.OrderByDescending(x => x.SubmitTime).Select(x => x.SubmitTime).FirstOrDefault();
-        lastPolls = monitorStates.Where(x => x.SubmitTime == lastDate).ToList();
+            var submitTimes = currentMonitorStates.Select(x => x.SubmitTime).ToList();
+            onlineDevicesOverTime = new();
+            offlineDevicesOverTime = new();
+            monitoredDevicesOverTime = new();
+
+            foreach (DateTime submit in submitTimes.Distinct()) {
+                var online = new CountAtTime
+                {
+                    SubmitTime = submit,
+                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit && x.IcmpResponse == true).Count()
+                };
+
+                onlineDevicesOverTime.Add(online);
+
+                var offline = new CountAtTime
+                {
+                    SubmitTime = submit,
+                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit && x.IcmpResponse == false).Count()
+                };
+
+                offlineDevicesOverTime.Add(offline);
+
+                var monitored = new CountAtTime
+                {
+                    SubmitTime = submit,
+                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit).Count()
+                };
+
+                monitoredDevicesOverTime.Add(monitored);
+            }
+
+            await Task.Delay(1);
+        }
+    }
+
+    async Task UpdateMonitorList() {
+        allMonitorStates = await MonitoringAPI.GetAllPolls();
+        await SetPollScale();
+
+        lastDate = allMonitorStates.OrderByDescending(x => x.SubmitTime).Select(x => x.SubmitTime).FirstOrDefault();
+        lastPolls = allMonitorStates.Where(x => x.SubmitTime == lastDate).ToList();
     }
 
     async Task UpdateIPlist() {

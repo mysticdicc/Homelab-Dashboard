@@ -284,13 +284,17 @@
     }
 
     async void OnClickSave(IP ip) {
-        if (null != ip.RowState.PortNumbers) {
-            ip.PortsMonitored = ListIntFromString(ip.RowState.PortNumbers);
-        }
+        if (null != ip.RowState) 
+        {
+            if (null != ip.RowState.PortNumbers && ip.RowState.PortNumbers != String.Empty)
+            {
+                ip.PortsMonitored = ListIntFromString(ip.RowState.PortNumbers);
+            }
 
-        await SubnetsAPI.EditIP(ip);
-        await RefreshSubnetList();
-        StateHasChanged();
+            await SubnetsAPI.EditIP(ip);
+            await RefreshSubnetList();
+            StateHasChanged();
+        }
     }
 
     async void NewSubnet() {
@@ -307,15 +311,18 @@
         await OnInitializedAsync();
     }
 
-    List<int> ListIntFromString(string RadzenTextRadzenRadzenTextBox) {
-
+    List<int> ListIntFromString(string text) {
         var list = new List<int>();
-        var strList = RadzenTextRadzenRadzenTextBox.Split(",");
 
-        foreach (string str in strList) {
-            list.Add(int.Parse(str));
+        if (text != String.Empty) {
+            var strList = text.Split(",");
+
+            foreach (string str in strList)
+            {
+                list.Add(int.Parse(str));
+            }
         }
-
+        
         return list;
     }
 
@@ -326,8 +333,10 @@
             returnStr = returnStr + $"{num.ToString()},";
         }
 
-        returnStr = returnStr.Remove(returnStr.Length - 1);
-
+        if (returnStr.Length > 1) {
+            returnStr = returnStr.Remove(returnStr.Length - 1);
+        }
+        
         return returnStr;
     }
 

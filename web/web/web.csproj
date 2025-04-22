@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -8,6 +8,7 @@
     <UserSecretsId>52fe1134-a0a5-4d26-b037-0ec2713651dc</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+	  <DockerFileTag>mysticdicc/homelab-dashboard</DockerFileTag>
   </PropertyGroup>
 
   <ItemGroup>

@@ -133,3 +133,20 @@ h1:focus {
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
 }
+
+.grey_line {
+    background-color: lightgrey;
+    height: 1px;
+    width: 100%;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.monitoring_stats_row {
+    justify-content: center;
+    margin: 1rem;
+}
+
+.monitoring_card {
+    height: 100%;
+}
