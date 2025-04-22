@@ -1,6 +1,0 @@
-@dankapi_HostAddress = http://localhost:5137
-
-GET {{dankapi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
