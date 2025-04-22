@@ -1,5 +1,5 @@
 # Homelab dashboard
-Project to create a dashboard, tracking and monitoring solution for homelab users. \
+Project to create a dashboard, tracking and monitoring solution for homelab users.
 
 Basic functionality:
 1. A small dashboard where you can save links with iconss.
