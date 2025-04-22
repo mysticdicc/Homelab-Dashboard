@@ -2,18 +2,22 @@
 using dankweb.API;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace web.Controllers
 {
     [ApiController]
-    public class DashboardController : Controller
+    public class DashboardController(IDbContextFactory<danknetContext> dbContext) : Controller
     {
+        private readonly IDbContextFactory<danknetContext> _DbFactory = dbContext;
+
+
         [HttpGet]
         [Route("[controller]/get/all")]
         public string GetAll()
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
 
             return JsonConvert.SerializeObject(context.DashboardItems.ToList());
         }
@@ -22,7 +26,7 @@ namespace web.Controllers
         [Route("[controller]/get/byid")]
         public string GetById(int ID)
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
             return JsonConvert.SerializeObject(context.DashboardItems.Where(x => x.ID == ID).ToList());
         }
 
@@ -30,7 +34,7 @@ namespace web.Controllers
         [Route("[controller]/get/byname")]
         public string GetByName(string name)
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
             return JsonConvert.SerializeObject(context.DashboardItems.Where(x => x.DisplayName.Contains(name)).ToList());
         }
 
@@ -38,7 +42,7 @@ namespace web.Controllers
         [Route("[controller]/post/new")]
         public async Task<Results<BadRequest<string>, Created<DashboardItem>>> New(DashboardItem item)
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
 
             bool validObject;
 
@@ -75,7 +79,7 @@ namespace web.Controllers
         [Route("[controller]/put/update")]
         public async Task<Results<BadRequest<string>, Ok<DashboardItem>>> Update(DashboardItem item)
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
 
             //check object is valid
             bool validObject;
@@ -173,7 +177,7 @@ namespace web.Controllers
         [Route("[controller]/delete/byitem")]
         public async Task<Results<BadRequest<string>, Ok<DashboardItem>>> Delete(DashboardItem item)
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
 
             if (DashboardItem.IsValid(item))
             {

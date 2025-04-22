@@ -3,17 +3,20 @@ using Microsoft.AspNetCore.Mvc;
 using danklibrary;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace web.Controllers
 {
     [ApiController]
-    public class SubnetsController : Controller
+    public class SubnetsController(IDbContextFactory<danknetContext> dbContext) : Controller
     {
+        private readonly IDbContextFactory<danknetContext> _DbFactory = dbContext;
+
         [HttpPost]
         [Route("[controller]/subnet/post/new")]
         public async Task<Results<BadRequest<string>, Created<Subnet>>> AddSubnet(string CIDR)
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
 
             Subnet subnet = new Subnet(CIDR);
             context.Subnets.Add(subnet);
@@ -26,7 +29,7 @@ namespace web.Controllers
         [Route("[controller]/subnet/get/all")]
         public string GetAllSubnets()
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
 
             List<Subnet> tempSubnet = context.Subnets.ToList();
 
@@ -47,7 +50,7 @@ namespace web.Controllers
         [Route("[controller]/subnet/delete/byid")]
         public async Task<Results<BadRequest<string>, Ok<int>>> DeleteSubnetByID(int ID)
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
 
             Subnet? deleteItem = context.Subnets.Find(ID);
 
@@ -75,7 +78,7 @@ namespace web.Controllers
         [Route("[controller]/ip/post/new")]
         public async Task<Results<BadRequest<string>, Created<IP>>> AddIP(IP ip)
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
 
             //validate
             bool validObject = true;
@@ -104,7 +107,7 @@ namespace web.Controllers
         [Route("[controller]/ip/get/all")]
         public string GetAllIP()
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
             return JsonConvert.SerializeObject(context.IPs);
         }
 
@@ -112,7 +115,7 @@ namespace web.Controllers
         [Route("[controller]/ip/put/update")]
         public async Task<Results<BadRequest<string>, Ok<IP>>> UpdateIP(IP ip)
         {
-            using var context = new danknetContext();
+            using var context = _DbFactory.CreateDbContext();
 
             var updateItem = context.IPs.Find(ip.ID);
 

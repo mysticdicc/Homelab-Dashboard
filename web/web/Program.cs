@@ -21,13 +21,10 @@ builder.Services.AddRadzenCookieThemeService(options =>
     options.Duration = TimeSpan.FromDays(365);
 });
 
-builder.Services.AddScoped(sp =>
-{
-    NavigationManager navigation = sp.GetRequiredService<NavigationManager>();
-    return new HttpClient { BaseAddress = new Uri(navigation.BaseUri) };
-});
-
-//builder.Services.AddTransient(sp => new HttpClient());
+builder.Services.AddTransient(sp => new HttpClient {
+    BaseAddress = new Uri(builder.Configuration.GetValue<string>("WorkerApiAddress")!)
+    }
+);
 
 builder.Services.AddTransient<danklibrary.DankAPI.Dash>();
 builder.Services.AddTransient<danklibrary.DankAPI.Subnets>();
@@ -36,7 +33,9 @@ builder.Services.AddTransient<danklibrary.DankAPI.Monitoring>();
 builder.Services.AddApexCharts();
 builder.Services.AddControllers();
 builder.Services.AddDbContextFactory<danknetContext>(options =>
-    options.UseSqlite("Data Source=./data/danknetlocal.db"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("SQLite")));
+
+builder.Services.AddHostedService<web.Worker>();
 
 var app = builder.Build();
 

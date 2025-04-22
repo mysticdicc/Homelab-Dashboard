@@ -10,28 +10,20 @@ public partial class danknetContext : DbContext
 {
     public danknetContext()
     {
-        if (!File.Exists("./data/danknetlocal.db"))
-        {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
-        }
+        Database.EnsureCreated();
     }
 
     public danknetContext(DbContextOptions<danknetContext> options)
         : base(options)
     {
+        Database.EnsureCreated();
     }
 
     public virtual DbSet<Asset> Assets { get; set; }
-
     public virtual DbSet<DashboardItem> DashboardItems { get; set; }
-
     public virtual DbSet<IP> IPs { get; set; }
     public virtual DbSet<Subnet> Subnets { get; set; }
     public virtual DbSet<MonitorState> MonitorStates { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite("Data Source=./data/danknetlocal.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -167,9 +159,5 @@ public partial class danknetContext : DbContext
             entity.Property(e => e.Status);
         }
         );
-
-        OnModelCreatingPartial(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

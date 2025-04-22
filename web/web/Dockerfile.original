@@ -1,0 +1,30 @@
+# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+# This stage is used when running from VS in fast mode (Default for Debug configuration)
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+USER $APP_UID
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["web/web/web.csproj", "web/web/"]
+COPY ["danklibrary/danklibrary.csproj", "danklibrary/"]
+COPY ["web/web.Client/web.Client.csproj", "web/web.Client/"]
+RUN dotnet restore "./web/web/web.csproj"
+COPY . .
+WORKDIR "/src/web/web"
+RUN dotnet build "./web.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+USER $APP_UID
+FROM base AS final
+WORKDIR /app
+RUN mkdir ./data
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "web.dll"]
