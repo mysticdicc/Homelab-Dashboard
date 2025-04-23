@@ -23,13 +23,16 @@ USER $APP_UID
 FROM base AS final
 WORKDIR /app
 
+USER $APP_UID
+COPY --from=publish /app/publish .
+
 #custom config
 RUN mkdir ./data
 
 USER root
 RUN apt-get update && apt-get install -y iputils-ping
+RUN chmod 0777 ./appsettings.json
 
 #finish publish
 USER $APP_UID
-COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "web.dll"]

@@ -104,11 +104,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\richard.local\\source\\repos\\dankapi\\danklibrary\\danklibrary.csproj",
+      "projectUniqueName": "C:\\Users\\richard.local\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj",
       "projectName": "danklibrary",
-      "projectPath": "C:\\Users\\richard.local\\source\\repos\\dankapi\\danklibrary\\danklibrary.csproj",
+      "projectPath": "C:\\Users\\richard.local\\Source\\Repos\\dankapi\\danklibrary\\danklibrary.csproj",
       "packagesPath": "C:\\Users\\richard.local\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\richard.local\\source\\repos\\dankapi\\danklibrary\\obj\\",
+      "outputPath": "C:\\Users\\richard.local\\Source\\Repos\\dankapi\\danklibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -65,6 +65,7 @@ h1:focus {
     overflow-y: auto;
     overflow-x: hidden;
     margin: 2rem;
+    min-width: 500px;
 }
 
 .header {
@@ -149,4 +150,31 @@ h1:focus {
 
 .monitoring_card {
     height: 100%;
+}
+
+.flex_right {
+    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.flex_left {
+    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.flex_center {
+    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex_internal {
+    height: 100%; 
+    align-content: center;
+    width: fit-content;
 }

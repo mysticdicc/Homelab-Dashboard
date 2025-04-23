@@ -1,7 +1,6 @@
 using web.Components;
 using dankweb.API;
 
-using ApexCharts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components;
 using Radzen;
@@ -30,12 +29,13 @@ builder.Services.AddTransient<danklibrary.DankAPI.Dash>();
 builder.Services.AddTransient<danklibrary.DankAPI.Subnets>();
 builder.Services.AddTransient<danklibrary.DankAPI.Monitoring>();
 
-builder.Services.AddApexCharts();
 builder.Services.AddControllers();
 builder.Services.AddDbContextFactory<danknetContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("SQLite")));
 
-builder.Services.AddHostedService<web.Worker>();
+builder.Services.Configure<danklibrary.MonitorSettings>(builder.Configuration.GetSection("MonitorSettings"));
+builder.Services.AddSingleton<web.Monitor>();
+builder.Services.AddHostedService(x => x.GetRequiredService<web.Monitor>());
 
 var app = builder.Build();
 

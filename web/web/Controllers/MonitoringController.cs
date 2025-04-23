@@ -4,13 +4,24 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using danklibrary;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace web.Controllers
 {
     [ApiController]
-    public class MonitoringController(IDbContextFactory<danknetContext> dbContext) : Controller
+    public class MonitoringController(IDbContextFactory<danknetContext> dbContext, Monitor monitor) : Controller
     {
         private readonly IDbContextFactory<danknetContext> _DbFactory = dbContext;
+        private readonly Monitor _monitorService = monitor;
+
+        [HttpGet]
+        [Route("[controller]/get/restart")]
+        public IActionResult RestartService()
+        {
+            _monitorService.Restart();
+
+            return Ok("Restarted");
+        }
 
         [HttpGet]
         [Route("[controller]/get/allmonitored")]
@@ -49,5 +60,34 @@ namespace web.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("[controller]/post/newtimer")]
+        public int UpdateMonitorTimer([FromBody]int monitorDelay)
+        {
+            try
+            {
+                MonitorSettings.UpdateMonitorDelay(monitorDelay);
+                return MonitorSettings.GetMonitorDelay();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("[controller]/get/currenttimer")]
+        public int GetMonitorTimer()
+        {
+            try
+            {
+                int cur = MonitorSettings.GetMonitorDelay();
+                return cur;
+            } 
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

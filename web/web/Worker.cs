@@ -5,23 +5,37 @@ using System.Net.Sockets;
 using System.Net;
 using Newtonsoft.Json;
 using System.Net.Http;
+using Microsoft.Extensions.Options;
+using danklibrary.DankAPI;
 
 namespace web
 {
-    public class Worker(ILogger<Worker> logger, HttpClient httpClient) : BackgroundService
+    public class Monitor : BackgroundService
     {
-        private Timer? _timer = null;
-        private readonly HttpClient _httpClient = httpClient;
+        private Timer? _timer;
+        private readonly HttpClient _httpClient;
+        public int _delay;
+        private ILogger<Monitor> _logger;
+        CancellationTokenSource _cancellationToken;
+        Monitoring _monitoringApi;
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        public Monitor(IOptions<MonitorSettings> options, ILogger<Monitor> logger, HttpClient httpClient, Monitoring monitoringApi)
         {
-            logger.LogInformation("Service action has intiated");
+            _delay = options.Value.MonitorDelay;
+            _httpClient = httpClient;
+            _timer = null;
+            _logger = logger;
+            _cancellationToken = new();
+            _monitoringApi = monitoringApi;
+        }
 
+        private async Task RunServiceAsync(CancellationToken token)
+        {
             try
             {
-                while (!stoppingToken.IsCancellationRequested)
+                while (!token.IsCancellationRequested)
                 {
-                    logger.LogInformation("Entered execution action");
+                    _logger.LogInformation($"Entered execution action, task delay is {_delay}ms");
                     await Task.Delay(1500);
 
                     DateTime submit = DateTime.Now;
@@ -41,7 +55,7 @@ namespace web
 
                     if (null != ips)
                     {
-                        logger.LogInformation($"Fetched {ips.Count()} from API");
+                        _logger.LogInformation($"Fetched {ips.Count()} from API");
 
                         foreach (IP ip in ips)
                         {
@@ -54,7 +68,7 @@ namespace web
 
                         foreach (var ip in ips.Where(x => x.IsMonitoredICMP))
                         {
-                            logger.LogInformation($"Ping testing {IP.ConvertToString(ip.Address)}");
+                            _logger.LogInformation($"Ping testing {IP.ConvertToString(ip.Address)}");
 
                             using Ping ping = new Ping();
 
@@ -73,7 +87,7 @@ namespace web
 
                         foreach (var ip in ips.Where(x => x.IsMonitoredTCP && null != x.PortsMonitored))
                         {
-                            logger.LogInformation($"TCP testing {IP.ConvertToString(ip.Address)}");
+                            _logger.LogInformation($"TCP testing {IP.ConvertToString(ip.Address)}");
 
                             List<PortState> portStates = [];
 
@@ -115,33 +129,51 @@ namespace web
                             }
                         }
 
-                        logger.LogInformation(JsonConvert.SerializeObject(ips, Formatting.Indented));
+                        _logger.LogInformation(JsonConvert.SerializeObject(ips, Formatting.Indented));
 
                         try
                         {
                             await _httpClient.PostAsJsonAsync<List<IP>>("/monitoring/post/newpoll", ips, CancellationToken.None);
-                            logger.LogInformation("Ips submitted to api endpoint");
-                        } 
+                            _logger.LogInformation("Ips submitted to api endpoint");
+                        }
                         catch (Exception ex)
                         {
-                            logger.LogError(ex.Message);
+                            _logger.LogError(ex.Message);
                         }
                     }
                     else
                     {
-                        logger.LogError("Could not fetch IP list from api endpoint");
+                        _logger.LogError("Could not fetch IP list from api endpoint");
                     }
 
-                    await Task.Delay(60000, stoppingToken);
+                    await Task.Delay(_delay, token);
                 }
             }
             catch (OperationCanceledException)
             {
-                logger.LogInformation("User intiated service end");
+                _logger.LogInformation("User intiated service end");
             }
-            catch (Exception ex) {
-                logger.LogCritical(ex.Message);
-                await Task.Delay(15000, stoppingToken);
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex.Message);
+                await Task.Delay(15000, token);
+            }
+        }
+
+        async public void Restart()
+        {
+            _logger.LogInformation("Monitoring service restart initiated");
+            _delay = await _monitoringApi.GetTimer();
+            _cancellationToken.Cancel();
+            _cancellationToken = new();
+        }
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            _logger.LogInformation("Service action has intiated");
+
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                await RunServiceAsync(_cancellationToken.Token);
             }
         }
 
