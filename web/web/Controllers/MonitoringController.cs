@@ -5,14 +5,15 @@ using Newtonsoft.Json;
 using danklibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using web.Services;
 
 namespace web.Controllers
 {
     [ApiController]
-    public class MonitoringController(IDbContextFactory<danknetContext> dbContext, Monitor monitor) : Controller
+    public class MonitoringController(IDbContextFactory<danknetContext> dbContext, MonitorService monitor) : Controller
     {
         private readonly IDbContextFactory<danknetContext> _DbFactory = dbContext;
-        private readonly Monitor _monitorService = monitor;
+        private readonly MonitorService _monitorService = monitor;
 
         [HttpGet]
         [Route("[controller]/get/restart")]

@@ -8,18 +8,18 @@ using System.Net.Http;
 using Microsoft.Extensions.Options;
 using danklibrary.DankAPI;
 
-namespace web
+namespace web.Services
 {
-    public class Monitor : BackgroundService
+    public class MonitorService : BackgroundService
     {
         private Timer? _timer;
         private readonly HttpClient _httpClient;
         public int _delay;
-        private ILogger<Monitor> _logger;
+        private ILogger<MonitorService> _logger;
         CancellationTokenSource _cancellationToken;
         Monitoring _monitoringApi;
 
-        public Monitor(IOptions<MonitorSettings> options, ILogger<Monitor> logger, HttpClient httpClient, Monitoring monitoringApi)
+        public MonitorService(IOptions<MonitorSettings> options, ILogger<MonitorService> logger, HttpClient httpClient, Monitoring monitoringApi)
         {
             _delay = options.Value.MonitorDelay;
             _httpClient = httpClient;

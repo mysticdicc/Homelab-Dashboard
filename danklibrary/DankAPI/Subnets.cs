@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace danklibrary.DankAPI
 {
@@ -38,6 +39,26 @@ namespace danklibrary.DankAPI
         public async Task DeleteSubnet(int ID)
         {
             await _httpClient.DeleteAsync($"/subnets/subnet/delete/byid?ID={ID}");
+        }
+
+        public async Task<Subnet> RunDiscoveryTask(Subnet subnet)
+        {
+            var request = await _httpClient.PostAsJsonAsync<Subnet>("/subnets/startdiscovery", subnet);
+            var results = request.Content.ReadFromJsonAsync<Subnet>().Result;
+
+            if (null != results) 
+            {
+                return results;
+            } 
+            else
+            {
+                throw new Exception("No response from discovery service");
+            }
+        }
+
+        public async Task DiscoveryUpdate(Subnet subnet)
+        {
+            await _httpClient.PostAsJsonAsync<Subnet>("/subnets/subnet/post/discoveryupdate", subnet);
         }
     }
 }

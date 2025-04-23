@@ -5,6 +5,7 @@
 
 @inject danklibrary.DankAPI.Subnets SubnetsAPI
 @inject IJSRuntime JSRuntime
+@inject DialogService DialogService
 
 @page "/subtrackr/home"
 
@@ -71,11 +72,11 @@
                         </div>
                     </RadzenColumn>
                     <RadzenColumn Size="2" class="row_column" Style="gap: 0.5rem;">
-                        <RadzenButton Icon="keyboard_arrow_down" Click="@(() => OnClickExpand(subnet.ID))" class="row_contents" />
                         <RadzenButton Icon="delete" Click="@(() => OnClickDelete(subnet.ID))" class="row_contents" />
+                        <RadzenButton Icon="refresh" Click="@(() => OnClickDiscovery(subnet))" class="row_contents"/>
                     </RadzenColumn>
                     <RadzenColumn Size="2">
-
+                        <RadzenButton Icon="keyboard_arrow_down" Click="@(() => OnClickExpand(subnet.ID))" class="row_contents" />
                     </RadzenColumn>
                 </RadzenRow>
                 <div hidden="@(CurrentSubnetRowState[subnet.ID].Hidden)">
@@ -105,20 +106,22 @@
                                 </RadzenColumn>
                                 <RadzenColumn Size="2" class="row_column">
                                     <RadzenText class="row_contents">
-                                        Ports
+                                        Monitored Ports
                                     </RadzenText>
                                 </RadzenColumn>
                                 <RadzenColumn Size="2">
 
                                 </RadzenColumn>
+                                <div class="black_line" />
                             </RadzenRow>
 
                             <div hidden="@(CurrentSubnetRowState[subnet.ID].Hidden)">
-                                <Virtualize Items="@(subnet.List.Where(x => x.RowState.Hidden == false).ToList())">
+                                <Virtualize Items="@(subnet.List.Where(x => x.RowState.Hidden == false).ToList())" @ref="IpLists">
+                                    @{var last = subnet.List.Where(x => x.RowState.Hidden == false).ToList().Last();}
+
                                     @if (!CurrentSubnetRowState[subnet.ID].Hidden)
                                     {
                                         <RadzenRow Style="height: 100%;" RowGap="0">
-                                            <div class="black_line" />
                                             <RadzenRow class="row" RowGap="0">
                                                 <RadzenColumn Size="2" class="row_column">
                                                     <RadzenText class="row_contents">
@@ -199,6 +202,9 @@
                                                     <RadzenColumn Size="10" />
                                                 }
                                             </RadzenRow>
+                                            @if (context != last) {
+                                                <div class="grey_line" />
+                                            }
                                         </RadzenRow>
                                     }
                                 </Virtualize>
@@ -220,6 +226,7 @@
     List<Subnet>? SubnetList;
     bool showSearch = false;
     string? newCidr;
+    private Virtualize<IP>? IpLists { get; set; }
 
     Dictionary<int, SubnetRowState> CurrentSubnetRowState = new();
 
@@ -322,7 +329,7 @@
                 list.Add(int.Parse(str));
             }
         }
-        
+
         return list;
     }
 
@@ -336,7 +343,7 @@
         if (returnStr.Length > 1) {
             returnStr = returnStr.Remove(returnStr.Length - 1);
         }
-        
+
         return returnStr;
     }
 
@@ -412,5 +419,53 @@
         if (eventArgs.Code == "Enter") {
             SearchSubnet(ID);
         }
+    }
+
+    async Task OnClickDiscovery(Subnet subnet) 
+    {
+        Task task = InvokeAsync(async () =>
+        {
+            var update = await SubnetsAPI.RunDiscoveryTask(subnet);
+            await SubnetsAPI.DiscoveryUpdate(update);
+            await RefreshSubnetList();
+            if (null != IpLists)
+            {
+                await IpLists.RefreshDataAsync();
+            }
+            StateHasChanged();
+
+            DialogService.Close();
+        });
+
+        await BusyDialog($"Running discovery task on {IP.ConvertToString(subnet.Address)}");
+    }
+
+    async Task BusyDialog(string message) 
+    {
+        await DialogService.OpenAsync("", ds =>
+        {
+            RenderFragment content = b =>
+            {
+                b.OpenElement(0, "RadzenRow");
+
+                b.OpenElement(1, "RadzenColumn");
+                b.AddAttribute(2, "Size", "12");
+
+                b.AddContent(3, message);
+
+                b.OpenElement(4,  "RadzenProgressBarCircular");
+                b.AddAttribute(5, "Mode", "Indeterminate");
+
+                b.CloseElement();
+                b.CloseElement();
+                b.CloseElement();
+            };
+        return content;
+        }, 
+        new DialogOptions() { 
+            ShowTitle = false, 
+            Style = "min-height:auto;min-width:auto;width:auto", 
+            CloseDialogOnEsc = false 
+        });
     }
 }

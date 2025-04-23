@@ -104,7 +104,7 @@ namespace danklibrary
 
         public byte[] EndAddress { get; set; }
 
-        public ICollection<IP> List { get; set; }
+        public IList<IP> List { get; set; }
 
         public Subnet() { }
 

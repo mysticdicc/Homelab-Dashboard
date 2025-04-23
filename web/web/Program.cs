@@ -34,8 +34,11 @@ builder.Services.AddDbContextFactory<danknetContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("SQLite")));
 
 builder.Services.Configure<danklibrary.MonitorSettings>(builder.Configuration.GetSection("MonitorSettings"));
-builder.Services.AddSingleton<web.Monitor>();
-builder.Services.AddHostedService(x => x.GetRequiredService<web.Monitor>());
+builder.Services.AddSingleton<web.Services.MonitorService>();
+builder.Services.AddHostedService(x => x.GetRequiredService<web.Services.MonitorService>());
+
+builder.Services.AddSingleton<web.Services.DiscoveryService>();
+//builder.Services.AddHostedService(x => x.GetRequiredService<web.Services.DiscoveryService>());
 
 var app = builder.Build();
 

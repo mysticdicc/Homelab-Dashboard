@@ -4,13 +4,31 @@ using danklibrary;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using web.Services;
 
 namespace web.Controllers
 {
     [ApiController]
-    public class SubnetsController(IDbContextFactory<danknetContext> dbContext) : Controller
+    public class SubnetsController(IDbContextFactory<danknetContext> dbContext, DiscoveryService discoveryService) : Controller
     {
         private readonly IDbContextFactory<danknetContext> _DbFactory = dbContext;
+        private readonly DiscoveryService _discoveryService = discoveryService;
+
+        [HttpPost]
+        [Route("[controller]/startdiscovery")]
+        public async Task<Results<BadRequest<string>, Ok<Subnet>>> StartSubnetDiscovery(Subnet subnet)
+        {
+            var _subnet = await _discoveryService.StartDiscovery(subnet);
+
+            if (null != _subnet) 
+            {
+                return TypedResults.Ok(_subnet);
+            } 
+            else
+            {
+                return TypedResults.BadRequest("Null object return");
+            }
+        }
 
         [HttpPost]
         [Route("[controller]/subnet/post/new")]
@@ -119,15 +137,55 @@ namespace web.Controllers
 
             var updateItem = context.IPs.Find(ip.ID);
 
-            updateItem.Hostname = ip.Hostname;
-            updateItem.IsMonitoredICMP = ip.IsMonitoredICMP;
-            updateItem.IsMonitoredTCP = ip.IsMonitoredTCP;
-            updateItem.PortsMonitored = ip.PortsMonitored;
-            context.IPs.Update(updateItem);
+            if (updateItem != null) 
+            {
+                updateItem.Hostname = ip.Hostname;
+                updateItem.IsMonitoredICMP = ip.IsMonitoredICMP;
+                updateItem.IsMonitoredTCP = ip.IsMonitoredTCP;
+                updateItem.PortsMonitored = ip.PortsMonitored;
+                context.IPs.Update(updateItem);
+
+                await context.SaveChangesAsync();
+                return TypedResults.Ok(updateItem);
+            } 
+            else
+            {
+                return TypedResults.BadRequest($"Unable to find item with {ip.ID}");
+            }
+        }
+
+        [HttpPost]
+        [Route("[controller]/subnet/post/discoveryupdate")]
+        public async Task<Results<Ok<List<int>>, Ok<Subnet>>> UpdateSubnet(Subnet subnet)
+        {
+            using var context = _DbFactory.CreateDbContext();
+            List<int> badId = [];
+
+            foreach (var ip in subnet.List)
+            {
+                var item = context.IPs.Find(ip.ID);
+                if (null != item)
+                {
+                    item.Hostname = ip.Hostname;
+                    item.IsMonitoredICMP = ip.IsMonitoredICMP;
+                    context.IPs.Update(item);
+                } 
+                else
+                {
+                    badId.Add(ip.ID);
+                }
+            }
 
             await context.SaveChangesAsync();
 
-            return TypedResults.Ok(updateItem);
+            if (badId.Count > 0) 
+            {
+                return TypedResults.Ok<List<int>>(badId);
+            } 
+            else
+            {
+                return TypedResults.Ok<Subnet>(subnet);
+            }
         }
     }
 }
