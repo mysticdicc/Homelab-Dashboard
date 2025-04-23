@@ -42,3 +42,4 @@ artifacts/
 *.scc
 
 /web/web/Data/danknetlocal.db
+/web/web/Data/danknetlocal.db-wal

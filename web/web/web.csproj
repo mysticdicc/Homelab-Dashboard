@@ -12,6 +12,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\danknetlocal.db-shm" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\danklibrary\danklibrary.csproj" />
     <ProjectReference Include="..\web.Client\web.Client.csproj" />
     <PackageReference Include="Blazor-ApexCharts" Version="5.1.0" />
