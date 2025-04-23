@@ -35,8 +35,9 @@ Has the ability to add new and edit existing links saved previously. Clicking on
 ![dashboard_home](/gitimages/dashboardlinks.png)
 
 # Subnet Tracker
-Generates a list of all IP addresses in a subnet if you provide the IP range in CIDR notation in the top left box. You can then expand the subnets and mark down names against them and enable monitoring for the background monitoring service.
-Pressing the "refresh" icon on the subnet row will start a discovery task, any devices that respond to ICMP (ping) will automatically be added to monitoring, it will also attempt to resolve the dns names for these and store them in teh hostname field. 
+Generates a list of all IP addresses in a subnet if you provide the IP range in CIDR notation in the top left box. You can then expand the subnets and mark down names against them and enable monitoring for the background monitoring service. \
+
+Pressing the "refresh" icon on the subnet row will start a discovery task, any devices that respond to ICMP (ping) will automatically be added to monitoring, it will also attempt to resolve the dns names for these and store them in teh hostname field. \
 
 ![dashboard_home](/gitimages/subnettrackeropened.png)
 ![dashboard_home](/gitimages/subnettrackerclosed.png)
