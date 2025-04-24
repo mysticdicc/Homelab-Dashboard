@@ -14,8 +14,7 @@
 <RadzenLayout>
     <RadzenHeader class="header">
         <RadzenButton Icon="home" Click="@(() => Navigate("home"))" Variant="Variant.Flat" class="ghost_button"/>
-        <RadzenButton Icon="globe" Click="@(() => Navigate("dash"))" Variant="Variant.Flat" class="ghost_button" />
-        <RadzenButton Icon="folder" Click="@(() => Navigate("subnets"))" Variant="Variant.Flat" class="ghost_button" />
+        <RadzenButton Icon="globe" Click="@(() => Navigate("subnets"))" Variant="Variant.Flat" class="ghost_button" />
         <RadzenButton Icon="autorenew" Click="@(() => Navigate("monitoring"))" Variant="Variant.Flat" class="ghost_button right_button" />
     </RadzenHeader>
 
@@ -32,9 +31,6 @@
         {
             case "home":
                 NavManager.NavigateTo("/");
-                break;
-            case "dash":
-                NavManager.NavigateTo("/dash/home");
                 break;
             case "subnets":
                 NavManager.NavigateTo("/subtrackr/home");

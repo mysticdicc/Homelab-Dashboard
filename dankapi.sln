@@ -10,6 +10,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web.Client", "web\web.Client\web.Client.csproj", "{1D88282A-7A52-4206-AFD6-4316DFB45C16}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gitimages", "gitimages", "{FDD21176-6E9B-41E0-B5DE-EA7922C53FBD}"
+	ProjectSection(SolutionItems) = preProject
+		gitimages\dashboardlinks.png = gitimages\dashboardlinks.png
+		gitimages\monitoring.png = gitimages\monitoring.png
+		gitimages\monitoringopen.png = gitimages\monitoringopen.png
+		gitimages\subnettrackerclosed.png = gitimages\subnettrackerclosed.png
+		gitimages\subnettrackeropened.png = gitimages\subnettrackeropened.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

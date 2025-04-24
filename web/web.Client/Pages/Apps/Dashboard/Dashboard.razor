@@ -2,12 +2,11 @@
 @inject IJSRuntime JSRuntime
 @inject NotificationService NotificationService
 
-@page "/dash/home"
+@page "/"
 
 <PageTitle>dashboard</PageTitle>
 
 <div style="display: flex; gap: 1rem; margin-top: 1rem; margin-bottom: 1rem;">
-    <RadzenButton Icon="edit" Click="@OnClickEdit" />
     <RadzenButton Icon="add" Click="@OnClickAdd" />
 </div>
 
@@ -18,46 +17,54 @@
         {
             <RadzenColumn SizeXS="12" SizeSM="6" SizeMD="3" SizeLG="2">
                 <RadzenCard onclick="@(() => OnClickCard(item))" id="@($"fluentcard_{item.ID}")" class="dashboard_card">
-                    <div hidden="@(!editHidden)">
-                        <div>
-                            <RadzenText class="dashboard_card_text">
-                                @item.DisplayName
-                            </RadzenText>
-                            <RadzenText class="dashboard_card_text">
-                                @item.URL
-                            </RadzenText>
-
-                            @if (null != item.Icon)
-                            {
-                                <img src="@(GetPngString(item.Icon))" style="max-height: 45px; max-width: 45px; background-color: transparent; position: absolute; top: 5px; right: 5px;" />
-                            }
-                        </div>
+                    <div hidden="@(!editHiddenDict[item.ID])">
+                        <RadzenColumn Size="12">
+                            <RadzenRow Style="display: flex; flex-direction: row;">
+                                <RadzenText class="dashboard_card_text" Style="justify-self: left;">
+                                    @item.DisplayName
+                                </RadzenText>
+                                <RadzenButton Icon="edit" Click="@(() => OnClickEdit(item.ID))" Style="margin-right: 0; margin-left: auto;"/>
+                            </RadzenRow>
+                            <RadzenRow>
+                                <RadzenText class="dashboard_card_text">
+                                    @item.URL
+                                </RadzenText>
+                            </RadzenRow>
+                            <RadzenRow>
+                                @if (null != item.Icon)
+                                {
+                                    <img src="@(GetPngString(item.Icon))" style="max-height: 45px; max-width: 45px; background-color: transparent; position: absolute; top: 5px; right: 5px;" />
+                                }
+                            </RadzenRow>
+                        </RadzenColumn>
                     </div>
-                    <div hidden="@editHidden">
-                        <div>
-                            <RadzenTextBox @bind-Value="@(item.DisplayName)" Placeholder="Display Name" class="dashboard_card_text" />
-                        </div>
-                        <div>
-                            <RadzenTextBox @bind-Value="@(item.URL)" Placeholder="URL" class="dashboard_card_text" />
-                        </div>
-                        <div>
-                            <RadzenTextArea @bind-Value="@(item.Description)" Placeholder="Description" class="dashboard_card_text" />
-                        </div>
-                        <div>
-                            @if (null != item.Icon)
-                            {
-                                <img src="@(GetPngString(item.Icon))" style="max-height: 50px; max-width: 50px;" />
-                                <RadzenButton Click="@(() => OnDeleteIcon(item.ID))">Delete Icon</RadzenButton>
-                            }
-                            else
-                            {
-                                <InputFile OnChange="@(e => IconUpload(e, item.ID))" accept=".png" />
-                            }
-                        </div>
-                        <div>
-                            <RadzenButton Click="@(() => OnClickCardSave(item.ID))">Save</RadzenButton>
-                            <RadzenButton Click="@(() => OnClickCardDelete(item.ID))">Delete</RadzenButton>
-                        </div>
+                    <div hidden="@(editHiddenDict[item.ID])">
+                        <RadzenColumn Size="12">
+                            <RadzenRow>
+                                <RadzenTextBox @bind-Value="@(item.DisplayName)" Placeholder="Display Name" class="dashboard_card_text"/>
+                            </RadzenRow>
+                            <RadzenRow>
+                                <RadzenTextBox @bind-Value="@(item.URL)" Placeholder="URL" class="dashboard_card_text" />
+                            </RadzenRow>
+                            <RadzenRow>
+                                <RadzenTextArea @bind-Value="@(item.Description)" Placeholder="Description" class="dashboard_card_text" />
+                            </RadzenRow>
+                            <RadzenRow>
+                                @if (null != item.Icon)
+                                {
+                                    <img src="@(GetPngString(item.Icon))" style="max-height: 50px; max-width: 50px;" />
+                                    <RadzenButton Click="@(() => OnDeleteIcon(item.ID))">Delete Icon</RadzenButton>
+                                }
+                                else
+                                {
+                                    <InputFile OnChange="@(e => IconUpload(e, item.ID))" accept=".png" />
+                                }
+                            </RadzenRow>
+                            <RadzenRow>
+                                <RadzenButton Click="@(() => OnClickCardSave(item.ID))">Save</RadzenButton>
+                                <RadzenButton Click="@(() => OnClickCardDelete(item.ID))">Delete</RadzenButton>
+                            </RadzenRow>
+                        </RadzenColumn>
                     </div>
                 </RadzenCard>
             </RadzenColumn>
@@ -81,25 +88,37 @@
     List<DashboardItem>? dashboardItems;
 
     bool addHidden;
-    bool editHidden;
 
-    string newDisplay;
-    string newURL;
-    string newDescription;
+    Dictionary<int, bool> editHiddenDict = new();
+
+    string newDisplay = String.Empty;
+    string newURL = String.Empty;
+    string newDescription = String.Empty;
 
     private long maxFileSize = 1024 * 64;
 
     async protected override Task OnInitializedAsync()
     {
         addHidden = true;
-        editHidden = true;
 
         dashboardItems = await DashAPI.GetAll();
+
+        if (null != dashboardItems) 
+        {
+            foreach (var item in dashboardItems)
+            {
+                if (!editHiddenDict.ContainsKey(item.ID)) 
+                {
+                    editHiddenDict.Add(item.ID, true);
+                }
+            }
+        }
+
         await base.OnInitializedAsync();
     }
 
     async void OnClickCard(DashboardItem item) {
-        if (editHidden) {
+        if (editHiddenDict[item.ID]) {
             if (DashboardItem.UrlIsValid(item))
             {
                 await JSRuntime.InvokeVoidAsync("open", $"{item.URL}", "_blank");
@@ -111,8 +130,8 @@
         addHidden = !addHidden;
     }
 
-    void OnClickEdit() {
-        editHidden = !editHidden;
+    void OnClickEdit(int ID) {
+        editHiddenDict[ID] = !editHiddenDict[ID];
     }
 
     async void OnClickCardSave(int ID) {
@@ -134,6 +153,8 @@
                             Duration = 4000
                         });
 
+                    editHiddenDict[ID] = true;
+                    StateHasChanged();
                 }
                 catch(Exception ex)
                 {

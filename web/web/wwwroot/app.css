@@ -95,8 +95,8 @@ h1:focus {
 }
 
 .dashboard_card_text {
+    margin-bottom: 0.5rem;
     width: 100%;
-    margin-top: 0.5rem;
 }
 
 .subnet_card {
