@@ -9,11 +9,16 @@
     <RadzenColumn Size="12">
         <RadzenCard Style="width: 100%; height: 100%;">
             <RadzenRow Style="margin-bottom: 0.5rem;">
-                <RadzenColumn Size="6" class="flex_left">
+                <RadzenColumn Size="4" class="flex_left">
                     <RadzenButton Icon="refresh" Click="@OnInitializedAsync" class="flex_internal"/>
                     <RadzenDropDown Data="@timePeriods.Keys.ToList()" @bind-Value="@currentPeriod" TValue="string" Change="@SetPollScale" class="flex_internal"/>
                 </RadzenColumn>
-                <RadzenColumn Size="6" class="flex_right">
+                <RadzenColumn Size="4">
+                    <RadzenText class="flex_center">
+                        Devices Online Over Time
+                    </RadzenText>
+                </RadzenColumn>
+                <RadzenColumn Size="4" class="flex_right">
                     <RadzenTextBox @bind-Value="@monitorDelay" class="flex_internal" />
                     <RadzenText class="flex_internal">
                         seconds
@@ -24,7 +29,7 @@
             <RadzenRow class="flex_center">
                 @if (null != currentMonitorStates)
                 {
-                    <RadzenChart Style="margin: 1rem; width: 100%" class="flex_internal;">
+                    <RadzenChart Style="margin-left: 1rem; margin-right: 1rem; margin-top: 1rem; margin-bottom: 3.5rem; width: 100%" class="flex_internal;">
                         <RadzenChartTooltipOptions Shared="true"/>
                         <RadzenLineSeries Data="@onlineDevicesOverTime" TItem="CountAtTime" ValueProperty="DeviceCount" CategoryProperty="SubmitTime" Title="Online">
                             <RadzenMarkers MarkerType="MarkerType.Circle"/>
@@ -35,12 +40,7 @@
                         <RadzenLineSeries Data="@monitoredDevicesOverTime" TItem="CountAtTime" ValueProperty="DeviceCount" CategoryProperty="SubmitTime" Title="Monitored">
                             <RadzenMarkers MarkerType="MarkerType.Circle" />
                         </RadzenLineSeries>
-                        <RadzenValueAxis>
-                            <RadzenAxisTitle Text="Devices"/>
-                        </RadzenValueAxis>
-                        <RadzenCategoryAxis>
-                            <RadzenAxisTitle Text="Submit Time"/>
-                        </RadzenCategoryAxis>
+                        <RadzenCategoryAxis LabelRotation="-55"/>
                     </RadzenChart>
                 }
                 else
@@ -82,8 +82,8 @@
                         </RadzenText>
                         @if (null != monitoredIPs && null != lastPolls)
                         {
-                            <RadzenText>Time: @lastDate</RadzenText>
-                            <RadzenText>Monitored: @lastPolls.Count()</RadzenText>
+                            <RadzenText>Time: @(lastDate.ToLocalTime())</RadzenText>
+                            <RadzenText>Monitored: @lastPolls.DistinctBy(x => x.IP_ID).Count()</RadzenText>
                             <RadzenText>Online: @lastPolls.Where(x => x.IcmpResponse == true).Count()</RadzenText>
                             <RadzenText>Offline: @lastPolls.Where(x => x.IcmpResponse == false).Count()</RadzenText>
                         }
@@ -172,8 +172,8 @@
     List<MonitorState>? currentMonitorStates;
 
     class CountAtTime {
-        public DateTime SubmitTime { get; set; }
-        public int DeviceCount { get; set; }
+        required public string SubmitTime { get; set; }
+        required public int DeviceCount { get; set; }
     }
 
     List<CountAtTime> onlineDevicesOverTime = new();
@@ -183,7 +183,7 @@
     List<IP>? monitoredIPs;
     List<IP>? currentlyMonitored;
 
-    DateTime? lastDate;
+    DateTime lastDate;
     List<MonitorState>? lastPolls;
 
     public Dictionary<string, int> timePeriods = new();
@@ -223,7 +223,7 @@
     async Task SetPollScale() {
         if (null != allMonitorStates) {
             DateTime fromTime = DateTime.Now.AddHours(-timePeriods[currentPeriod]);
-            currentMonitorStates = allMonitorStates.Where(x => x.SubmitTime > fromTime).ToList();
+            currentMonitorStates = allMonitorStates.Where(x => x.SubmitTime.ToLocalTime() > fromTime).ToList();
 
             var submitTimes = currentMonitorStates.Select(x => x.SubmitTime).ToList();
             onlineDevicesOverTime = new();
@@ -231,26 +231,28 @@
             monitoredDevicesOverTime = new();
 
             foreach (DateTime submit in submitTimes.Distinct()) {
+                string strDate = String.Format("{0:ddd HH:mm:ss}", submit);
+
                 var online = new CountAtTime
                 {
-                    SubmitTime = submit,
-                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit && x.IcmpResponse == true).Count()
+                    SubmitTime = strDate,
+                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit && x.IcmpResponse == true).DistinctBy(x => x.IP_ID).Count()
                 };
 
                 onlineDevicesOverTime.Add(online);
 
                 var offline = new CountAtTime
                 {
-                    SubmitTime = submit,
-                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit && x.IcmpResponse == false).Count()
+                    SubmitTime = strDate,
+                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit && x.IcmpResponse == false).DistinctBy(x => x.IP_ID).Count()
                 };
 
                 offlineDevicesOverTime.Add(offline);
 
                 var monitored = new CountAtTime
                 {
-                    SubmitTime = submit,
-                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit).Count()
+                    SubmitTime = strDate,
+                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit).DistinctBy(x => x.IP_ID).Count()
                 };
 
                 monitoredDevicesOverTime.Add(monitored);

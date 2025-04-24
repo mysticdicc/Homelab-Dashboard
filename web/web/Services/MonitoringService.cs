@@ -38,7 +38,7 @@ namespace web.Services
                     _logger.LogInformation($"Entered execution action, task delay is {_delay}ms");
                     await Task.Delay(1500);
 
-                    DateTime submit = DateTime.Now;
+                    DateTime submit = DateTime.UtcNow;
 
                     //fetch monitored devices
                     var handler = new HttpClientHandler();

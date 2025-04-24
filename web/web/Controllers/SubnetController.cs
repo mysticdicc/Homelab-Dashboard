@@ -105,6 +105,11 @@ namespace web.Controllers
             {
                 try
                 {
+                    if (null != ip.PortsMonitored)
+                    {
+                        ip.IsMonitoredTCP = true;
+                    }
+
                     context.IPs.Add(ip);
                     await context.SaveChangesAsync();
 
@@ -141,8 +146,13 @@ namespace web.Controllers
             {
                 updateItem.Hostname = ip.Hostname;
                 updateItem.IsMonitoredICMP = ip.IsMonitoredICMP;
-                updateItem.IsMonitoredTCP = ip.IsMonitoredTCP;
-                updateItem.PortsMonitored = ip.PortsMonitored;
+
+                if (null != ip.PortsMonitored)
+                {
+                    updateItem.IsMonitoredTCP = true;
+                    updateItem.PortsMonitored = ip.PortsMonitored;
+                }
+
                 context.IPs.Update(updateItem);
 
                 await context.SaveChangesAsync();
