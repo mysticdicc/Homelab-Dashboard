@@ -46,4 +46,4 @@ Pressing the "refresh" icon on the subnet row will start a discovery task, any d
 Shows you a line chart which shows the various monitoring states for all of your monitored devices over time, with the ability to change the polling interval for the monitoring service and change the scale of the graph to different time scales.
 
 ![dashboard_home](/gitimages/monitoring.png)
-![dashboard_home](/gitimages/monitorignopen.png)
+![dashboard_home](/gitimages/monitoringopen.png)
