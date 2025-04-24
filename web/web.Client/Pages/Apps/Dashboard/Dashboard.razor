@@ -18,25 +18,36 @@
             <RadzenColumn SizeXS="12" SizeSM="6" SizeMD="3" SizeLG="2">
                 <RadzenCard onclick="@(() => OnClickCard(item))" id="@($"fluentcard_{item.ID}")" class="dashboard_card">
                     <div hidden="@(!editHiddenDict[item.ID])">
-                        <RadzenColumn Size="12">
-                            <RadzenRow Style="display: flex; flex-direction: row;">
-                                <RadzenText class="dashboard_card_text" Style="justify-self: left;">
-                                    @item.DisplayName
-                                </RadzenText>
-                                <RadzenButton Icon="edit" Click="@(() => OnClickEdit(item.ID))" Style="margin-right: 0; margin-left: auto;"/>
-                            </RadzenRow>
-                            <RadzenRow>
-                                <RadzenText class="dashboard_card_text">
-                                    @item.URL
-                                </RadzenText>
-                            </RadzenRow>
-                            <RadzenRow>
-                                @if (null != item.Icon)
-                                {
-                                    <img src="@(GetPngString(item.Icon))" style="max-height: 45px; max-width: 45px; background-color: transparent; position: absolute; top: 5px; right: 5px;" />
-                                }
-                            </RadzenRow>
-                        </RadzenColumn>
+                        <RadzenRow>
+                            <RadzenColumn Size="8">
+                                <RadzenRow>
+                                    <RadzenText class="dashboard_card_text">
+                                        @item.DisplayName
+                                    </RadzenText>
+                                </RadzenRow>
+                                <RadzenRow>
+                                    <RadzenText class="dashboard_card_text">
+                                        @item.URL
+                                    </RadzenText>
+                                </RadzenRow>
+                                <RadzenRow>
+                                    <RadzenText class="dashboard_card_text">
+                                        @item.Description
+                                    </RadzenText>
+                                </RadzenRow>
+                            </RadzenColumn>
+                            <RadzenColumn Size="4">
+                                <RadzenRow Style="width: 100%; margin-bottom: 0.5rem;">
+                                    <RadzenButton Icon="edit" Click="@(() => OnClickEdit(item.ID))" Style="margin-left: auto; margin-right: 0;" Size="ButtonSize.ExtraSmall"/>
+                                </RadzenRow>
+                                <RadzenRow Style="width: 100%; margin-bottom: 0.5rem;">
+                                    @if (null != item.Icon)
+                                    {
+                                        <img src="@item.Icon" style="width: 4rem; height: 4rem; background-color: transparent; margin-left: auto; margin-right: 0;" />
+                                    }
+                                </RadzenRow>
+                            </RadzenColumn>
+                        </RadzenRow>
                     </div>
                     <div hidden="@(editHiddenDict[item.ID])">
                         <RadzenColumn Size="12">
@@ -49,20 +60,28 @@
                             <RadzenRow>
                                 <RadzenTextArea @bind-Value="@(item.Description)" Placeholder="Description" class="dashboard_card_text" />
                             </RadzenRow>
-                            <RadzenRow>
+                            <RadzenRow Style="display: flex; justify-content: center; margin-bottom: 0.5rem; flex-direction: row;">
                                 @if (null != item.Icon)
                                 {
-                                    <img src="@(GetPngString(item.Icon))" style="max-height: 50px; max-width: 50px;" />
-                                    <RadzenButton Click="@(() => OnDeleteIcon(item.ID))">Delete Icon</RadzenButton>
+                                    <div style="width: fit-content; height: 100%; position: relative; margin-left: auto; margin-right: auto;">
+                                        <img src="@(item.Icon)" style="width: 8rem; height: 8rem;" />
+                                        <RadzenButton Click="@(() => OnDeleteIcon(item.ID))" Size="ButtonSize.ExtraSmall" Style="position: absolute; right: 2px; top: 2px;" Icon="delete" />
+                                    </div>
                                 }
                                 else
                                 {
-                                    <InputFile OnChange="@(e => IconUpload(e, item.ID))" accept=".png" />
+                                    <div style="width: 8rem; height: 8rem; border-style: dashed; border-color: grey; border-width: 1px; position: relative; display: flex; justify-content: center; align-content: center; margin-left: auto; margin-right: auto;">
+                                        <label for=@item.ID>
+                                            <RadzenIcon Icon="add" Style="width: 100%; height: 100%;" />
+                                        </label>
+
+                                        <InputFile onchange="@(args => IconUpload(args, item.ID))" id="@item.ID" style="width: 0%; height: 0; overflow: hidden;" accept="*.png, *.jpg, *.jpeg" />
+                                    </div>
                                 }
                             </RadzenRow>
-                            <RadzenRow>
-                                <RadzenButton Click="@(() => OnClickCardSave(item.ID))">Save</RadzenButton>
-                                <RadzenButton Click="@(() => OnClickCardDelete(item.ID))">Delete</RadzenButton>
+                            <RadzenRow Style="display: inline-flex; flex-direction: row;">
+                                <RadzenButton Style="max-width: 45%" Click="@(() => OnClickCardSave(item.ID))">Save</RadzenButton>
+                                <RadzenButton Style="margin-right: 0; margin-left: auto; max-width: 45%;" Click="@(() => OnClickCardDelete(item.ID))">Delete</RadzenButton>
                             </RadzenRow>
                         </RadzenColumn>
                     </div>
@@ -79,6 +98,22 @@
             <RadzenTextBox @bind-Value="@newDisplay" Placeholder="Display Name" class="dashboard_card_text"/>
             <RadzenTextBox @bind-Value="@newURL" Placeholder="URL" class="dashboard_card_text" />
             <RadzenTextArea @bind-Value="@newDescription" Placeholder="Description" class="dashboard_card_text"/>
+            @if (newIcon == String.Empty) 
+            {
+                <div style="width: 8rem; height: 8rem; border-style: dashed; border-color: grey; border-width: 1px; position: relative; display: flex; justify-content: center; align-content: center;">
+                    <label for="upload_new_pic">
+                        <RadzenIcon Icon="add" Style="width: 100%; height: 100%;" />
+                    </label>
+
+                    <InputFile onchange="@(args => NewIconUpload(args))" id="upload_new_pic" style="width: 0%; height: 0; overflow: hidden;" accept="*.png, *.jpg, *.jpeg" />
+                </div>
+            } 
+            else 
+            {
+                <img src="@(newIcon)" style="width: 8rem; height: 8rem;" />
+            }
+
+
             <RadzenButton Click="@OnClickNewSave" Icon="save" class="right_button"/>
         </RadzenCard>
     </RadzenColumn>
@@ -94,6 +129,7 @@
     string newDisplay = String.Empty;
     string newURL = String.Empty;
     string newDescription = String.Empty;
+    string newIcon = String.Empty;
 
     private long maxFileSize = 1024 * 64;
 
@@ -144,7 +180,6 @@
                     await DashAPI.EditItem(editItem);
                     dashboardItems = await DashAPI.GetAll();
 
-                    StateHasChanged();
                     ShowNotification(new NotificationMessage
                         {
                             Severity = NotificationSeverity.Success,
@@ -153,7 +188,16 @@
                             Duration = 4000
                         });
 
-                    editHiddenDict[ID] = true;
+
+                    if (editHiddenDict.ContainsKey(ID)) 
+                    {
+                        editHiddenDict[ID] = true;
+                    } 
+                    else 
+                    {
+                        editHiddenDict.Add(ID, true);
+                    }
+                    
                     StateHasChanged();
                 }
                 catch(Exception ex)
@@ -214,17 +258,23 @@
             Description = newDescription 
         };
 
+        if (newIcon != String.Empty) 
+        {
+            addItem.Icon = newIcon;
+        }
+
         if (null != addItem) {
             if (DashboardItem.IsValid(addItem)) {
                 try
                 {
                     await DashAPI.AddItem(addItem);
-                    dashboardItems = await DashAPI.GetAll();
+                    await OnInitializedAsync();
 
                     //reset state
                     newDescription = String.Empty;
                     newDisplay = String.Empty;
                     newURL = String.Empty;
+                    newIcon = String.Empty;
 
                     addHidden = true;
 
@@ -270,84 +320,33 @@
         }
     }
 
+    async Task<string> PictureToBase64String(InputFileChangeEventArgs eventArgs) 
+    {
+        using var memoryStream = new MemoryStream();
+        await eventArgs.File.OpenReadStream(10000000).CopyToAsync(memoryStream);
+        var bytes = memoryStream.ToArray();
+        var base64 = Convert.ToBase64String(bytes);
+
+        return $"data:{eventArgs.File.ContentType};base64,{base64}";
+    }
+
     private async Task IconUpload(InputFileChangeEventArgs e, int ID)
     {
-        MemoryStream ms = new MemoryStream();
-        await e.File.OpenReadStream(maxFileSize).CopyToAsync(ms);
-        byte[] bytes = ms.ToArray();
-
-        if (null != dashboardItems) {
+        if (null != dashboardItems)
+        {
             DashboardItem? editItem = dashboardItems.Where(x => x.ID == ID).FirstOrDefault();
 
-            if (null != editItem) {
-                try
-                {
-                    editItem.Icon = bytes;
-
-                    await DashAPI.EditItem(editItem);
-                    dashboardItems = await DashAPI.GetAll();
-
-                    StateHasChanged();
-
-                    ShowNotification(new NotificationMessage
-                        {
-                            Severity = NotificationSeverity.Success,
-                            Summary = "Success",
-                            Detail = $"{editItem.ID} successfully edited",
-                            Duration = 4000
-                        });
-                } 
-                catch(Exception ex)
-                {
-                    ShowNotification(new NotificationMessage
-                        {
-                            Severity = NotificationSeverity.Error,
-                            Summary = "Error",
-                            Detail = ex.Message,
-                            Duration = 4000
-                        });
-                }
-            } 
-            else 
+            if (null != editItem)
             {
-                ShowNotification(new NotificationMessage
-                    {
-                        Severity = NotificationSeverity.Error,
-                        Summary = "Error",
-                        Detail = "Object is invalid",
-                        Duration = 4000
-                    });
+                editItem.Icon = await PictureToBase64String(e);
             }
         }
-        else
-        {
-            ShowNotification(new NotificationMessage
-                {
-                    Severity = NotificationSeverity.Error,
-                    Summary = "Error",
-                    Detail = "Object is null",
-                    Duration = 4000
-                });
-        }
     }
 
-    string GetSvgString(byte[] bytes)
+    private async Task NewIconUpload(InputFileChangeEventArgs e) 
     {
-        var imageSrc = Convert.ToBase64String(bytes);
-        return string.Format("data:image/svg+xml;base64,{0}", imageSrc);
-    }
-
-    string GetPngString(byte[] bytes)
-    {
-        var imageSrc = Convert.ToBase64String(bytes);
-        return string.Format("data:image/png;base64,{0}", imageSrc);
-    }
-
-    string GetJpegString(byte[] bytes)
-    {
-        var imageSrc = Convert.ToBase64String(bytes);
-        return string.Format("data:image/jpeg;base64,{0}", imageSrc);
-    }
+        newIcon = await PictureToBase64String(e);
+    } 
 
     async Task OnDeleteIcon(int ID) {
         if (null != dashboardItems)
