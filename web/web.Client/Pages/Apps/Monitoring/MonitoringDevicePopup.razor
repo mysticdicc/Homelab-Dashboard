@@ -1,0 +1,114 @@
+﻿@inject danklibrary.DankAPI.Monitoring MonitorAPI
+@inject DialogService DialogService
+
+@page "/monitoring/{deviceId}"
+
+<RadzenRow>
+    <RadzenRow class="row">
+        <RadzenColumn Size="4" class="row_column">
+            <RadzenText class="row_Contents">
+                Poll Time
+            </RadzenText>
+        </RadzenColumn>
+        <RadzenColumn Size="4" class="row_column">
+            <RadzenText class="row_Contents">
+                ICMP Response
+            </RadzenText>
+        </RadzenColumn>
+        <RadzenColumn Size="4" class="row_column">
+            <RadzenText class="row_Contents">
+                Port State
+            </RadzenText>
+        </RadzenColumn>
+    </RadzenRow>
+
+        @if (null != currentMonitorStates)
+        {
+            var last = currentMonitorStates.Last();
+
+            @foreach (MonitorState state in currentMonitorStates)
+            {
+                <RadzenRow Style="width: 100%" class="row">
+                    <RadzenColumn Size="4" class="row_column">
+                        <RadzenText class="row_contents">
+                            @state.SubmitTime
+                        </RadzenText>
+                    </RadzenColumn>
+                    <RadzenColumn Size="4" class="row_column">
+                        @if (state.IcmpResponse != null && state.IcmpResponse == true)
+                        {
+                            <RadzenIcon Icon="check" class="row_contents"/>
+                        }
+                        else
+                        {
+                            <RadzenIcon Icon="close" class="row_contents" />
+                        }
+                    </RadzenColumn>
+                    <RadzenColumn Size="4" class="row_column">
+
+                    </RadzenColumn>
+                </RadzenRow>
+
+                @if (null != state.PortState) 
+                {
+                    @foreach(PortState portState in state.PortState) {
+                    <RadzenRow class="row">
+                        <div class="grey_line"/>
+                        <RadzenColumn Size="4" class="row_column">
+
+                        </RadzenColumn>
+                        <RadzenColumn Size="4" class="row_column">
+                            <RadzenText class="row_contents">
+                                @portState.Port
+                            </RadzenText>
+                        </RadzenColumn>
+                        <RadzenColumn Size="4" class="row_column">
+                            @if (portState.Status) 
+                            {
+                                <RadzenIcon Icon="check" class="row_contents" />
+                            } 
+                            else 
+                            {
+                                <RadzenIcon Icon="close" class="row_contents" />
+                            }
+                        </RadzenColumn>
+                    </RadzenRow>
+                    }
+                }
+
+                @if (state != last)
+                {
+                    <div class="grey_line" />
+                }
+
+            }
+        }
+
+        <RadzenRow class="row">
+            <RadzenColumn Size="12" class="row_column">
+                <RadzenButton Click="@(() => DialogService.Close())" Icon="close" class="row_contents"/>
+            </RadzenColumn>
+        </RadzenRow>
+</RadzenRow>
+
+@code 
+{
+    [Parameter]
+    public int deviceId { get; set; }
+
+    List<MonitorState>? monitorStates;
+    List<MonitorState>? currentMonitorStates;
+
+    async protected override Task OnInitializedAsync() {
+
+        monitorStates = await MonitorAPI.GetByDeviceId(deviceId);
+
+        if (null != monitorStates) 
+        {
+            DateTime fromTime = DateTime.Now.AddHours(-24);
+            currentMonitorStates = monitorStates.Where(x => x.SubmitTime.ToLocalTime() > fromTime).ToList();
+        }
+
+        await base.OnInitializedAsync();
+    }
+}

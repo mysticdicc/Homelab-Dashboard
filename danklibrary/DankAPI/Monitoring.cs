@@ -23,6 +23,12 @@ namespace danklibrary.DankAPI
             return ips;
         }
 
+        public async Task<List<MonitorState>> GetByDeviceId(int ID)
+        {
+            List<MonitorState> monitorStates = await _httpClient.GetFromJsonAsync<List<MonitorState>>($"/monitoring/get/bydeviceid?id={ID.ToString()}");
+            return monitorStates;
+        }
+
         public async Task UpdateTimer(int monitorDelay)
         {
             await _httpClient.PostAsJsonAsync<int>("/monitoring/post/newtimer", monitorDelay);

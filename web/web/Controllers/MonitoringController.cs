@@ -40,6 +40,14 @@ namespace web.Controllers
             return JsonConvert.SerializeObject(context.MonitorStates.ToList());
         }
 
+        [HttpGet]
+        [Route("[controller]/get/bydeviceid")]
+        public string GetByDeviceID(int ID)
+        {
+            using var context = _DbFactory.CreateDbContext();
+            return JsonConvert.SerializeObject(context.MonitorStates.Where(x => x.IP_ID == ID).ToList());
+        }
+
         [HttpPost]
         [Route("[controller]/post/newpoll")]
         public async Task<Results<BadRequest<string>, Ok>> NewDevicePoll(List<IP> ips)

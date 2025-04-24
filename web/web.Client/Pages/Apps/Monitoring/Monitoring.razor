@@ -1,4 +1,5 @@
 ﻿@inject danklibrary.DankAPI.Monitoring MonitoringAPI
+@inject DialogService DialogService
 @inject IJSRuntime JSRuntime
 
 @page "/monitoring/home"
@@ -106,20 +107,23 @@
                         <RadzenRow class="row" RowGap="0">
                             <div hidden="@monitoredHidden" class="row">
                                 <RadzenRow class="row">
-                                    <RadzenColumn Size="4" class="row_column">
+                                    <RadzenColumn Size="3" class="row_column">
                                         <RadzenText class="row_contents">
                                             IP Address
                                         </RadzenText>
                                     </RadzenColumn>
-                                    <RadzenColumn Size="4" class="row_column">
+                                    <RadzenColumn Size="3" class="row_column">
                                         <RadzenText class="row_contents">
                                             Hostname
                                         </RadzenText>
                                     </RadzenColumn>
-                                    <RadzenColumn Size="4" class="row_column">
+                                    <RadzenColumn Size="3" class="row_column">
                                         <RadzenText class="row_contents">
                                             Last State
                                         </RadzenText>
+                                    </RadzenColumn>
+                                    <RadzenColumn Size="3">
+
                                     </RadzenColumn>
                                     <div class="black_line" />
                                 </RadzenRow>
@@ -129,17 +133,17 @@
                                     foreach (IP ip in currentlyMonitored)
                                     {
                                         <RadzenRow class="row">
-                                            <RadzenColumn Size="4" class="row_column">
+                                            <RadzenColumn Size="3" class="row_column">
                                                 <RadzenText class="row_contents">
                                                     @IP.ConvertToString(ip.Address)
                                                 </RadzenText>
                                             </RadzenColumn>
-                                            <RadzenColumn Size="4" class="row_column">
+                                            <RadzenColumn Size="3" class="row_column">
                                                 <RadzenText class="row_contents">
                                                     @ip.Hostname
                                                 </RadzenText>
                                             </RadzenColumn>
-                                            <RadzenColumn Size="4" class="row_column">
+                                            <RadzenColumn Size="3" class="row_column">
                                                 @if (LastMonitorState(ip.ID))
                                                 {
                                                     <RadzenIcon Icon="check" class="row_contents"/>
@@ -148,6 +152,9 @@
                                                 {
                                                     <RadzenIcon Icon="close" class="row_contents" />
                                                 }
+                                            </RadzenColumn>
+                                            <RadzenColumn Size="3" class="row_column">
+                                                <RadzenButton Icon="search" Click="@(() => OpenDeviceMonitorView(ip))"/>
                                             </RadzenColumn>
                                             @if (!(ip == last)) 
                                             {
@@ -317,5 +324,16 @@
     {
         var timer = (await MonitoringAPI.GetTimer() / 1000);
         return timer.ToString();
+    }
+
+    async Task OpenDeviceMonitorView(IP ip) 
+    {
+        await DialogService.OpenAsync<MonitoringDevicePopup>($"Polls in Last 24 Hours: {IP.ConvertToString(ip.Address)}",
+            new Dictionary<string, object>() { { "deviceId", ip.ID } },
+            new DialogOptions()
+                {
+                    Resizable = true,
+                    Draggable = true
+                });
     }
 }
