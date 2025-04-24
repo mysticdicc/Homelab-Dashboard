@@ -13,8 +13,17 @@ namespace danklibrary.DankAPI
 
         public async Task<List<MonitorState>> GetAllPolls()
         {
-            List<MonitorState> monitorStates = await _httpClient.GetFromJsonAsync<List<MonitorState>>("/monitoring/get/allpolls");
-            return monitorStates;
+            List<MonitorState>? monitorStates = await _httpClient.GetFromJsonAsync<List<MonitorState>>("/monitoring/get/allpolls");
+
+            if (null != monitorStates)
+            {
+                return monitorStates;
+            } 
+            else
+            {
+                throw new Exception();
+            }
+            
         }
 
         public async Task<List<IP>> GetMonitoredIPs()

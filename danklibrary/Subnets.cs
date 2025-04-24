@@ -161,6 +161,7 @@ namespace danklibrary
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public int MonitorID { get; set; }
+        [JsonIgnore]
         public MonitorState? MonitorState { get; set; }
         required public int Port { get; set; }
         required public bool Status { get; set; }

@@ -45,7 +45,12 @@ namespace web.Controllers
         public string GetByDeviceID(int ID)
         {
             using var context = _DbFactory.CreateDbContext();
-            return JsonConvert.SerializeObject(context.MonitorStates.Where(x => x.IP_ID == ID).ToList());
+            return JsonConvert.SerializeObject(context.MonitorStates.Where(x => x.IP_ID == ID).Include(x => x.PortState).ToList(), Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    }
+                );
         }
 
         [HttpPost]

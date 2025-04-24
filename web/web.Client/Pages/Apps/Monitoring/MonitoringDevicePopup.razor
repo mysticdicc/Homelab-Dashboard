@@ -20,6 +20,7 @@
                 Port State
             </RadzenText>
         </RadzenColumn>
+        <div class="black_line"/>
     </RadzenRow>
 
         @if (null != currentMonitorStates)
@@ -35,46 +36,49 @@
                         </RadzenText>
                     </RadzenColumn>
                     <RadzenColumn Size="4" class="row_column">
-                        @if (state.IcmpResponse != null && state.IcmpResponse == true)
+                    @if (state.IcmpResponse != null) {
+                        @if (state.IcmpResponse == true)
                         {
-                            <RadzenIcon Icon="check" class="row_contents"/>
+                            <RadzenIcon Icon="check" class="row_contents" />
                         }
                         else
                         {
                             <RadzenIcon Icon="close" class="row_contents" />
                         }
+                    }
                     </RadzenColumn>
-                    <RadzenColumn Size="4" class="row_column">
+                    <RadzenColumn Size="4">
+                        @if (null != state.PortState)
+                        {
+                            @foreach (PortState portState in state.PortState)
+                            {
+                                <RadzenRow Style="width: 100%;">
+                                    <RadzenColumn Size="12">
+                                        @if (portState.Status)
+                                        {
+                                            <div style="display: flex; align-content: center; justify-content: center;">
+                                                <RadzenText Style="margin-top: auto; margin-bottom: auto;">
+                                                    @portState.Port.ToString()
+                                                </RadzenText>
+                                                <RadzenIcon Icon="check" Style="margin-top: auto; margin-bottom: auto;" />
+                                            </div>
 
+                                        }
+                                        else
+                                        {
+                                            <div style="display: flex; align-content: center; justify-content: center;">
+                                                <RadzenText Style="margin-top: auto; margin-bottom: auto;">
+                                                    @portState.Port.ToString()
+                                                </RadzenText>
+                                                <RadzenIcon Icon="close" Style="margin-top: auto; margin-bottom: auto;" />
+                                            </div>
+                                        }
+                                    </RadzenColumn>
+                                </RadzenRow>
+                            }
+                        }
                     </RadzenColumn>
                 </RadzenRow>
-
-                @if (null != state.PortState) 
-                {
-                    @foreach(PortState portState in state.PortState) {
-                    <RadzenRow class="row">
-                        <div class="grey_line"/>
-                        <RadzenColumn Size="4" class="row_column">
-
-                        </RadzenColumn>
-                        <RadzenColumn Size="4" class="row_column">
-                            <RadzenText class="row_contents">
-                                @portState.Port
-                            </RadzenText>
-                        </RadzenColumn>
-                        <RadzenColumn Size="4" class="row_column">
-                            @if (portState.Status) 
-                            {
-                                <RadzenIcon Icon="check" class="row_contents" />
-                            } 
-                            else 
-                            {
-                                <RadzenIcon Icon="close" class="row_contents" />
-                            }
-                        </RadzenColumn>
-                    </RadzenRow>
-                    }
-                }
 
                 @if (state != last)
                 {
