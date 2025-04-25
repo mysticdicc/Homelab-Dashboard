@@ -94,15 +94,45 @@
                                         Hostname
                                     </RadzenText>
                                 </RadzenColumn>
-                                <RadzenColumn Size="2" class="row_column">
+                                <RadzenColumn Size="2" class="row_column" Style="gap: 0.3rem;">
                                     <RadzenText class="row_contents">
                                         Monitored
                                     </RadzenText>
+                                    <div class="dropdown">
+                                        <RadzenButton class="dropbtn" Icon="sort" Size="ButtonSize.ExtraSmall"/>
+                                        <div class="dropdown_content">
+                                            <div onclick="@(() => FilterMonitored(subnet.ID, true))" style="width: 100%; height: 2rem;" class="row_column">
+                                                <RadzenText class="row_contents">
+                                                    Enabled
+                                                </RadzenText>
+                                            </div>
+                                            <div onclick="@(() => FilterMonitored(subnet.ID, false))" style="width: 100%; height: 2rem;" class="row_column">
+                                                <RadzenText class="row_contents">
+                                                    Disabled
+                                                </RadzenText>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </RadzenColumn>
-                                <RadzenColumn Size="2" class="row_column">
+                                <RadzenColumn Size="2" class="row_column" Style="gap: 0.3rem;">
                                     <RadzenText class="row_contents">
                                         ICMP
                                     </RadzenText>
+                                    <div class="dropdown">
+                                        <RadzenButton class="dropbtn" Icon="sort" Size="ButtonSize.ExtraSmall" />
+                                        <div class="dropdown_content">
+                                            <div onclick="@(() => FilterIcmp(subnet.ID, true))" style="width: 100%; height: 2rem;" class="row_column">
+                                                <RadzenText class="row_contents">
+                                                    Enabled
+                                                </RadzenText>
+                                            </div>
+                                            <div onclick="@(() => FilterIcmp(subnet.ID, false))" style="width: 100%; height: 2rem;" class="row_column">
+                                                <RadzenText class="row_contents">
+                                                    Disabled
+                                                </RadzenText>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </RadzenColumn>
                                 <RadzenColumn Size="2" class="row_column">
                                     <RadzenText class="row_contents">
@@ -412,6 +442,66 @@
             }
 
             StateHasChanged();
+        }
+    }
+
+    void FilterIcmp(int subnetID, bool enabled) 
+    {
+        if (null != SubnetList) 
+        {
+            Subnet? searchingSubnet = SubnetList.Where(x => x.ID == subnetID).FirstOrDefault();
+
+            if (null != searchingSubnet) 
+            {
+                var visibleList = searchingSubnet.List.Where(x => x.IsMonitoredICMP == enabled).ToList();
+
+                foreach (IP ip in searchingSubnet.List) 
+                {
+                    if (null != ip.RowState) 
+                    {
+                        if (visibleList.Contains(ip))
+                        {
+                            ip.RowState.Hidden = false;
+                        }
+                        else
+                        {
+                            ip.RowState.Hidden = true;
+                        }
+                    }
+                }
+
+                StateHasChanged();
+            }
+        }
+    }
+
+    void FilterMonitored(int subnetID, bool enabled)
+    {
+        if (null != SubnetList)
+        {
+            Subnet? searchingSubnet = SubnetList.Where(x => x.ID == subnetID).FirstOrDefault();
+
+            if (null != searchingSubnet)
+            {
+                var visibleList = searchingSubnet.List.Where(x => x.IsMonitoredICMP || x.IsMonitoredTCP == enabled).ToList();
+
+                foreach (IP ip in searchingSubnet.List)
+                {
+                    if (null != ip.RowState)
+                    {
+                        if (visibleList.Contains(ip))
+                        {
+                            ip.RowState.Hidden = false;
+                        }
+                        else
+                        {
+                            ip.RowState.Hidden = true;
+                        }
+                    }
+                }
+
+                StateHasChanged();
+            }
         }
     }
 

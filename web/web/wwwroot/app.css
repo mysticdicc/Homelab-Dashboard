@@ -178,3 +178,36 @@ h1:focus {
     align-content: center;
     width: fit-content;
 }
+
+.dropbtn {
+    padding: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative !important;
+    display: inline-block !important;
+}
+
+.dropdown:hover .dropdown_content {
+    display: block !important;
+}
+
+.dropdown_content {
+    display: none !important;
+    position: absolute !important;
+    min-width: 120px !important;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2) !important;
+    z-index: 1 !important;
+    background-color: white !important;
+}
+
+.dropdown_content div {
+    color: black !important;
+    text-decoration: none !important;
+    display: block !important;
+}
+
+.dropdown_content div:hover {
+    background-color: #ddd !important;
+}
