@@ -39,11 +39,12 @@ Generates a list of all IP addresses in a subnet if you provide the IP range in 
 
 Pressing the "refresh" icon on the subnet row will start a discovery task, any devices that respond to ICMP (ping) will automatically be added to monitoring, it will also attempt to resolve the dns names for these and store them in teh hostname field.
 
-![dashboard_home](/gitimages/subnettrackeropened.png)
-![dashboard_home](/gitimages/subnettrackerclosed.png)
+![subnet_home_open](/gitimages/subnettrackeropened.png)
+![subnet_home_closed](/gitimages/subnettrackerclosed.png)
 
 # Monitoring
 Shows you a line chart which shows the various monitoring states for all of your monitored devices over time, with the ability to change the polling interval for the monitoring service and change the scale of the graph to different time scales.
 
-![dashboard_home](/gitimages/monitoring.png)
-![dashboard_home](/gitimages/monitoringopen.png)
+![monitoring_home](/gitimages/monitoring.png)
+![monitoring_home_open](/gitimages/monitoringopen.png)
+![monitoring_popup_open](/gitimages/monitoring1device.png)
