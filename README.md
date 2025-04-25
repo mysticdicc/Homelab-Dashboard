@@ -49,4 +49,4 @@ Shows you a line chart which shows the various monitoring states for all of your
 ![monitoring_home_open](/gitimages/monitoringopen.png)
 ![monitoring_popup_open](/gitimages/monitoring1device.png)
 
-Available under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text)license
+Available under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text) license
