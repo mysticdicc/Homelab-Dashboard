@@ -52,11 +52,11 @@
                         {
                             @foreach (PortState portState in state.PortState)
                             {
-                                <RadzenRow Style="width: 100%;">
-                                    <RadzenColumn Size="12">
+                                <RadzenRow Style="width: 100%; height: 100%">
+                                    <RadzenColumn Size="12" Style="height: 100%;">
                                         @if (portState.Status)
                                         {
-                                            <div style="display: flex; align-content: center; justify-content: center;">
+                                            <div style="display: flex; align-content: center; justify-content: center; height: 100%;">
                                                 <RadzenText Style="margin-top: auto; margin-bottom: auto;">
                                                     @portState.Port.ToString()
                                                 </RadzenText>
@@ -66,7 +66,7 @@
                                         }
                                         else
                                         {
-                                            <div style="display: flex; align-content: center; justify-content: center;">
+                                            <div style="display: flex; align-content: center; justify-content: center; height: 100%;">
                                                 <RadzenText Style="margin-top: auto; margin-bottom: auto;">
                                                     @portState.Port.ToString()
                                                 </RadzenText>

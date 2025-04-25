@@ -129,8 +129,6 @@
                                 </RadzenRow>
                                 @if (null != currentlyMonitored)
                                 {
-                                    var last = currentlyMonitored.Last();
-
                                     foreach (IP ip in currentlyMonitored)
                                     {
                                         <RadzenRow class="row">
@@ -157,9 +155,13 @@
                                             <RadzenColumn Size="3" class="row_column">
                                                 <RadzenButton Icon="search" Click="@(() => OpenDeviceMonitorView(ip))"/>
                                             </RadzenColumn>
-                                            @if (!(ip == last)) 
+                                            @if (null != lastCurrentlyMonitored)
                                             {
-                                                <div class="grey_line" />
+                                                @if (!(ip == lastCurrentlyMonitored))
+                                                {
+                                                    <div class="grey_line" />
+                                                }
+
                                             }
                                         </RadzenRow>
                                     }
@@ -190,6 +192,7 @@
 
     List<IP>? monitoredIPs;
     List<IP>? currentlyMonitored;
+    IP? lastCurrentlyMonitored;
 
     DateTime lastDate;
     List<MonitorState>? lastPolls;
@@ -284,6 +287,11 @@
         if (null != lastPolls) {
             var ids = lastPolls.Select(x => x.IP_ID).Distinct();
             currentlyMonitored = monitoredIPs.Where(x => ids.Contains(x.ID)).ToList();
+
+            if (currentlyMonitored.Count() > 0) 
+            {
+                lastCurrentlyMonitored = currentlyMonitored.Last();
+            }
         }
 
     }
