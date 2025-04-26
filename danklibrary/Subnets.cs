@@ -33,9 +33,6 @@ namespace danklibrary
         public bool IsMonitoredICMP { get; set; }
         public bool IsMonitoredTCP { get; set; }
         public List<int>? PortsMonitored { get; set; }
-        [JsonIgnore]
-        [NotMapped]
-        public IpRowState? RowState { get; set; }
 
         public bool IsValid(IP ip)
         {
@@ -82,12 +79,11 @@ namespace danklibrary
         }
     }
 
-    [NotMapped]
     public class IpRowState
     {
-        public bool Hidden { get; set; }
         public bool EditHidden { get; set; }
         public string? PortNumbers { get; set; }
+
     }
 
     public class Subnet
@@ -139,6 +135,11 @@ namespace danklibrary
     {
         public bool Hidden { get; set; }
         public string? SearchTerm { get; set; }
+        public bool FilterRowHidden { get; set; }
+        public bool IcmpFilterEnabled { get; set; }
+        public bool TcpFilterEnabled { get; set; }
+        public enum FilterByOption { And, Or }
+        public FilterByOption FilterBy { get; set; }
     }
 
     public class MonitorState

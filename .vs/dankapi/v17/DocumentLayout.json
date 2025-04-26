@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\richard.local\\source\\repos\\dankapi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5837E450-4E46-4DE5-ACB5-C17F6E07331E}|web\\web\\web.csproj|c:\\users\\richard.local\\source\\repos\\dankapi\\web\\web\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{5837E450-4E46-4DE5-ACB5-C17F6E07331E}|web\\web\\web.csproj|solutionrelative:web\\web\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1D88282A-7A52-4206-AFD6-4316DFB45C16}|web\\web.Client\\web.Client.csproj|c:\\users\\richard.local\\source\\repos\\dankapi\\web\\web.client\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1D88282A-7A52-4206-AFD6-4316DFB45C16}|web\\web.Client\\web.Client.csproj|solutionrelative:web\\web.client\\pages\\apps\\subnettracker\\subnettracker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5837E450-4E46-4DE5-ACB5-C17F6E07331E}|web\\web\\web.csproj|c:\\users\\richard.local\\source\\repos\\dankapi\\web\\web\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5837E450-4E46-4DE5-ACB5-C17F6E07331E}|web\\web\\web.csproj|solutionrelative:web\\web\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B0EAF49-83A1-4221-8821-1F825C783E60}|danklibrary\\danklibrary.csproj|c:\\users\\richard.local\\source\\repos\\dankapi\\danklibrary\\subnets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,13 +34,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "app.css",
               "DocumentMoniker": "C:\\Users\\richard.local\\source\\repos\\dankapi\\web\\web\\wwwroot\\app.css",
               "RelativeDocumentMoniker": "web\\web\\wwwroot\\app.css",
               "ToolTip": "C:\\Users\\richard.local\\source\\repos\\dankapi\\web\\web\\wwwroot\\app.css",
               "RelativeToolTip": "web\\web\\wwwroot\\app.css",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAmwNMAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAmwIYAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-04-25T14:10:55.599Z",
               "EditorCaption": ""
@@ -53,7 +53,7 @@
               "RelativeDocumentMoniker": "danklibrary\\Subnets.cs",
               "ToolTip": "C:\\Users\\richard.local\\source\\repos\\dankapi\\danklibrary\\Subnets.cs",
               "RelativeToolTip": "danklibrary\\Subnets.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACkAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAUwFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T20:18:24.198Z",
               "EditorCaption": ""
@@ -66,13 +66,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SubnetTracker.razor",
               "DocumentMoniker": "C:\\Users\\richard.local\\source\\repos\\dankapi\\web\\web.Client\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "RelativeDocumentMoniker": "web\\web.Client\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "ToolTip": "C:\\Users\\richard.local\\source\\repos\\dankapi\\web\\web.Client\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
               "RelativeToolTip": "web\\web.Client\\Pages\\Apps\\SubnetTracker\\SubnetTracker.razor",
-              "ViewState": "AgIAAEoAAAAAAAAAAADgv2YAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAAAHUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-25T13:28:55.987Z",
               "EditorCaption": ""

@@ -68,7 +68,7 @@
                     <RadzenColumn Size="2" class="row_column">
                         <div hidden="@(CurrentSubnetRowState[subnet.ID].Hidden)" style="display: inline-flex; align-content: center;">
                             <RadzenTextBox @bind-Value="@CurrentSubnetRowState[subnet.ID].SearchTerm" onkeyup="@((KeyboardEventArgs e) => OnSearchKeyPress(e, subnet.ID))" Placeholder="Search" Style="margin-right: 2%; width: 85%;" class="row_contents" />
-                            <RadzenButton Icon="search" Click="@(() => SearchSubnet(subnet.ID))" class="right_button row_contents" Style="max-width: 15%"/>
+                            <RadzenButton Icon="search" Click="@(() => UpdateIpListFilter(subnet.ID))" class="right_button row_contents" Style="max-width: 15%"/>
                         </div>
                     </RadzenColumn>
                     <RadzenColumn Size="2" class="row_column" Style="gap: 0.5rem;">
@@ -84,74 +84,71 @@
                         @if (null != subnet.List)
                         {
                             <RadzenRow Gap="0" class="row">
-                                <RadzenColumn Size="2" class="row_column">
-                                    <RadzenText class="row_contents">
-                                        IP Address
-                                    </RadzenText>
-                                </RadzenColumn>
-                                <RadzenColumn Size="2" class="row_column">
-                                    <RadzenText class="row_contents">
-                                        Hostname
-                                    </RadzenText>
-                                </RadzenColumn>
-                                <RadzenColumn Size="2" class="row_column" Style="gap: 0.3rem;">
-                                    <RadzenText class="row_contents">
-                                        Monitored
-                                    </RadzenText>
-                                    <div class="dropdown">
-                                        <RadzenButton class="dropbtn" Icon="sort" Size="ButtonSize.ExtraSmall"/>
-                                        <div class="dropdown_content">
-                                            <div onclick="@(() => FilterMonitored(subnet.ID, true))" style="width: 100%; height: 2rem;" class="row_column">
-                                                <RadzenText class="row_contents">
-                                                    Enabled
+                                <RadzenRow class="row">
+                                    <RadzenColumn Size="2" class="row_column">
+                                        <RadzenText class="row_contents">
+                                            IP Address
+                                        </RadzenText>
+                                    </RadzenColumn>
+                                    <RadzenColumn Size="2" class="row_column">
+                                        <RadzenText class="row_contents">
+                                            Hostname
+                                        </RadzenText>
+                                    </RadzenColumn>
+                                    <RadzenColumn Size="2" class="row_column">
+                                        <RadzenText class="row_contents">
+                                            Monitored
+                                        </RadzenText>
+                                    </RadzenColumn>
+                                    <RadzenColumn Size="2" class="row_column">
+                                        <RadzenText class="row_contents">
+                                            ICMP
+                                        </RadzenText>
+                                    </RadzenColumn>
+                                    <RadzenColumn Size="2" class="row_column">
+                                        <RadzenText class="row_contents">
+                                            Monitored Ports
+                                        </RadzenText>
+                                    </RadzenColumn>
+                                    <RadzenColumn Size="2" class="row_column" Style="gap: 0.3rem;">
+                                        <RadzenButton Icon="filter_alt" Size="ButtonSize.ExtraSmall" class="row_contents" Click="@(() => OnClickExpandFilter(subnet.ID))" />
+                                        <RadzenButton Icon="close" Size="ButtonSize.ExtraSmall" class="row_contents" Click="@(() => ClearFilters(subnet.ID))" />
+                                    </RadzenColumn>
+                                    <div class="black_line" />
+                                </RadzenRow>
+                                <div hidden="@CurrentSubnetRowState[subnet.ID].FilterRowHidden">
+                                    <RadzenRow>
+                                        <RadzenColumn Size="12" Style="margin-bottom: 0.3rem;">
+                                            <RadzenRow Style="display: flex; flex-direction: row; align-content: start; justify-content: center; margin-bottom: 0.3rem;">
+                                                <RadzenText Style="margin-top: auto; margin-bottom: auto; margin-right: 0.3rem;">
+                                                    ICMP Enabled:
                                                 </RadzenText>
-                                            </div>
-                                            <div onclick="@(() => FilterMonitored(subnet.ID, false))" style="width: 100%; height: 2rem;" class="row_column">
-                                                <RadzenText class="row_contents">
-                                                    Disabled
+                                                <RadzenDropDown AllowClear="false" @bind-Value="@CurrentSubnetRowState[subnet.ID].IcmpFilterEnabled" Data="@TrueFalselist" Style="margin-top: auto; margin-bottom: auto;" />
+                                            </RadzenRow>
+                                            <RadzenRow Style="display: flex; flex-direction: row; align-content: start; justify-content: center;">
+                                                <RadzenText Style="margin-top: auto; margin-bottom: auto; margin-right: 0.3rem;">
+                                                    Operator:
                                                 </RadzenText>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </RadzenColumn>
-                                <RadzenColumn Size="2" class="row_column" Style="gap: 0.3rem;">
-                                    <RadzenText class="row_contents">
-                                        ICMP
-                                    </RadzenText>
-                                    <div class="dropdown">
-                                        <RadzenButton class="dropbtn" Icon="sort" Size="ButtonSize.ExtraSmall" />
-                                        <div class="dropdown_content">
-                                            <div onclick="@(() => FilterIcmp(subnet.ID, true))" style="width: 100%; height: 2rem;" class="row_column">
-                                                <RadzenText class="row_contents">
-                                                    Enabled
+                                                <RadzenDropDown AllowClear="false" @bind-Value="@(CurrentSubnetRowState[subnet.ID].FilterBy)" Data="@FilterByList" Style="margin-top: auto; margin-bottom: auto; margin-right: 0.3rem;" />
+                                                <RadzenText Style="margin-top: auto; margin-bottom: auto; margin-right: 0.3rem;">
+                                                    TCP Enabled:
                                                 </RadzenText>
-                                            </div>
-                                            <div onclick="@(() => FilterIcmp(subnet.ID, false))" style="width: 100%; height: 2rem;" class="row_column">
-                                                <RadzenText class="row_contents">
-                                                    Disabled
-                                                </RadzenText>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </RadzenColumn>
-                                <RadzenColumn Size="2" class="row_column">
-                                    <RadzenText class="row_contents">
-                                        Monitored Ports
-                                    </RadzenText>
-                                </RadzenColumn>
-                                <RadzenColumn Size="2">
-
-                                </RadzenColumn>
-                                <div class="black_line" />
+                                                <RadzenDropDown AllowClear="false" @bind-Value="@CurrentSubnetRowState[subnet.ID].TcpFilterEnabled" Data="@TrueFalselist" Style="margin-top: auto; margin-bottom: auto; margin-right: 0.3rem;" />
+                                                <RadzenButton Text="Filter" Click="@(() => UpdateIpListFilter(subnet.ID))" Style="margin-top: auto; margin-bottom: auto;" />
+                                            </RadzenRow>
+                                        </RadzenColumn>
+                                        <div class="black_line" />
+                                    </RadzenRow>
+                                </div>
                             </RadzenRow>
 
                             <div hidden="@(CurrentSubnetRowState[subnet.ID].Hidden)">
-                                <Virtualize Items="@(subnet.List.Where(x => x.RowState.Hidden == false).ToList())" @ref="IpLists">
-                                    @{var last = subnet.List.Where(x => x.RowState.Hidden == false).ToList().Last();}
-
-                                    @if (!CurrentSubnetRowState[subnet.ID].Hidden)
-                                    {
-                                        <RadzenRow Style="height: 100%;" RowGap="0">
+                                @if (null != FilteredIplists[subnet.ID]) {
+                                    <Virtualize Items="@(FilteredIplists[subnet.ID])" @ref="IpLists" TItem="IP">
+                                        @{
+                                            var last = FilteredIplists[subnet.ID].Last();
+                                        }
+                                        <RadzenRow Style="height: 100%;" RowGap="0" class="row">
                                             <RadzenRow class="row" RowGap="0">
                                                 <RadzenColumn Size="2" class="row_column">
                                                     <RadzenText class="row_contents">
@@ -159,10 +156,10 @@
                                                     </RadzenText>
                                                 </RadzenColumn>
 
-                                                @if (null != context.RowState)
+                                                @if (null != CurrentIpRowState[context.ID])
                                                 {
                                                     <RadzenColumn Size="2" class="row_column">
-                                                        @if (context.RowState.EditHidden)
+                                                        @if (CurrentIpRowState[context.ID].EditHidden)
                                                         {
                                                             <RadzenText class="row_contents">
                                                                 @context.Hostname
@@ -184,7 +181,7 @@
                                                         }
                                                     </RadzenColumn>
                                                     <RadzenColumn Size="2" class="row_column">
-                                                        @if (context.RowState.EditHidden)
+                                                        @if (CurrentIpRowState[context.ID].EditHidden)
                                                         {
                                                             if (context.IsMonitoredICMP)
                                                             {
@@ -201,22 +198,22 @@
                                                         }
                                                     </RadzenColumn>
                                                     <RadzenColumn Size="2" class="row_column">
-                                                        @if (context.RowState.EditHidden)
+                                                        @if (CurrentIpRowState[context.ID].EditHidden)
                                                         {
-                                                            if (null != context.RowState.PortNumbers)
+                                                            if (null != CurrentIpRowState[context.ID].PortNumbers)
                                                             {
                                                                 <RadzenText class="row_contents">
-                                                                    @context.RowState.PortNumbers
+                                                                    @CurrentIpRowState[context.ID].PortNumbers
                                                                 </RadzenText>
                                                             }
                                                         }
                                                         else
                                                         {
-                                                            <RadzenTextBox @bind-Value="@context.RowState.PortNumbers" Style="margin-right: 0.5rem;" class="row_contents" />
+                                                            <RadzenTextBox @bind-Value="@CurrentIpRowState[context.ID].PortNumbers" Style="margin-right: 0.5rem;" class="row_contents" />
                                                         }
                                                     </RadzenColumn>
                                                     <RadzenColumn Size="2" class="row_column">
-                                                        @if (context.RowState.EditHidden)
+                                                        @if (CurrentIpRowState[context.ID].EditHidden)
                                                         {
                                                             <RadzenButton Icon="edit" Click="@(() => OnClickEdit(context))" class="row_contents" />
                                                         }
@@ -232,12 +229,13 @@
                                                     <RadzenColumn Size="10" />
                                                 }
                                             </RadzenRow>
-                                            @if (context != last) {
+                                            @if (context != last)
+                                            {
                                                 <div class="grey_line" />
                                             }
                                         </RadzenRow>
-                                    }
-                                </Virtualize>
+                                    </Virtualize>
+                                }
                             </div>
                         }
                     </RadzenCard>
@@ -256,10 +254,101 @@
     List<Subnet>? SubnetList;
     bool showSearch = false;
     string? newCidr;
+
     private Virtualize<IP>? IpLists { get; set; }
-
     Dictionary<int, SubnetRowState> CurrentSubnetRowState = new();
+    Dictionary<int, IpRowState> CurrentIpRowState = new();
+    Dictionary<int, IList<IP>> FilteredIplists = new();
 
+    List<bool> TrueFalselist = new(){
+        true,
+        false
+    };
+
+    List<SubnetRowState.FilterByOption> FilterByList = new(){
+        SubnetRowState.FilterByOption.And,
+        SubnetRowState.FilterByOption.Or
+    };
+
+    void UpdateIpListFilter(int subnetId) 
+    {
+        if (SubnetList == null || !SubnetList.Any(x => x.ID == subnetId)) return;
+
+        var subnet = SubnetList.First(x => x.ID == subnetId);
+        var state = CurrentSubnetRowState[subnetId];
+
+        bool hasSearch = !string.IsNullOrEmpty(state.SearchTerm);
+        bool isHostnameSearch = hasSearch && Regex.IsMatch(state.SearchTerm!, "[A-Z]+", RegexOptions.IgnoreCase);
+
+        Func<IP, bool> filter = x =>
+        {
+            bool icmpMatch = state.IcmpFilterEnabled == x.IsMonitoredICMP;
+            bool tcpMatch = state.TcpFilterEnabled == x.IsMonitoredTCP;
+
+            bool searchMatch = true;
+            if (hasSearch) 
+            {
+                searchMatch = isHostnameSearch
+                    ? x.Hostname != null && x.Hostname.Contains(state.SearchTerm!)
+                    : IP.ConvertToString(x.Address).Contains(state.SearchTerm!);
+            }
+
+            return state.FilterBy switch
+            {
+                SubnetRowState.FilterByOption.And => (icmpMatch && tcpMatch) && searchMatch,
+                SubnetRowState.FilterByOption.Or => (icmpMatch || tcpMatch) && searchMatch,
+                _ => true
+            };
+        };
+
+
+        FilteredIplists[subnetId] = (state.IcmpFilterEnabled || state.TcpFilterEnabled || hasSearch)
+            ? subnet.List.Where(filter).ToList()
+            : subnet.List; 
+
+        IpLists?.RefreshDataAsync();
+        StateHasChanged();
+    }
+
+    void FilterIcmp(int subnetId, bool enabled)
+    {
+        CurrentSubnetRowState[subnetId].IcmpFilterEnabled = enabled;
+        UpdateIpListFilter(subnetId);
+    }
+
+    void FilterTcp(int subnetId, bool enabled)
+    {
+        CurrentSubnetRowState[subnetId].TcpFilterEnabled = enabled;
+        UpdateIpListFilter(subnetId);
+    }
+
+    void ClearFilters(int subnetId) 
+    {
+        if (null != CurrentSubnetRowState[subnetId]) 
+        {
+            CurrentSubnetRowState[subnetId].TcpFilterEnabled = false;
+            CurrentSubnetRowState[subnetId].IcmpFilterEnabled = false;
+            CurrentSubnetRowState[subnetId].SearchTerm = null;
+        }
+
+        UpdateIpListFilter(subnetId);
+
+        if (IpLists != null)
+        {
+            IpLists.RefreshDataAsync();
+        }
+
+        StateHasChanged();
+    }
+
+    void OnClickExpandFilter(int subnetId) 
+    {
+        if (CurrentSubnetRowState.ContainsKey(subnetId)) 
+        {
+            CurrentSubnetRowState[subnetId].FilterRowHidden = !CurrentSubnetRowState[subnetId].FilterRowHidden;
+        }
+    }
+ 
     async protected override Task OnInitializedAsync()
     {
         await RefreshSubnetList();
@@ -274,46 +363,60 @@
         foreach (var subnet in SubnetList) {
             if (!CurrentSubnetRowState.ContainsKey(subnet.ID)) 
             {
-                var curRowState = new SubnetRowState
+                CurrentSubnetRowState.Add(subnet.ID, new SubnetRowState
                     {
                         Hidden = true,
-                        SearchTerm = String.Empty
-                    };
+                        SearchTerm = null,
+                        IcmpFilterEnabled = false,
+                        TcpFilterEnabled = false,
+                        FilterRowHidden = true,
+                        FilterBy = SubnetRowState.FilterByOption.And
+                    });
 
-                CurrentSubnetRowState.Add(subnet.ID, curRowState);
+            }
+
+            if(!FilteredIplists.ContainsKey(subnet.ID)) 
+            {
+                FilteredIplists.Add(subnet.ID, subnet.List);
             }
         }
 
         foreach (var ip in SubnetList.SelectMany(x => x.List))
         {
-            ip.RowState = new IpRowState
-                {
-                    Hidden = false,
-                    EditHidden = true
-                };
-
-            if (null != ip.PortsMonitored)
+            if (!CurrentIpRowState.ContainsKey(ip.ID)) 
             {
-                ip.RowState.PortNumbers = StringFromListInt(ip.PortsMonitored);
+                CurrentIpRowState.Add(ip.ID, new IpRowState
+                {
+                    EditHidden = true
+                });
+
+                if (null != ip.PortsMonitored)
+                {
+                    CurrentIpRowState[ip.ID].PortNumbers = StringFromListInt(ip.PortsMonitored);
+                }
             }
         }
+
     }
 
     void OnClickExpand(int ID) {
-        var subnet = SubnetList.Where(x => x.ID == ID).First();
-        CurrentSubnetRowState[subnet.ID].Hidden = !CurrentSubnetRowState[subnet.ID].Hidden;
-        showSearch = !showSearch;
-        StateHasChanged();
+        if (null != SubnetList) 
+        {
+            var subnet = SubnetList.Where(x => x.ID == ID).First();
+            CurrentSubnetRowState[subnet.ID].Hidden = !CurrentSubnetRowState[subnet.ID].Hidden;
+            showSearch = !showSearch;
+            StateHasChanged();
+        }
     }
 
     void OnClickEdit(IP ip) {
-        if (null != ip.RowState) 
+        if (null != CurrentIpRowState[ip.ID]) 
         {
-            ip.RowState.EditHidden = !ip.RowState.EditHidden;
+            CurrentIpRowState[ip.ID].EditHidden = !CurrentIpRowState[ip.ID].EditHidden;
 
             if (null != ip.PortsMonitored)
             {
-                ip.RowState.PortNumbers = StringFromListInt(ip.PortsMonitored);
+                CurrentIpRowState[ip.ID].PortNumbers = StringFromListInt(ip.PortsMonitored);
             }
 
             StateHasChanged();
@@ -321,14 +424,19 @@
     }
 
     async void OnClickSave(IP ip) {
-        if (null != ip.RowState) 
+        if (null != CurrentIpRowState[ip.ID])
         {
-            if (null != ip.RowState.PortNumbers && ip.RowState.PortNumbers != String.Empty)
+            if (null != CurrentIpRowState[ip.ID].PortNumbers && CurrentIpRowState[ip.ID].PortNumbers != String.Empty)
             {
-                ip.PortsMonitored = ListIntFromString(ip.RowState.PortNumbers);
+                ip.PortsMonitored = ListIntFromString(CurrentIpRowState[ip.ID].PortNumbers!);
             }
 
-            await SubnetsAPI.EditIP(ip);
+            if (null != CurrentIpRowState[ip.ID]) 
+            {
+                CurrentIpRowState[ip.ID].EditHidden = true;
+            }
+
+            await SubnetsAPI.EditIP(ip); 
             await RefreshSubnetList();
             StateHasChanged();
         }
@@ -377,137 +485,9 @@
         return returnStr;
     }
 
-    void SearchSubnet(int subnetID) {
-        if (null != SubnetList) 
-        {
-            var subnet = SubnetList.Find(x => x.ID == subnetID);
-
-            if (null != subnet)
-            {
-                foreach (var ip in subnet.List) {
-                    if (null != ip.RowState) {
-                        ip.RowState.Hidden = false;
-                    }
-                }
-
-                if (null != CurrentSubnetRowState[subnet.ID] && null != CurrentSubnetRowState[subnet.ID].SearchTerm)
-                {
-                    string pattern = "[A-Z]+";
-                    var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-                    var match = regex.Match(CurrentSubnetRowState[subnet.ID].SearchTerm!);
-
-                    var ipList = new List<IP>();
-
-                    if (match.Success) 
-                    {
-                        ipList = subnet.List.Where(x => null != x.Hostname && !x.Hostname.Contains(CurrentSubnetRowState[subnet.ID].SearchTerm!)).ToList();
-                        ipList.AddRange(subnet.List.Where(x => null == x.Hostname || String.Empty == x.Hostname));
-                    } 
-                    else 
-                    {
-                        ipList = subnet.List.Where(x => !(IP.ConvertToString(x.Address)).Contains(CurrentSubnetRowState[subnet.ID].SearchTerm!)).ToList();
-                    }
-
-                    if (ipList.Count > 0)
-                    {
-                        foreach (var ip in ipList)
-                        {
-                            if (null != ip.RowState)
-                            {
-                                ip.RowState.Hidden = true;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (var ip in subnet.List)
-                        {
-                            if (null != ip.RowState)
-                            {
-                                ip.RowState.Hidden = false;
-                            }
-                        }
-                    }
-                }
-                else if (null == CurrentSubnetRowState[subnet.ID].SearchTerm || String.Empty == CurrentSubnetRowState[subnet.ID].SearchTerm)
-                {
-                    foreach (var ip in subnet.List)
-                    {
-                        if (null != ip.RowState)
-                        {
-                            ip.RowState.Hidden = false;
-                        }
-                    }
-                }
-            }
-
-            StateHasChanged();
-        }
-    }
-
-    void FilterIcmp(int subnetID, bool enabled) 
-    {
-        if (null != SubnetList) 
-        {
-            Subnet? searchingSubnet = SubnetList.Where(x => x.ID == subnetID).FirstOrDefault();
-
-            if (null != searchingSubnet) 
-            {
-                var visibleList = searchingSubnet.List.Where(x => x.IsMonitoredICMP == enabled).ToList();
-
-                foreach (IP ip in searchingSubnet.List) 
-                {
-                    if (null != ip.RowState) 
-                    {
-                        if (visibleList.Contains(ip))
-                        {
-                            ip.RowState.Hidden = false;
-                        }
-                        else
-                        {
-                            ip.RowState.Hidden = true;
-                        }
-                    }
-                }
-
-                StateHasChanged();
-            }
-        }
-    }
-
-    void FilterMonitored(int subnetID, bool enabled)
-    {
-        if (null != SubnetList)
-        {
-            Subnet? searchingSubnet = SubnetList.Where(x => x.ID == subnetID).FirstOrDefault();
-
-            if (null != searchingSubnet)
-            {
-                var visibleList = searchingSubnet.List.Where(x => x.IsMonitoredICMP || x.IsMonitoredTCP == enabled).ToList();
-
-                foreach (IP ip in searchingSubnet.List)
-                {
-                    if (null != ip.RowState)
-                    {
-                        if (visibleList.Contains(ip))
-                        {
-                            ip.RowState.Hidden = false;
-                        }
-                        else
-                        {
-                            ip.RowState.Hidden = true;
-                        }
-                    }
-                }
-
-                StateHasChanged();
-            }
-        }
-    }
-
     void OnSearchKeyPress(KeyboardEventArgs eventArgs, int ID) {
         if (eventArgs.Code == "Enter") {
-            SearchSubnet(ID);
+            UpdateIpListFilter(ID);
         }
     }
 
