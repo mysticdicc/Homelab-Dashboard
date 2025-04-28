@@ -8,6 +8,7 @@
 @inherits LayoutComponentBase
 @inject CookieThemeService CookieThemeService
 @inject NavigationManager NavManager
+@inject ThemeService ThemeService
 
 <RadzenComponents @rendermode="InteractiveWebAssembly" />
 
@@ -15,7 +16,7 @@
     <RadzenHeader class="header">
         <RadzenButton Icon="home" Click="@(() => Navigate("home"))" Variant="Variant.Flat" class="ghost_button"/>
         <RadzenButton Icon="globe" Click="@(() => Navigate("subnets"))" Variant="Variant.Flat" class="ghost_button" />
-        <RadzenButton Icon="autorenew" Click="@(() => Navigate("monitoring"))" Variant="Variant.Flat" class="ghost_button right_button" />
+        <RadzenButton Icon="autorenew" Click="@(() => Navigate("monitoring"))" Variant="Variant.Flat" class="ghost_button" />
     </RadzenHeader>
 
     <RadzenBody class="body">

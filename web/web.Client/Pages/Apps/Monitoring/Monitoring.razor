@@ -32,13 +32,13 @@
                 {
                     <RadzenChart Style="margin-left: 1rem; margin-right: 1rem; margin-top: 1rem; margin-bottom: 3.5rem; width: 100%" class="flex_internal;">
                         <RadzenChartTooltipOptions Shared="true"/>
-                        <RadzenLineSeries Data="@onlineDevicesOverTime" TItem="CountAtTime" ValueProperty="DeviceCount" CategoryProperty="SubmitTime" Title="Online">
+                        <RadzenLineSeries Data="@devicesOverTime" TItem="CountAtTime" ValueProperty="IcmpResponded" CategoryProperty="SubmitTime" Title="Online">
                             <RadzenMarkers MarkerType="MarkerType.Circle"/>
                         </RadzenLineSeries>
-                        <RadzenLineSeries Data="@offlineDevicesOverTime" TItem="CountAtTime" ValueProperty="DeviceCount" CategoryProperty="SubmitTime" Title="Offline">
+                        <RadzenLineSeries Data="@devicesOverTime" TItem="CountAtTime" ValueProperty="IcmpNotResponded" CategoryProperty="SubmitTime" Title="Offline">
                             <RadzenMarkers MarkerType="MarkerType.Circle" />
                         </RadzenLineSeries>
-                        <RadzenLineSeries Data="@monitoredDevicesOverTime" TItem="CountAtTime" ValueProperty="DeviceCount" CategoryProperty="SubmitTime" Title="Monitored">
+                        <RadzenLineSeries Data="@devicesOverTime" TItem="CountAtTime" ValueProperty="DeviceCount" CategoryProperty="SubmitTime" Title="Monitored">
                             <RadzenMarkers MarkerType="MarkerType.Circle" />
                         </RadzenLineSeries>
                         <RadzenCategoryAxis LabelRotation="-55"/>
@@ -184,12 +184,11 @@
     class CountAtTime {
         required public string SubmitTime { get; set; }
         required public int DeviceCount { get; set; }
+        required public int IcmpResponded { get; set; }
+        required public int IcmpNotResponded {get; set; }
     }
 
-    List<CountAtTime> onlineDevicesOverTime = new();
-    List<CountAtTime> offlineDevicesOverTime = new();
-    List<CountAtTime> monitoredDevicesOverTime = new();
-
+    List<CountAtTime> devicesOverTime = new();
     List<IP>? monitoredIPs;
     List<IP>? currentlyMonitored;
     IP? lastCurrentlyMonitored;
@@ -232,44 +231,30 @@
     }
 
     async Task SetPollScale() {
-        if (null != allMonitorStates) {
+        await Task.Run(() => PollTask());
+    }
+
+    void PollTask() {
+        if (null != allMonitorStates)
+        {
             DateTime fromTime = DateTime.Now.AddHours(-timePeriods[currentPeriod]);
-            currentMonitorStates = allMonitorStates.Where(x => x.SubmitTime.ToLocalTime() > fromTime).ToList();
+            currentMonitorStates = allMonitorStates
+                                        .Where(x => x.SubmitTime.ToLocalTime() > fromTime)
+                                        .ToList();
 
-            var submitTimes = currentMonitorStates.Select(x => x.SubmitTime).ToList();
-            onlineDevicesOverTime = new();
-            offlineDevicesOverTime = new();
-            monitoredDevicesOverTime = new();
-
-            foreach (DateTime submit in submitTimes.Distinct()) {
-                string strDate = String.Format("{0:ddd HH:mm:ss}", submit);
-
-                var online = new CountAtTime
-                {
-                    SubmitTime = strDate,
-                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit && x.IcmpResponse == true).DistinctBy(x => x.IP_ID).Count()
-                };
-
-                onlineDevicesOverTime.Add(online);
-
-                var offline = new CountAtTime
-                {
-                    SubmitTime = strDate,
-                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit && x.IcmpResponse == false).DistinctBy(x => x.IP_ID).Count()
-                };
-
-                offlineDevicesOverTime.Add(offline);
-
-                var monitored = new CountAtTime
-                {
-                    SubmitTime = strDate,
-                    DeviceCount = currentMonitorStates.Where(x => x.SubmitTime == submit).DistinctBy(x => x.IP_ID).Count()
-                };
-
-                monitoredDevicesOverTime.Add(monitored);
-            }
-
-            await Task.Delay(1);
+            devicesOverTime = currentMonitorStates
+                                        .GroupBy(x => x.SubmitTime)
+                                        .Aggregate(new List<CountAtTime>(), (x, group) =>
+                                                {
+                                                    x.Add(new CountAtTime
+                                                        {
+                                                            SubmitTime = String.Format("{0:ddd HH:mm:ss}", group.Key.ToLocalTime()),
+                                                            DeviceCount = group.Count(),
+                                                            IcmpResponded = group.Where(x => x.IcmpResponse == true).Count(),
+                                                            IcmpNotResponded = group.Where(x => x.IcmpResponse == false).Count()
+                                                        });
+                                                    return x;
+                                                });
         }
     }
 
