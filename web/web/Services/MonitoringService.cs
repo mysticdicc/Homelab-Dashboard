@@ -59,125 +59,30 @@ namespace web.Services
 
                         foreach (IP ip in ips)
                         {
-                            if (null == ip.MonitorStateList)
+                            MonitorState currentMonitorState = new()
                             {
-                                List<MonitorState> states = [];
-                                ip.MonitorStateList = states;
+                                SubmitTime = submit,
+                                IP_ID = ip.ID
+                            };
+
+                            ip.MonitorStateList = [];
+
+                            switch ((ip.IsMonitoredICMP, ip.IsMonitoredTCP))
+                            {
+                                case (true, true):
+                                    currentMonitorState.PortState = TcpTest(ip);
+                                    currentMonitorState.PingState = IcmpTest(ip);
+                                    break;
+                                case (true, false):
+                                    currentMonitorState.PingState = IcmpTest(ip);
+                                    break;
+                                case (false, true):
+                                    currentMonitorState.PortState = TcpTest(ip);
+                                    break;
                             }
 
-                            if (ip.IsMonitoredICMP || ip.IsMonitoredTCP)
-                            {
-                                List<PortState> portStates = [];
-                                IPStatus pingStatus;
-                                MonitorState monitorState = default!;
+                            ip.MonitorStateList = ip.MonitorStateList.Append(currentMonitorState);
 
-                                if (ip.IsMonitoredTCP && ip.IsMonitoredICMP)
-                                {
-                                    _logger.LogInformation($"TCP testing {IP.ConvertToString(ip.Address)}");
-
-                                    if (null != ip.PortsMonitored)
-                                    {
-                                        foreach (int port in ip.PortsMonitored)
-                                        {
-                                            _logger.LogInformation($"Testing {port.ToString()} on {IP.ConvertToString(ip.Address)}");
-
-                                            using var client = new TcpClient();
-                                            bool status = false;
-
-                                            try
-                                            {
-                                                var address = new IPAddress(ip.Address);
-                                                client.Connect(address, port);
-                                                status = true;
-                                            }
-                                            catch
-                                            {
-                                                status = false;
-                                            }
-
-                                            PortState state = new()
-                                            {
-                                                Port = port,
-                                                Status = status
-                                            };
-
-                                            portStates.Add(state);
-                                        }
-                                    }
-
-                                    _logger.LogInformation($"Ping testing {IP.ConvertToString(ip.Address)}");
-
-                                    using Ping ping = new Ping();
-                                    pingStatus = ping.Send(new IPAddress(ip.Address)).Status;
-
-                                    monitorState = new MonitorState
-                                    {
-                                        SubmitTime = submit,
-                                        IcmpResponse = pingStatus == IPStatus.Success,
-                                        IP_ID = ip.ID,
-                                        PortState = portStates
-                                    };
-                                } 
-                                else if (ip.IsMonitoredICMP)
-                                {
-
-                                    _logger.LogInformation($"Ping testing {IP.ConvertToString(ip.Address)}");
-
-                                    using Ping ping = new Ping();
-                                    pingStatus = ping.Send(new IPAddress(ip.Address)).Status;
-
-                                    monitorState = new MonitorState
-                                    {
-                                        SubmitTime = submit,
-                                        IcmpResponse = pingStatus == IPStatus.Success,
-                                        IP_ID = ip.ID
-                                    };
-                                } 
-                                else if (ip.IsMonitoredTCP)
-                                {
-                                    _logger.LogInformation($"TCP testing {IP.ConvertToString(ip.Address)}");
-
-                                    if (null != ip.PortsMonitored)
-                                    {
-                                        foreach (int port in ip.PortsMonitored)
-                                        {
-                                            _logger.LogInformation($"Testing {port.ToString()} on {IP.ConvertToString(ip.Address)}");
-
-                                            using var client = new TcpClient();
-                                            bool status = false;
-
-                                            try
-                                            {
-                                                var address = new IPAddress(ip.Address);
-                                                client.Connect(address, port);
-                                                status = true;
-                                            }
-                                            catch
-                                            {
-                                                status = false;
-                                            }
-
-                                            PortState state = new()
-                                            {
-                                                Port = port,
-                                                Status = status
-                                            };
-
-                                            portStates.Add(state);
-                                        }
-
-                                        monitorState = new MonitorState
-                                        {
-                                            SubmitTime = submit,
-                                            IcmpResponse = null,
-                                            IP_ID = ip.ID,
-                                            PortState = portStates
-                                        };
-                                    } 
-                                }
-
-                                ip.MonitorStateList = ip.MonitorStateList.Append(monitorState!);
-                            }
                         }
 
                         _logger.LogInformation(JsonConvert.SerializeObject(ips, Formatting.Indented));
@@ -209,6 +114,59 @@ namespace web.Services
                 _logger.LogCritical(ex.Message);
                 await Task.Delay(15000, token);
             }
+        }
+
+        List<PortState> TcpTest(IP ip)
+        {
+            _logger.LogInformation($"TCP testing {IP.ConvertToString(ip.Address)}");
+
+            List<PortState> portStates = [];
+            
+            if (null != ip.PortsMonitored)
+            {
+                foreach (int port in ip.PortsMonitored)
+                {
+                    _logger.LogInformation($"Testing {port.ToString()} on {IP.ConvertToString(ip.Address)}");
+
+                    using var client = new TcpClient();
+                    bool status = false;
+
+                    try
+                    {
+                        var address = new IPAddress(ip.Address);
+                        client.Connect(address, port);
+                        status = true;
+                    }
+                    catch
+                    {
+                        status = false;
+                    }
+
+                    PortState state = new()
+                    {
+                        Port = port,
+                        Status = status
+                    };
+
+                    portStates.Add(state);
+                }
+            }
+
+            return portStates;
+        }
+
+        PingState IcmpTest(IP ip)
+        {
+            _logger.LogInformation($"Ping testing {IP.ConvertToString(ip.Address)}");
+
+            using Ping ping = new();
+
+            PingState pingState = new()
+            {
+                Response = ping.Send(new IPAddress(ip.Address)).Status == IPStatus.Success
+            };
+
+            return pingState;
         }
 
         async public void Restart()

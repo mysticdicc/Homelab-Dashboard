@@ -36,8 +36,8 @@
                         </RadzenText>
                     </RadzenColumn>
                     <RadzenColumn Size="4" class="row_column">
-                    @if (state.IcmpResponse != null) {
-                        @if (state.IcmpResponse == true)
+                    @if (state.PingState != null) {
+                        @if (state.PingState.Response == true)
                         {
                             <RadzenIcon Icon="check" class="row_contents" />
                         }

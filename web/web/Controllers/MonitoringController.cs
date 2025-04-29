@@ -29,7 +29,19 @@ namespace web.Controllers
         public string GetAll()
         {
             using var context = _DbFactory.CreateDbContext();
-            return JsonConvert.SerializeObject(context.IPs.Where(x => x.IsMonitoredTCP || x.IsMonitoredICMP).ToList());
+            return JsonConvert.SerializeObject(context.IPs
+                                        .Where(x => (x.IsMonitoredTCP || x.IsMonitoredICMP) && x.MonitorStateList != null)
+                                            .Include(x => x.MonitorStateList!)
+                                                .ThenInclude(x => x.PortState)
+                                            .Include(x => x.MonitorStateList!)
+                                                .ThenInclude(x => x.PingState)
+                                        .ToList(), 
+                Formatting.Indented,
+                        new JsonSerializerSettings
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        }
+                );
         }
 
         [HttpGet]
@@ -45,7 +57,11 @@ namespace web.Controllers
         public string GetByDeviceID(int ID)
         {
             using var context = _DbFactory.CreateDbContext();
-            return JsonConvert.SerializeObject(context.MonitorStates.Where(x => x.IP_ID == ID).Include(x => x.PortState).ToList(), Formatting.Indented,
+            return JsonConvert.SerializeObject(context.MonitorStates
+                                                    .Where(x => x.IP_ID == ID)
+                                                    .Include(x => x.PortState)
+                                                    .Include(x => x.PingState)
+                                                    .ToList(), Formatting.Indented,
                     new JsonSerializerSettings
                     {
                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -59,7 +75,7 @@ namespace web.Controllers
         {
             using var context = _DbFactory.CreateDbContext();
 
-            var monitorStates = ips.SelectMany(x => x.MonitorStateList);
+            var monitorStates = ips.SelectMany(x => x.MonitorStateList!);
 
             try
             {

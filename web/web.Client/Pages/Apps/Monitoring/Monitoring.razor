@@ -85,8 +85,8 @@
                         {
                             <RadzenText>Time: @(lastDate.ToLocalTime())</RadzenText>
                             <RadzenText>Monitored: @lastPolls.DistinctBy(x => x.IP_ID).Count()</RadzenText>
-                            <RadzenText>Online: @lastPolls.Where(x => x.IcmpResponse == true).Count()</RadzenText>
-                            <RadzenText>Offline: @lastPolls.Where(x => x.IcmpResponse == false).Count()</RadzenText>
+                            <RadzenText>Online: @lastPolls.Where(x => x.PingState?.Response == true).Count()</RadzenText>
+                            <RadzenText>Offline: @lastPolls.Where(x => x.PingState?.Response == false).Count()</RadzenText>
                         }
                     </RadzenCard>
                 </RadzenColumn>
@@ -223,8 +223,7 @@
         }
 
         monitorDelay = await GetMonitorTimer();
-        await UpdateMonitorList();
-        await UpdateIPlist();
+        await UpdateMonitorLists();
         StateHasChanged();
 
         await base.OnInitializedAsync();
@@ -243,6 +242,7 @@
                                         .ToList();
 
             devicesOverTime = currentMonitorStates
+                                        .Where(x => x.PingState != null)
                                         .GroupBy(x => x.SubmitTime)
                                         .Aggregate(new List<CountAtTime>(), (x, group) =>
                                                 {
@@ -250,35 +250,36 @@
                                                         {
                                                             SubmitTime = String.Format("{0:ddd HH:mm:ss}", group.Key.ToLocalTime()),
                                                             DeviceCount = group.Count(),
-                                                            IcmpResponded = group.Where(x => x.IcmpResponse == true).Count(),
-                                                            IcmpNotResponded = group.Where(x => x.IcmpResponse == false).Count()
+                                                            IcmpResponded = group.Where(x => x.PingState!.Response == true).Count(),
+                                                            IcmpNotResponded = group.Where(x => x.PingState!.Response == false).Count()
                                                         });
                                                     return x;
                                                 });
         }
     }
 
-    async Task UpdateMonitorList() {
-        allMonitorStates = await MonitoringAPI.GetAllPolls();
-        await SetPollScale();
-
-        lastDate = allMonitorStates.OrderByDescending(x => x.SubmitTime).Select(x => x.SubmitTime).FirstOrDefault();
-        lastPolls = allMonitorStates.Where(x => x.SubmitTime == lastDate).ToList();
-    }
-
-    async Task UpdateIPlist() {
+    async Task UpdateMonitorLists() {
         monitoredIPs = await MonitoringAPI.GetMonitoredIPs();
 
-        if (null != lastPolls) {
-            var ids = lastPolls.Select(x => x.IP_ID).Distinct();
-            currentlyMonitored = monitoredIPs.Where(x => ids.Contains(x.ID)).ToList();
+        allMonitorStates = monitoredIPs?
+                            .Where(x => null != x.MonitorStateList)
+                            .SelectMany(x => x.MonitorStateList!)
+                            .ToList();
 
-            if (currentlyMonitored.Count() > 0) 
-            {
-                lastCurrentlyMonitored = currentlyMonitored.Last();
-            }
+        currentlyMonitored = monitoredIPs?.Where(x => x.IsMonitoredTCP || x.IsMonitoredICMP).ToList();
+
+        if (currentlyMonitored?.Count() > 0)
+        {
+            lastCurrentlyMonitored = currentlyMonitored.Last();
         }
 
+        await SetPollScale();
+
+        if (null != allMonitorStates) 
+        {
+            lastDate = allMonitorStates.OrderByDescending(x => x.SubmitTime).Select(x => x.SubmitTime).FirstOrDefault();
+            lastPolls = allMonitorStates.Where(x => x.SubmitTime == lastDate).ToList();
+        }
     }
 
     void ToggleMonitoredHidden() {
@@ -290,7 +291,7 @@
             var state = lastPolls.Where(x => x.IP_ID == ID).FirstOrDefault();
 
             if (null != state) {
-                if (state.IcmpResponse == true)
+                if (state.PingState?.Response == true)
                 {
                     return true;
                 }

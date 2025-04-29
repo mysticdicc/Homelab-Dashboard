@@ -24,6 +24,7 @@ public partial class danknetContext : DbContext
     public virtual DbSet<IP> IPs { get; set; }
     public virtual DbSet<Subnet> Subnets { get; set; }
     public virtual DbSet<MonitorState> MonitorStates { get; set; }
+    public virtual DbSet<PingState> PingStates { get; set; } 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -139,7 +140,9 @@ public partial class danknetContext : DbContext
             entity.Property(e => e.ID);
             entity.Property(e => e.IP_ID);
             entity.Property(e => e.SubmitTime).HasColumnType("DateTime");
-            entity.Property(e => e.IcmpResponse);
+
+            entity.HasOne(e => e.PingState)
+                .WithOne(e => e.MonitorState);
 
             entity.HasMany(e => e.PortState)
                 .WithOne(e => e.MonitorState)
@@ -157,7 +160,17 @@ public partial class danknetContext : DbContext
             entity.Property(e => e.MonitorID);
             entity.Property(e => e.Port);
             entity.Property(e => e.Status);
-        }
-        );
+        });
+
+        modelBuilder.Entity<PingState>(entity =>
+        {
+            entity.ToTable("monitoring_ping");
+
+            entity.HasIndex(e => e.ID);
+
+            entity.Property(e => e.ID);
+            entity.Property(e => e.MonitorID);
+            entity.Property(e => e.Response);
+        });
     }
 }

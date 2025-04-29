@@ -152,7 +152,7 @@ namespace danklibrary
         public IP? IP { get; set; }
 
         public required DateTime SubmitTime { get; set; }
-        public bool? IcmpResponse { get; set; }
+        public PingState? PingState { get; set; }
         public List<PortState>? PortState { get; set; }
     }
 
@@ -161,6 +161,7 @@ namespace danklibrary
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+        [ForeignKey("MonitorState")]
         public int MonitorID { get; set; }
         [JsonIgnore]
         public MonitorState? MonitorState { get; set; }
@@ -168,4 +169,15 @@ namespace danklibrary
         required public bool Status { get; set; }
     }
 
+    public class PingState
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+        [ForeignKey("MonitorState")]
+        public int MonitorID { get; set; }
+        required public bool Response { get; set; }
+        [JsonIgnore]
+        public MonitorState? MonitorState { get; set; }
+    }
 }
