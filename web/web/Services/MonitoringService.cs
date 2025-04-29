@@ -51,7 +51,7 @@ namespace web.Services
 
                     List<IP>? ips = [];
 
-                    ips = await _httpClient.GetFromJsonAsync<List<IP>>("/monitoring/get/allmonitored", CancellationToken.None);
+                    ips = await _httpClient.GetFromJsonAsync<List<IP>>("/monitoring/get/allmonitoreddevices", CancellationToken.None);
 
                     if (null != ips)
                     {

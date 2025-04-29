@@ -45,11 +45,11 @@ namespace web.Controllers
         }
 
         [HttpGet]
-        [Route("[controller]/get/allpolls")]
-        public string GetAllPolls()
+        [Route("[controller]/get/allmonitoreddevices")]
+        public string GetAllMonitoredDevices()
         {
             using var context = _DbFactory.CreateDbContext();
-            return JsonConvert.SerializeObject(context.MonitorStates.ToList());
+            return JsonConvert.SerializeObject(context.IPs.Where(x => x.IsMonitoredICMP || x.IsMonitoredTCP).ToList());
         }
 
         [HttpGet]
